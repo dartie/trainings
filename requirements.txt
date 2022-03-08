@@ -1,0 +1,6 @@
+markdown
+lxml
+jinja2
+bs4
+pymdown-extensions
+

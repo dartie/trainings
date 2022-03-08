@@ -1,0 +1,543 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+
+		<title>Django</title>
+
+		<meta name="description" content="A framework for easily creating beautiful presentations using HTML">
+		<meta name="author" content="Dario Necco">
+
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+		<link rel="stylesheet" href="dist/reset.css">
+		<link rel="stylesheet" href="dist/reveal.css">
+		<link rel="stylesheet" href="dist/admonitions.css">		
+		<link rel="stylesheet" href="dist/theme/nalug.css" id="theme">
+
+		<!-- Theme used for syntax highlighting of code -->
+        <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.2/styles/default.min.css">-->
+		<link rel="stylesheet" href="plugin/highlight/monokai.css" id="highlight-theme">
+		
+		<!-- Third Party Plugin for copy code snippet -->
+		<link rel="stylesheet" href="plugin/copycode/copycode.css">
+
+        <style>
+            .copy-code-button {
+                color: #272822;
+                background-color: #FFF;
+                border-color: #272822;
+                border: 2px solid;
+                border-radius: 3px 3px 0px 0px;
+            
+                /* right-align */
+                display: block;
+                margin-left: auto;
+                /* margin-right: -18px; */
+                /* margin-bottom: -60px; */
+                margin-right: 0px;
+                margin-bottom: -45px;
+                padding: 3px 8px;
+                font-size: 0.4em;
+            }
+            
+            .copy-code-button:hover {
+                cursor: pointer;
+                background-color: #F2F2F2;
+            }
+            
+            .copy-code-button:focus {
+                /* Avoid an ugly focus outline on click in Chrome,
+                   but darken the button for accessibility.
+                   See https://stackoverflow.com/a/25298082/1481479 */
+                background-color: #E6E6E6;
+                outline: 0;
+            }
+            
+            .copy-code-button:active {
+                background-color: #D9D9D9;
+            }
+            
+            .highlight pre {
+                /* Avoid pushing up the copy buttons. */
+                margin: 0;
+            }
+        </style>
+
+	</head>
+
+	<body>
+
+		<div class="reveal">
+
+			<!-- Any section element inside of this container is displayed as a slide -->
+			<div class="slides">
+
+                <section data-background-image="Django/nalug.png">
+<p><img alt="" src="Django/django.png"/></p>
+</section>        
+<section data-background-image="Django/nalug.png">
+<section data-background-image="Django/nalug.png">
+<h1 id="introduction">Introduction</h1>
+<ul>
+<li>
+<p>Django is a Python-based free and open-source web framework that follows the model–template–views architectural pattern. It is maintained by the Django Software Foundation, an independent organization established in the US as a 501 non-profit.</p>
+</li>
+<li>
+<p>Created in 2003, by the Lawrence Journal-World newspaper, Adrian Holovaty and Simon Willison</p>
+</li>
+<li>
+<p>Released publicly under a BSD license in July 2005</p>
+</li>
+<li>
+<p>The framework was named after guitarist Django Reinhardt.</p>
+</li>
+<li>
+<p>In June 2008, it was announced that a newly formed Django Software Foundation (DSF) would maintain Django in the future.</p>
+</li>
+</ul>
+</section>        
+<section data-background-image="Django/nalug.png">
+<h1 id="django-mtv">Django MTV</h1>
+<p>Django follows MVC pattern very closely but it uses slightly different terminology. Django is essentially an MTV (Model-Template-View) framework. Django uses the term Templates for Views and Views for Controller. In other words, in Django views are called templates and controllers are called views.</p>
+</section>        
+
+</section>        
+<section data-background-image="Django/nalug.png">
+<section data-background-image="Django/nalug.png">
+<h1 id="mvc">MVC</h1>
+<p>MVC architecture divides an application into the following three layers:</p>
+<ol>
+<li>Model</li>
+<li>View</li>
+<li>Controller</li>
+</ol>
+<p><img alt="" src="Django/mvc.png"/></p>
+</section>        
+<section data-background-image="Django/nalug.png">
+<h2 id="model">Model</h2>
+<ul>
+<li>Models represents how data is organized in the database. </li>
+<li>In MVC pattern we use models to define our database tables as well as the relationships between them.</li>
+</ul>
+</section>        
+<section data-background-image="Django/nalug.png">
+<h2 id="views">Views</h2>
+<ul>
+<li>
+<p>A view is what you see when you visit a site. </p>
+</li>
+<li>
+<p>For example, a blog post, a contact form etc, are all examples of views. </p>
+</li>
+<li>
+<p>A View contains all the information that will be eventually sent to the client i.e a web browser. Generally, views are HTML documents.</p>
+</li>
+</ul>
+</section>        
+<section data-background-image="Django/nalug.png">
+<h2 id="controller">Controller</h2>
+<ul>
+<li>
+<p>Controller controls the flow of information. </p>
+</li>
+<li>
+<p>When you request a page that request is passed to the controller then it uses programmed logic to decide what information is needed to pull from the database and what information should it pass to the view. The controller is the heart of the MVC architecture because it acts as a glue between models and views.</p>
+</li>
+</ul>
+</section>        
+<section data-background-image="Django/nalug.png">
+<h2 id="steps-involved-in-an-mvc-application">Steps involved in an MVC application</h2>
+<ol>
+<li>
+<p>Web browser or client sends the request to the web server, asking the server to display a blog post.</p>
+</li>
+<li>
+<p>The request received by the server is passed to the controller of the application.</p>
+</li>
+<li>
+<p>The controller asks the model to fetch the blog post.</p>
+</li>
+<li>
+<p>The model sends the blog post to the controller.</p>
+</li>
+<li>
+<p>The controller then passes the blog post data to the view.</p>
+</li>
+<li>
+<p>The view uses blog post data to create an HTML page.</p>
+</li>
+<li>
+<p>At last, the controller returns the HTML content to the client.</p>
+</li>
+</ol>
+</section>        
+<section data-background-image="Django/nalug.png">
+<h2 id="note">Note</h2>
+<ul>
+<li>Django calls <strong>Controller</strong> the "view", and the <strong>View</strong> the "template"</li>
+</ul>
+</section>        
+
+</section>        
+<section data-background-image="Django/nalug.png">
+<h1 id="get-vs-post-request">GET vs POST request</h1>
+<ul>
+<li><code class="inline">GET</code>: is used to request data from a specified resource (not modify).<ul>
+<li>GET requests can be cached and remain in the browser history</li>
+<li>GET requests can be bookmarked</li>
+<li>GET requests should never be used when dealing with sensitive data</li>
+<li>GET requests have length restrictions</li>
+</ul>
+</li>
+</ul>
+<pre>/test/demo_form.php?name1=value1&amp;name2=value2
+</pre>
+<ul>
+<li><code class="inline">POST</code>: is used to send data to a server to create/update a resource.<ul>
+<li>POST requests are never cached and don't remain in the browser history</li>
+<li>POST requests cannot be bookmarked</li>
+<li>POST requests have no restrictions on data length</li>
+</ul>
+</li>
+</ul>
+</section>        
+<section data-background-image="Django/nalug.png">
+<h1 id="why-django">Why Django</h1>
+<ul>
+<li>
+<p>Among others python web frameworks (flask, fastapi, etc), it provides everything out-of-box: database, authentication, template engine.</p>
+</li>
+<li>
+<p>It allows to switch easily from a database to another (by default sqlite3 is used)</p>
+</li>
+</ul>
+</section>        
+<section data-background-image="Django/nalug.png">
+<section data-background-image="Django/nalug.png">
+<h1 id="installation-and-setup">Installation and Setup</h1>
+<h3 id="1-create-virtual-environment">1 - Create virtual environment</h3>
+<pre><code class="language-bash"># Install virtualenv module
+pip3 install virtualenv
+
+# Create virtual environment
+virtualenv ${virtual-environment-name}   
+
+# Activate virtual environment
+source ${virtual-environment-name}/bin/activate  #    Linux
+${virtual-environment-name}\Scripts\activate.bat #    Windows
+</code></pre>
+<h3 id="2-install-django">2 - Install Django</h3>
+<pre><code class="language-bash">pip3 install django
+</code></pre>
+<h3 id="3-create-django-project">3 - Create Django project</h3>
+<pre><code class="language-bash"># create django project
+django-admin startproject ${project-name} . 
+</code></pre>
+</section>        
+<section data-background-image="Django/nalug.png">
+<ul>
+<li>Supposing we call the project "core"</li>
+</ul>
+<pre>&lt;current-folder&gt;/
+│
+└── core/
+    │
+    ├── core/
+    │   ├── __init__.py
+    │   ├── asgi.py
+    │   ├── settings.py
+    │   ├── urls.py
+    │   └── wsgi.py
+    │
+    └── manage.py
+</pre>
+</section>        
+<section data-background-image="Django/nalug.png">
+<ul>
+<li>If the dot is omitted, the additional top-level project folder is avoided</li>
+</ul>
+<pre>&lt;current-folder&gt;/
+│
+├── core/
+│   ├── __init__.py
+│   ├── asgi.py
+│   ├── settings.py
+│   ├── urls.py
+│   └── wsgi.py
+│
+└── manage.py
+</pre>
+</section>        
+<section data-background-image="Django/nalug.png">
+<h3 id="4-create-django-app">4 - Create Django app</h3>
+<ul>
+<li>Django is formed of apps, which allow to keep the source code separated and organized.</li>
+</ul>
+<pre><code class="language-bash">django-admin startapp ${app-name}
+</code></pre>
+</section>        
+<section data-background-image="Django/nalug.png">
+<pre>&lt;project-folder&gt;/
+│
+├── example/
+│   │
+│   ├── migrations/
+│   │   └── __init__.py
+│   │
+│   ├── __init__.py
+│   ├── admin.py
+│   ├── apps.py
+│   ├── models.py
+│   ├── tests.py
+│   └── views.py
+│
+├── &lt;project-name&gt;/
+│   ├── __init__.py
+│   ├── asgi.py
+│   ├── settings.py
+│   ├── urls.py
+│   └── wsgi.py
+│
+└── manage.py
+</pre>
+</section>        
+<section data-background-image="Django/nalug.png">
+<pre><code data-line-numbers="18|19|13|11|5" class="language-bash">&lt;project-folder&gt;/
+│
+├── example/
+│   │
+│   ├── migrations/
+│   │   └── __init__.py
+│   │
+│   ├── __init__.py
+│   ├── admin.py
+│   ├── apps.py
+│   ├── models.py
+│   ├── tests.py
+│   └── views.py
+│
+├── &lt;project-name&gt;/
+│   ├── __init__.py
+│   ├── asgi.py
+│   ├── settings.py
+│   ├── urls.py
+│   └── wsgi.py
+│
+└── manage.py
+</code></pre>
+</section>        
+<section data-background-image="Django/nalug.png">
+<h3 id="5-declare-app-in-django-project">5 - Declare app in Django project</h3>
+<ul>
+<li>In <code class="inline">/settings.py</code>, to <strong>INSTALLED_APPS</strong> list, add:</li>
+</ul>
+<pre><code class="language-bash">'app.apps.AppConfig'  # main app
+</code></pre>
+<p>where:</p>
+<ul>
+<li><code class="inline">app</code> is the folder name</li>
+<li><code class="inline">apps</code> refers to <code class="inline">app\apps.py</code></li>
+<li><code class="inline">AppConfig</code> is the Class name</li>
+</ul>
+</section>        
+<section data-background-image="Django/nalug.png">
+<h3 id="6-set-template-folder">6 - Set template folder</h3>
+<ul>
+<li>In <code class="inline">/settings.py</code>, to <strong>TEMPLATES</strong> list, add the template path:</li>
+</ul>
+<pre><code class="language-bash">TEMPLATES = [
+    {
+        ...
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],  # new
+        ...
+    },
+]
+</code></pre>
+<ul>
+<li>
+<p>Create <code class="inline">templates</code> folder in the project root</p>
+</li>
+<li>
+<p>The template engine is <code class="inline">jinja2</code></p>
+</li>
+</ul>
+</section>        
+<section data-background-image="Django/nalug.png">
+<h3 id="7-apply-the-changes">7 - Apply the changes</h3>
+<pre><code class="language-bash">python manage.py makemigrations
+python manage.py migrate
+</code></pre>
+</section>        
+<section data-background-image="Django/nalug.png">
+<h3 id="8-create-the-first-user-admin">8 - Create the first user (admin)</h3>
+<pre><code class="language-bash">python manage.py createsuperuser
+</code></pre>
+<p>or </p>
+<pre><code class="language-bash">python manage.py createsuperuser --username ${username} --email ${email}
+</code></pre>
+</section>        
+<section data-background-image="Django/nalug.png">
+<h3 id="9-run-django-server">9 - Run Django server</h3>
+<pre><code class="language-bash">python manage.py runserver
+</code></pre>
+</section>        
+<section data-background-image="Django/nalug.png">
+<h3 id="9-create-the-first-route">9 - Create the first route</h3>
+<ul>
+<li>/urls.ypy</li>
+</ul>
+<pre><code class="language-python">from django.shortcuts import render, redirect
+from django.contrib.auth.decorators import login_required
+
+@login_required
+def home(request):
+    return render(request, "home.html", {})
+</code></pre>
+</section>        
+
+</section>        
+<section data-background-image="Django/nalug.png">
+<h1 id="use-static-files">Use static files</h1>
+<ul>
+<li>
+<p>It allows to serve static files (js, image, css, etc.)</p>
+</li>
+<li>
+<p>Per Django structure, static files are located in each app</p>
+</li>
+<li>
+<p>Collect all apps' static files into the main static folder</p>
+</li>
+</ul>
+<pre><code class="language-python">python manage.py collectstatic --noinput --clear
+</code></pre>
+<ul>
+<li>Use static files in template for rendering</li>
+</ul>
+<pre><code class="language-html">{% load static %}
+
+...
+
+&lt;link rel="stylesheet" href="{% static "css/style.css" %}"&gt;
+</code></pre>
+</section>        
+<section data-background-image="Django/nalug.png">
+<h1 id="additional-settings-settingspy">Additional settings (<code class="inline">/settings.py</code>)</h1>
+<ul>
+<li>Allow all hosts to connect:</li>
+</ul>
+<pre><code class="language-python">ALLOWED_HOSTS = ['*']
+</code></pre>
+<ul>
+<li>Enable/disable DEBUG: Detailed error pages: if your app raises an exception when DEBUG is True, Django will display a detailed traceback, including a lot of metadata about your environment</li>
+</ul>
+<pre><code class="language-python">DEBUG = True
+</code></pre>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>• <code class="inline">DEBUG = True</code> exposes the server to security flaws</p>
+<p>• Due to storage of each SQL query execution and other debug info, it consumes more memory on a production server.</p>
+</div>
+</section>        
+
+
+			</div>
+
+		</div>
+
+		<script src="dist/reveal.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js"></script>
+        <script src="plugin/copycode/copycode.js"></script>
+		<script src="plugin/zoom/zoom.js"></script>
+		<script src="plugin/notes/notes.js"></script>
+		<script src="plugin/search/search.js"></script>
+		<script src="plugin/markdown/markdown.js"></script>
+		<script src="plugin/highlight/highlight.js"></script>
+		
+		<!-- Third-Party Plugin for menu -->
+        <script src="plugin/menu/menu.js"></script>
+
+		<script>
+
+			// Also available as an ES module, see:
+			// https://revealjs.com/initialization/
+			Reveal.initialize({
+				controls: true,
+				progress: true,
+				center: true,
+				hash: true,
+				slideNumber: true,
+
+                copycode: {
+                    copy: "Copy",
+                    copied: "Copied!",
+                    timeout: 1000,
+                    copybg: "orange",
+                    copiedbg: "green",
+                    copycolor: "black",
+                    copiedcolor: "white"
+                },
+
+				// Learn about plugins: https://revealjs.com/plugins/
+				plugins: [ RevealZoom, RevealNotes, RevealSearch, RevealMarkdown, RevealHighlight, RevealMenu, CopyCode ]
+			});
+
+		</script>
+		
+		<script>
+		function addCopyButtons(clipboard) {
+            document.querySelectorAll('pre > code').forEach(function (codeBlock) {
+                var button = document.createElement('button');
+                button.className = 'copy-code-button';
+                button.type = 'button';
+                button.innerText = 'Copy';
+        
+                button.addEventListener('click', function () {
+                    clipboard.writeText(codeBlock.innerText).then(function () {
+                        /* Chrome doesn't seem to blur automatically,
+                           leaving the button in a focused state. */
+                        button.blur();
+        
+                        button.innerText = 'Copied!';
+        
+                        setTimeout(function () {
+                            button.innerText = 'Copy';
+                        }, 2000);
+                    }, function (error) {
+                        button.innerText = 'Error';
+                    });
+                });
+        
+                var pre = codeBlock.parentNode;
+                if (pre.parentNode.classList.contains('highlight')) {
+                    var highlight = pre.parentNode;
+                    highlight.parentNode.insertBefore(button, highlight);
+                } else {
+                    pre.parentNode.insertBefore(button, pre);
+                }
+            });
+        }
+        /*
+        if (navigator && navigator.clipboard) {
+            addCopyButtons(navigator.clipboard);
+        } else {
+            var script = document.createElement('script');
+            script.src = 'https://cdnjs.cloudflare.com/ajax/libs/clipboard-polyfill/2.7.0/clipboard-polyfill.promise.js';
+            script.integrity = 'sha256-waClS2re9NUbXRsryKoof+F9qc1gjjIhc2eT7ZbIv94=';
+            script.crossOrigin = 'anonymous';
+            script.onload = function() {
+                addCopyButtons(clipboard);
+            };
+        
+            document.body.appendChild(script);
+        }
+        */
+		</script>
+
+	</body>
+</html>
