@@ -112,6 +112,10 @@ def remove_additional_tags(html_text):
 
 
 def adjust_slide_html(slide_content_html):
+    # handle code blocks incorrectly shown as inline code blocks
+    # code_regex = re.compile(r'^ {4}<code>((.|\n)*?)<\/code>', re.MULTILINE)
+    # slide_content_html = code_regex.sub("<pre><code>\g<1></code></pre>", slide_content_html)
+
     soup = bs4.BeautifulSoup(slide_content_html, 'lxml')
     code_tags = soup.findAll('code')
 
@@ -253,7 +257,7 @@ def main(args=None):
             slide_content_markdown = remove_prefix(remove_prefix(s, '#'), '\n')
             slides_dict[slide_index].append(slide_content_markdown)
 
-            slide_content_html = markdown.markdown(slide_content_markdown, indentation=4, output_format='html', extensions=['fenced_code', 'pymdownx.emoji', 'markdown.extensions.tables', 'markdown.extensions.admonition', 'toc'])  # , 'codehilite' enables pygments for syntax highlighting
+            slide_content_html = markdown.markdown(slide_content_markdown, indentation=4, output_format='html', extensions=['pymdownx.superfences', 'pymdownx.emoji', 'markdown.extensions.tables', 'markdown.extensions.admonition', 'toc'])  # , 'codehilite' enables pygments for syntax highlighting
 
             # adjust html slide content
             slide_content_html = adjust_slide_html(slide_content_html)
