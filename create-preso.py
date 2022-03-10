@@ -151,6 +151,7 @@ def adjust_slide_html(slide_content_html):
 
         # add option as code attribute
         clean_html_split[i] = cl_clean.replace('<pre><code ', '<pre><code ' + string_to_add)
+        clean_html_split[i] = cl_clean.replace('><!--CR-TO-REMOVE-->', ' ' + string_to_add + '><!--CR-TO-REMOVE-->')
 
     clean_html_string = '\n'.join(clean_html_split)
 
