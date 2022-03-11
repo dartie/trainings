@@ -13,6 +13,16 @@ date:
 ![](Django/django.png)
 
 ---#
+# About me
+
+![](common/me.jpg)
+
+* Principal Technical Consultant Engineer @ Perforce
+* [https://www.linkedin.com/in/dartie/](https://www.linkedin.com/in/dartie/)
+* Member of Nalug ([https://www.nalug.tech/](https://www.nalug.tech/))
+* Python and Go(lang) developer
+
+---#
 # Introduction
 * Django is a Python-based free and open-source web framework that follows the model–template–views architectural pattern. It is maintained by the Django Software Foundation, an independent organization established in the US as a 501 non-profit.
 
@@ -360,6 +370,22 @@ python manage.py collectstatic --noinput --clear
 <link rel="stylesheet" href="{% static "css/style.css" %}">
 ```
 
+---##
+
+## `settings.py` configuration
+
+```python
+PROJECT_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+STATIC_ROOT = os.path.join(PROJECT_ROOT, 'staticfiles')
+STATIC_URL = '/static/'
+
+# Extra lookup directories for collectstatic to find static files
+STATICFILES_DIRS = (
+    os.path.join(PROJECT_ROOT, 'static'),
+)
+```
+
+
 ---# 
 # Additional settings (`/settings.py`)
 
@@ -651,6 +677,41 @@ def my_view(request, mode):
         return HttpResponse("Hello World!")
 ```
 
+---##
+
+## Decorators
+
+* Function that takes another function and extends the behavior of the latter function without explicitly modifying it.
+
+* Decorators provide a simple syntax for calling higher-order functions.
+
+* `@login_required` allows to render the webpage only if the user is authenticated.
+
+    ```python
+    from django.contrib.auth.decorators import login_required
+
+    @login_required
+    def my_view(request, mode):
+        # ...
+    ```
+
+---##
+
+* `@require_http_methods` restricts access to views based on the request method. 
+
+    ```python
+    @require_http_methods(["GET", "POST"])
+    def my_view(request):
+        # I can assume now that only GET or POST requests make it this far
+        # ...
+        pass
+    ```
+
+---##
+
+## Custom decorators
+
+* Custom decorators can be written for achieving different scopes.
 
 ---##
 
@@ -671,6 +732,8 @@ def my_view(request, mode):
         name = "Dario"
         return render(request, "Template.html.jinja", {"name": name})
 ```
+
+---##
 
 * `/template/Template.html.jinja`
 
@@ -693,34 +756,243 @@ def my_view(request, mode):
 
 ## Template organization
 
+### extends
 
+* `base.html.jinja`
 
----#
+```html
+<!DOCTYPE html>
+<html>
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Title</title>
+  </head>
+ <body>
 
-## Template syntax (Jinja2)
+    {% block content %}
 
-
-
-
-
-
-
----#
-
-# Store and retrieve data
-
-## Store
-
+    {% endblock %} 
+      
+  </body>
+</html>
 ```
 
+---##
+
+
+* `home.html.jinja`
+
+```html
+{% extends 'base.html.jinja' %}
+
+{% block content %}
+
+<h1>Homepage</h1>
+
+{% endblock %}
 ```
 
 
 ---##
 
-## Retrieve data from the database
 
-### 1 - Raw query
+### includes
+
+* `navbar.html.jinja2`
+
+```html
+<!--Navbar-->
+<nav class="navbar navbar-expand-sm navbar-light bg-light">
+  ...
+</nav>
+```
+
+* `home.html.jinja`
+
+```html
+{% extends 'base.html.jinja' %}
+
+{% block content %}
+{% include 'navbar.html.jinja' %}
+
+<h1>Homepage</h1>
+
+{% endblock %}
+```
+
+---#
+
+## Template syntax (Jinja2)
+
+### Variable
+
+* string
+
+```html
+{{ variable }}
+```
+
+* Objects use dot notation
+
+```html
+{{ my_dict.key }}
+{{ my_object.attribute }}
+{{ my_list.0 }}
+```
+
+* Comment
+
+```html
+{# this won't be rendered #}
+```
+
+---##
+
+* Filters: transform the values of variables and tag arguments
+
+```html
+{{ variable|title }}
+```
+
+`django -> Django`
+
+
+---##
+
+## Custom Filters
+
+```html
+{{ variable|title }}
+```
+
+`django -> Django`
+
+
+---##
+
+## Conditions (if, elif, and else)
+
+```html
+{% if athlete_list %}
+    Number of athletes: {{ athlete_list|length }}
+{% elif athlete_in_locker_room_list %}
+    Athletes should be out of the locker room soon!
+{% else %}
+    No athletes.
+{% endif %}
+```
+
+---##
+
+## List Iteration (For loop)
+
+```html
+<ul>
+{% for athlete in athlete_list %}
+    <li>{{ athlete.name }}</li>
+{% endfor %}
+</ul>
+```
+
+## Dictionary iteration
+
+```html
+<ul>
+{% for athlete, age in athlete_dict.items %}
+    <li>{{ athlete.name }} - Age : {{ age }}</li>
+{% endfor %}
+</ul>
+```
+
+---##
+
+## Get user information in the template
+
+```html
+{{ user.first_name }}
+```
+
+---#
+
+# Submit info (from webpage to the server)
+
+* `POST` method is used
+* `csrf_token` is required: [CSRF](https://docs.djangoproject.com/en/4.0/ref/csrf/)
+
+* `myTemplate.html.jinja2`
+    ```html
+    <form id="myForm" action="/my-url/" method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+
+        <input type="text" id="fname" name="fname">
+        <input type="text" id="lname" name="lname[]">
+    <!-- ... -->
+    </form>    
+    ```
+
+* `views.py`
+    ```
+    request.POST.get('fname')
+    request.POST.getlist('lname')
+    ```
+
+---##
+
+# AJAX
+
+```javascript
+/* AJAX definition */
+function AJAX(url, data, method='GET', async=true){
+    return new Promise(function(resolve, reject) {
+        var formData = new FormData();
+
+        for (var key in data) {
+            // check if the property/key is defined in the object itself, not in parent
+            if (data.hasOwnProperty(key)) {
+                formData.append(key, data[key]);
+            }
+        }
+
+        var xhr = new XMLHttpRequest();
+
+        // Add any event handlers here...
+        xhr.onload = function() {
+            resolve(this.responseText);
+        };
+        xhr.onerror = reject;
+
+        xhr.open(method, url, async);
+        xhr.send(formData);
+        //return false; // To avoid actual submission of the form
+    });
+}
+```
+
+---##
+
+```javascript
+/* AJAX call */
+let settings_dict = {};
+settings_dict['refresh_timeout'] = timeout;
+
+let settings_json = JSON.stringify(settings_dict);
+
+AJAX("/update_db_settings/" + settings_json, "POST")
+.then(function(result) {
+    // Code depending on result
+    ;
+})
+.catch(function() {
+    // An error occurred
+});
+```
+
+
+---#
+
+# Store and retrieve data
 
 * Supposing this model
 
@@ -730,6 +1002,39 @@ class Person(models.Model):
     last_name = models.CharField(...)
     birth_date = models.DateField(...)
 ```
+
+## Store
+
+```python
+new_person = Person.objects.create(
+    first_name="Dario",
+    last_name="Necco"
+)
+
+new_person.save()
+```
+
+
+---##
+
+## Retrieve data from the database
+
+
+### 1 - Using objects
+
+```python
+person = Person.objects.get(id=1).first()
+```
+
+```python
+Person.objects.order_by().values_list('first_name')
+
+Person.objects.order_by().values('first_name')
+
+Person.objects.all().values('first_name')
+```
+
+### 2 - Raw query
 
 ```python
 for p in Person.objects.raw('SELECT * FROM myapp_person'):
@@ -750,6 +1055,314 @@ transaction.commit_unless_managed()
 cursor.execute("SELECT first_name FROM app_person WHERE id = 1")
 row = cursor.fetchone()
 ```
+
+---#
+
+# Extra
+
+---#
+
+## Extend Django commands 
+
+1. Create `my_custom_command.py` in `<project>/<app>/management/commands`
+1. Write the function in it: it will be executed every time `python manage.py my_custom_command` is executed
+
+```python
+from django.core.management.base import BaseCommand
+from django.utils import timezone
+
+class Command(BaseCommand):
+    help = 'Displays current time'
+
+    def handle(self, *args, **kwargs):
+        time = timezone.now().strftime('%X')
+        self.stdout.write("It's now %s" % time)
+```
+
+---#
+
+## Extend User information
+
+* `models.py`
+
+    ```python
+    class Profile(models.Model):
+        user = models.OneToOneField(User, on_delete=models.CASCADE)
+        role = models.IntegerField(default=0)
+        phone = models.CharField(max_length=30, blank=True)
+        birth_date = models.DateField(null=True, blank=True)
+        picture = models.BinaryField(blank=True)
+        signature = models.BinaryField(blank=True)
+
+
+    @receiver(post_save, sender=User)
+    def create_user_profile(sender, instance, created, **kwargs):
+        if created:
+            Profile.objects.create(user=instance)
+
+
+    @receiver(post_save, sender=User)
+    def save_user_profile(sender, instance, **kwargs):
+        instance.profile.save()
+    ```
+
+---##
+
+* `views.py`: Access to all information
+
+    ```python
+    from django.contrib.auth import get_user_model
+
+    UserModel = get_user_model()
+    all_users = UserModel.objects.all().select_related("profile")
+    ``` 
+
+---##
+
+* Example of retrieving user information with all info
+
+```python
+def get_all_users(key="username"):
+    users_dict = {}
+    UserModel = get_user_model()
+    all_users = UserModel.objects.all().select_related("profile")
+    all_roles = Roles.objects.all()
+
+    for user in all_users:
+        try:
+            user_profile = user.profile
+            user_profile_dict = user_profile.__dict__
+        except:
+            user_profile = None
+            user_profile_dict = {}
+
+        user_dict = user.__dict__
+
+        # populate user dictionary
+        users_dict[user_dict[key]] = {**user_profile_dict, **user_dict}
+
+    return users_dict
+```
+
+
+---#
+
+## Use https instead of http
+
+1. Install [mkcert](https://github.com/FiloSottile/mkcert)
+    ```bash
+    brew install mkcert
+    ```
+
+    for Linux and MacOs, or for Windows:
+    ```bash
+    choco install mkcert
+    ```
+
+
+1. Generate a certificate
+    ```bash
+    mkcert -cert-file cert.pem -key-file key.pem localhost 127.0.0.1
+    ```
+
+---##
+
+1. Configure Django server to work with https
+    1. Installed required packages
+        ```python
+        pip install django-extensions Werkzeug
+        ```
+
+    1. Add `django_extensions` to the `INSTALLED_APPS` list:
+
+        ```python
+        INSTALLED_APPS = [
+            # other apps
+            "django_extensions",
+        ]
+        ```
+
+1. Run the server
+
+    ```bash
+    python manage.py runserver_plus --cert-file cert.pem --key-file key.pem
+    ```
+
+---#
+
+## Build API
+
+1. Install the required package
+    ```bash
+    pip install djangorestframework
+    ```
+
+1. Create a dedicate app for the api (I called it `api`)
+    ```bash
+    django-admin.py startapp api
+    ```
+
+1. Add `rest_framework` and your app to the `INSTALLED_APPS` list:
+
+    ```python
+    INSTALLED_APPS = [
+        # other apps
+        "rest_framework",       # <-- rest_framework
+        'example.api',          # <-- project app
+    ]
+    ```    
+
+---##
+
+1. Apply the changes
+    ```bash
+    python manage.py migrate
+    ```
+
+1. Add route in `url.py`
+    ```python
+    from django.urls import path
+    from myapi.core import views
+
+    urlpatterns = [
+        path('admin/', admin.site.urls),
+        path('hello/', views.HelloView.as_view(), name='hello'),  # <-- api
+    ]
+    ```
+
+---##
+
+
+1. Add code in the `views.py`
+    ```python
+    from rest_framework.views import APIView
+    from rest_framework.response import Response
+
+    class HelloView(APIView):
+        def get(self, request):
+            content = {'message': 'Hello, World!'}
+            return Response(content)
+    ```
+
+---##
+
+## Add API authentication
+
+* Add code in the `views.py`
+    ```python
+    {data-line-numbers="3,6"}
+    from rest_framework.views import APIView
+    from rest_framework.response import Response
+    from rest_framework.permissions import IsAuthenticated  # <-- Auth
+
+    class HelloView(APIView):
+        permission_classes = (IsAuthenticated,)             # <-- Auth
+
+        def post(self, request):
+            content = {'message': 'Hello, World!'}
+            return Response(content)
+
+        def get(self, request):
+            content = {'message': 'Hello, World!'}
+            return Response(content)
+    ```
+
+---##
+
+* Add code to `settings.py`
+    ```python
+    REST_FRAMEWORK = {
+        'DEFAULT_RENDERER_CLASSES': (
+            'rest_framework.renderers.JSONRenderer',  # <-- Returns the json instead of a webpage: https://stackoverflow.com/questions/51800895/django-returning-webpage-instead-of-json 
+        ),
+        'DEFAULT_PARSER_CLASSES': [
+            'rest_framework.parsers.JSONParser',  # <- Handles JSON requests
+            'rest_framework.parsers.FormParser',  # <- Handles x-www-form-urlencoded requests
+        ],
+        'DEFAULT_AUTHENTICATION_CLASSES': [
+            'rest_framework.authentication.TokenAuthentication',  # <-- Auth
+        ],
+    ```
+
+---##
+
+* Add route for api-token
+
+    ```python
+    from django.contrib import admin
+    from django.urls import path
+    from myapi.core import views
+    from rest_framework.authtoken.views import obtain_auth_token            # <-- Request Token
+
+
+    urlpatterns = [
+        path('admin/', admin.site.urls),
+        path('hello/', views.HelloView.as_view(), name='hello'),            # <-- api
+        path('api-token-auth/', obtain_auth_token, name='api_token_auth'),  # <-- Request Token
+    ]
+    ```
+
+* Apply the changes
+    ```bash
+    python manage.py migrate
+    ```
+
+---##
+
+* Create a token for a user
+
+    ```bash
+    # create user
+    python manage.py createsuperuser --username dartie --email dartie@example.com
+
+    # create token: it will return a string to annotate (token)
+    python manage.py drf_create_token dartie
+    ```
+
+* Create a token using python code
+
+    ```python
+    def generate_or_renew_token(user):
+        from rest_framework.authtoken.models import Token
+
+        User_to_update = User.objects.get(username=user)
+        token, created = Token.objects.get_or_create(user=User_to_update)  # get token info
+
+        if not created:
+            token.delete()  # delete current token
+            token, created = Token.objects.get_or_create(user=User_to_update)  # regenerate token
+
+        return token
+    ```
+
+---##
+
+## Make requests
+
+* Using the terminal
+
+```bash
+# BASH
+curl http://127.0.0.1:8000/hello/ -H "Authorization: Token 9054f7aa9305e012b3c2300408c3dfdf390fcddf"
+```
+
+* With python code
+
+```python
+# python
+import requests
+
+url = 'http://127.0.0.1:8000/hello/'
+headers = {'Authorization': 'Token 9054f7aa9305e012b3c2300408c3dfdf390fcddf'}
+r = requests.get(url, headers=headers)
+```
+
+* Request Token using http python module
+
+```bash
+http post http://127.0.0.1:8000/api-token-auth/ username=vitor password=123
+```
+
 
 --------
 To see:
