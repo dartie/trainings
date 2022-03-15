@@ -317,13 +317,13 @@ python manage.py runserver
 
 * specify additional info
 
-```bash
-python manage.py runserver ${clientIP}:${port}
-```
+    ```bash
+    python manage.py runserver ${clientIP}:${port}
+    ```
 
-```bash
-python manage.py runserver 0.0.0.0:8000
-```
+    ```bash
+    python manage.py runserver 0.0.0.0:8000
+    ```
 
 !!! note
 
@@ -334,15 +334,29 @@ python manage.py runserver 0.0.0.0:8000
 
 ### 9 - Create the first route
 
-* /urls.ypy
+* `/urls.py`
+
+```python
+from django.contrib import admin
+from django.urls import path, include
+from app import views
+from django.contrib.auth import views as auth_views
+
+urlpatterns = [
+    path('hello/', views.hello, name='hello')
+]
+```
+
+* `/views.py`
 
 ```python
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
+from django.http import JsonResponse, FileResponse, Http404, HttpResponse
 
-@login_required
-def home(request):
-    return render(request, "home.html", {})
+def hello(request, mode):
+    if request.method == "GET":
+        return HttpResponse("Hello World!")
 ```
 
 
@@ -374,6 +388,8 @@ python manage.py collectstatic --noinput --clear
 
 ## `settings.py` configuration
 
+* [Django - How to manage static files](https://docs.djangoproject.com/en/4.0/howto/static-files/)
+
 ```python
 PROJECT_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 STATIC_ROOT = os.path.join(PROJECT_ROOT, 'staticfiles')
@@ -385,8 +401,9 @@ STATICFILES_DIRS = (
 )
 ```
 
-
 ---# 
+
+
 # Additional settings (`/settings.py`)
 
 * Allow all hosts to connect:
@@ -700,6 +717,8 @@ def my_view(request, mode):
 * `@require_http_methods` restricts access to views based on the request method. 
 
     ```python
+    from django.views.decorators.http import require_http_methods
+
     @require_http_methods(["GET", "POST"])
     def my_view(request):
         # I can assume now that only GET or POST requests make it this far
@@ -735,7 +754,7 @@ def my_view(request, mode):
 
 ---##
 
-* `/template/Template.html.jinja`
+* `/template/Template.html.jinja2`
 
 ```html
 <!doctype html>
@@ -758,7 +777,7 @@ def my_view(request, mode):
 
 ### extends
 
-* `base.html.jinja`
+* `base.html.jinja2`
 
 ```html
 <!DOCTYPE html>
@@ -782,10 +801,10 @@ def my_view(request, mode):
 ---##
 
 
-* `home.html.jinja`
+* `home.html.jinja2`
 
 ```html
-{% extends 'base.html.jinja' %}
+{% extends 'base.html.jinja2' %}
 
 {% block content %}
 
@@ -809,13 +828,13 @@ def my_view(request, mode):
 </nav>
 ```
 
-* `home.html.jinja`
+* `home.html.jinja2`
 
 ```html
-{% extends 'base.html.jinja' %}
+{% extends 'base.html.jinja2' %}
 
 {% block content %}
-{% include 'navbar.html.jinja' %}
+{% include 'navbar.html.jinja2' %}
 
 <h1>Homepage</h1>
 
@@ -892,7 +911,7 @@ def my_view(request, mode):
 <ul>
 {% for athlete in athlete_list %}
     <li>{{ athlete.name }}</li>
-{% endfor %}
+{% endfor                      %}
 </ul>
 ```
 
@@ -900,9 +919,9 @@ def my_view(request, mode):
 
 ```html
 <ul>
-{% for athlete, age in athlete_dict.items %}
-    <li>{{ athlete.name }} - Age : {{ age }}</li>
-{% endfor %}
+{% for name, age in athlete_dict.items %}
+    <li>{{ name }} - Age : {{ age }}</li>
+{% endfor                                      %}
 </ul>
 ```
 
@@ -957,15 +976,12 @@ function AJAX(url, data, method='GET', async=true){
 
         var xhr = new XMLHttpRequest();
 
-        // Add any event handlers here...
         xhr.onload = function() {
             resolve(this.responseText);
         };
         xhr.onerror = reject;
-
         xhr.open(method, url, async);
         xhr.send(formData);
-        //return false; // To avoid actual submission of the form
     });
 }
 ```
@@ -979,7 +995,7 @@ settings_dict['refresh_timeout'] = timeout;
 
 let settings_json = JSON.stringify(settings_dict);
 
-AJAX("/update_db_settings/" + settings_json, "POST")
+AJAX("/route/" + settings_json, "POST")
 .then(function(result) {
     // Code depending on result
     ;
@@ -1033,6 +1049,8 @@ Person.objects.order_by().values('first_name')
 
 Person.objects.all().values('first_name')
 ```
+
+---##
 
 ### 2 - Raw query
 
