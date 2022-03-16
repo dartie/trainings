@@ -354,7 +354,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from django.http import JsonResponse, FileResponse, Http404, HttpResponse
 
-def hello(request, mode):
+def hello(request):
     if request.method == "GET":
         return HttpResponse("Hello World!")
 ```
@@ -880,13 +880,39 @@ def my_view(request, mode):
 
 ---##
 
-## Custom Filters
+# Custom Filters
 
+1. Create the folder `templatetags` in your app
+    ```
+    my_app/
+    ├── templatetags/
+    │   ├── __init__.py
+    │   └── app_filters.py
+    ```
+    where `__init__.py` is an empty file
+1. Populate `app_filters.py` with the content
+    ```python
+    from django import template
+    from base64 import b64encode
+
+    register = template.Library()
+
+    @register.filter(name='bin_2_img')
+    def bin_2_img(_bin):
+        if _bin is not None:
+            return b64encode(_bin).decode('utf-8')
+    ```
+
+---##
+## Use the custom filter
 ```html
-{{ variable|title }}
+{% load 'app_filters' %}
+
+<img src="data:image;base64,{{ user.profile.picture | bin_2_img }}">             
 ```
 
-`django -> Django`
+* [Django - custom-template-tags](https://docs.djangoproject.com/en/4.0/howto/custom-template-tags/)
+* If name argument is omitteed, Django will use the function’s name as the filter name.
 
 
 ---##
@@ -928,6 +954,8 @@ def my_view(request, mode):
 ---##
 
 ## Get user information in the template
+
+* `user` variable is always available by default in the template: it allows to get info about the logged user.
 
 ```html
 {{ user.first_name }}
@@ -1073,6 +1101,51 @@ transaction.commit_unless_managed()
 cursor.execute("SELECT first_name FROM app_person WHERE id = 1")
 row = cursor.fetchone()
 ```
+
+---#
+
+# Login/Logout
+
+* Views for Login/Logout are already available out-of-box
+
+* `urls.py`
+    ```python
+    from django.contrib import admin
+    from django.contrib.auth import views as auth_views
+
+    urlpatterns = [
+        path('admin/', admin.site.urls),
+        path('login/', auth_views.LoginView.as_view(), name='login'),
+        path('logout/', auth_views.LogoutView.as_view(), name='logout'),
+    ]
+    ```
+
+* `settings.py`
+    ```python
+    # Login/Logout redirect
+    LOGIN_REDIRECT_URL = '/'
+    LOGOUT_REDIRECT_URL = '/login/'
+    ```
+
+---##
+
+* `/templates/registration/login.html` 
+    ```html
+    <form action="/login/" method="POST">
+        {% csrf_token %}
+        <div class="form-floating">
+            <input type="text" class="form-control" id="username" name="username" placeholder="Username">
+        </div>
+        <div class="form-floating">
+            <input type="password" class="form-control" id="password" name="password" placeholder="Password">
+        </div>
+
+        <button class="w-100 btn btn-lg btn-primary" type="submit">Sign in</button>
+    </form>
+    ```
+
+    !!! Note
+        `registration` is the default folder for authentication templates    
 
 ---#
 
@@ -1381,9 +1454,39 @@ r = requests.get(url, headers=headers)
 http post http://127.0.0.1:8000/api-token-auth/ username=vitor password=123
 ```
 
+---#
 
---------
-To see:
-* https://www.webforefront.com/django/namedjangourls.html#:~:text=The%20most%20basic%20technique%20to,a%20view%20method%20or%20template.
-    * `template_name` in urls.py
-    * `name` in urls.py
+# VSCode configuration
+
+* [VSCode - Django configuration](https://code.visualstudio.com/docs/python/tutorial-django)
+
+1. Switch to Run view in VS Code (using the left-side activity bar or F5)
+1. Click on `create a launch.json file` when the message "To customize Run and Debug create a launch.json file" appears
+
+---##
+
+
+* Configure the file:
+    ```json
+    {
+        "name": "Python: Django",
+        "type": "python",
+        "request": "launch",
+        "program": "${workspaceFolder}/manage.py",
+        "args": [
+            "runserver",
+        ],
+        "django": true
+    },
+    ```
+
+    1. If needed, adjust the **manage.py** in `program`
+    1. Add arguments in `args`. For example, add the port information:
+        ```json
+        ...
+        "args": [
+            "runserver",
+            "0.0.0.0:8000",
+        ],
+        ...
+        ```
