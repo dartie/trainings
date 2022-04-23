@@ -1058,6 +1058,27 @@ new_person = Person.objects.create(
 new_person.save()
 ```
 
+---##
+
+## Change user password
+
+### Using the Django command line
+
+```bash
+python manage.py changepassword ${user_name}
+```
+
+### Using python code
+
+```python
+usr = User.objects.get(username='your username')
+usr.set_password('raw password')
+usr.save()
+```
+
+### Using the Django Admin view
+
+* Go to `/admin/auth/user/<user-id>/password/` and follow the wizard.
 
 ---##
 
