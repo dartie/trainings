@@ -328,6 +328,11 @@ h1>.inline {
     color: #e01e5a;
 }
 
+h3 {
+  text-align: left;
+  color: #EF6D6D !important;
+}
+
 /*********************************************
  * Functionality settings
  *********************************************/
