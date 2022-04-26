@@ -107,10 +107,222 @@ performance, easy-to-use data structures and data analysis tools
 for the Python programming language.”
 
 -pandas.pydata.org</code></pre>
-<pre class="highlight"><code class="language-plain">“in memory nosql database, that has sql-like constructs, basic 
+<pre class="highlight"><code class="language-plain">“In memory nosql database, that has sql-like constructs, basic 
 statistical and analytic support, as well as graphing capability.”
 
 -Matt Harrison</code></pre>
+<ul>
+<li>
+<p>it is built on top of Cython, therefore it has less memory overhead and runs quicker.</p>
+</li>
+<li>
+<p>Pandas allow users to avoid using a Python-like dialect and gets close to the C in terms of performance.</p>
+</li>
+</ul>
+</section>        
+
+</section>        
+<section data-background-image="Pandas/nalug.png">
+<section data-background-image="Pandas/nalug.png">
+<h1 id="installation">Installation</h1>
+<pre class="highlight"><code class="language-bash">pip3 install pandas</code></pre>
+</section>        
+<section data-background-image="Pandas/nalug.png">
+<h1 id="ide">IDE</h1>
+<ul>
+<li>
+<p>Local environments</p>
+<ul>
+<li><a href="https://www.jetbrains.com/pycharm">Pycharm CE</a></li>
+<li><a href="https://www.spyder-ide.org/">Spyder</a></li>
+</ul>
+</li>
+<li>
+<p>Online environments</p>
+<ul>
+<li><a href="https://jupyter.org/install">Jupyter Lab / Jupyter Notebook</a></li>
+<li><a href="https://colab.research.google.com/">Colab</a></li>
+</ul>
+</li>
+</ul>
+</section>        
+
+</section>        
+<section data-background-image="Pandas/nalug.png">
+<section data-background-image="Pandas/nalug.png">
+<h1 id="data-structures">Data Structures</h1>
+<table>
+<thead>
+<tr>
+<th>Data structure</th>
+<th>Dimensionality</th>
+<th>Spreadsheet Analog</th>
+<th>Data deals with</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Series</strong></td>
+<td>1D</td>
+<td>Column</td>
+<td>Array</td>
+</tr>
+<tr>
+<td><strong>Dataframe</strong></td>
+<td>2D</td>
+<td>Single Sheet</td>
+<td>Tabular</td>
+</tr>
+<tr>
+<td><strong>Panel</strong></td>
+<td>3D</td>
+<td>Multiple Sheets</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</section>        
+<section data-background-image="Pandas/nalug.png">
+<p><img alt="" src="Pandas/data_structures.png"/></p>
+<ul>
+<li>Dataframe : collection of series objects</li>
+<li>Panel : collection of dataframes objects</li>
+</ul>
+</section>        
+
+</section>        
+<section data-background-image="Pandas/nalug.png">
+<section data-background-image="Pandas/nalug.png">
+<h1 id="series">Series</h1>
+<ul>
+<li>A Series is used to model one dimensional data, similar to a list in Python</li>
+<li>It's formed of <code class="inline">index</code> and a <code class="inline">name</code></li>
+<li>Many of the operations performed on a Series operate directly on the index or by index lookup</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Artist</th>
+<th>Data</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td>145</td>
+</tr>
+<tr>
+<td>1</td>
+<td>142</td>
+</tr>
+<tr>
+<td>2</td>
+<td>38</td>
+</tr>
+<tr>
+<td>3</td>
+<td>13</td>
+</tr>
+</tbody>
+</table>
+<pre class="highlight"><code class="language-python">ser = {
+    'index':[0, 1, 2, 3],
+    'data':[145, 142, 38, 13],
+    'name':'songs'
+}</code></pre>
+</section>        
+<section data-background-image="Pandas/nalug.png">
+<h2 id="native-python-implementation">Native python implementation</h2>
+<pre class="highlight"><code class="language-python">songs = {
+    'index':['Paul', 'John', 'George', 'Ringo'],
+    'data':[145, 142, 38, 13],
+    'name':'counts'
+}
+
+
+def get(ser, idx):
+    value_idx = ser['index'].index(idx)
+    return ser['data'][value_idx]
+
+
+get(songs, 'John')</code></pre>
+<pre class="highlight"><code class="inline">142</code></pre>
+</section>        
+<section data-background-image="Pandas/nalug.png">
+<h1 id="series-types">Series Types</h1>
+<ul>
+<li><strong>Index</strong>: Series' indexes can be integers or strings</li>
+<li><strong>Data</strong>: a Series can hold strings, floats, booleans, or arbitrary Python objects</li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>To get the best speed (such as vectorized operations), the values should be of the same type</p>
+</div>
+</section>        
+<section data-background-image="Pandas/nalug.png">
+<h2 id="types">Types</h2>
+<ul>
+<li>
+<p>Object:</p>
+<ul>
+<li>Used for heterogeneous types</li>
+<li>Used for strings</li>
+</ul>
+</li>
+<li>
+<p>Number:</p>
+<ul>
+<li>Mixed int and float make float (int are converted to float64)</li>
+</ul>
+</li>
+</ul>
+</section>        
+<section data-background-image="Pandas/nalug.png">
+<ul>
+<li>
+<p>NaN (<strong>N</strong>ot <strong>a</strong> <strong>N</strong>umber):</p>
+<ul>
+<li>Used when a series holds numeric values, but it cannot find a number to represent an entry, it will use NaN.</li>
+<li>It's not counted</li>
+<li>When NaN is present, other integer data become float: NaN is only supported by float, not by int.</li>
+</ul>
+<pre class="highlight"><code class="language-python">nan_ser = pd.Series([2, None], index=['Ono', 'Clapton'])
+
+print(nan_ser)</code></pre>
+<pre class="highlight"><code class="language-plain">Ono      2.0
+Clapton  NaN
+dtype: float64</code></pre>
+<pre class="highlight"><code class="language-python">nan_ser.count()</code></pre>
+<pre class="highlight"><code class="language-plain">1</code></pre>
+</li>
+</ul>
+</section>        
+<section data-background-image="Pandas/nalug.png">
+<h1 id="create-series">Create Series</h1>
+<pre class="highlight"><code class="language-python">import pandas as pd
+
+songs2 = pd.Series([145, 142, 38, 13], name='counts')
+
+print(songs2)</code></pre>
+<pre class="highlight"><code class="language-plain">0 145
+1 142
+2 38
+3 13
+Name: counts, dtype: int64</code></pre>
+<p><img alt="" src="Pandas/series.png"/></p>
+</section>        
+<section data-background-image="Pandas/nalug.png">
+<ul>
+<li><code class="inline">Index</code> -&gt; <code class="inline">Axis</code></li>
+<li>
+<p><code class="inline">Index</code> -&gt; <code class="inline">Axis labels</code></p>
+</li>
+<li>
+<p>Inspect index</p>
+<pre class="highlight"><code class="language-python">songs2.index</code></pre>
+<pre class="highlight"><code class="language-plain">RangeIndex(start=0, stop=4, step=1)</code></pre>
+</li>
+</ul>
 </section>        
 
 </section>        
