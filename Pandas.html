@@ -647,8 +647,10 @@ Name: Name, dtype: object</code></pre>
 <section data-background-image="Pandas/nalug.png">
 <h1 id="dataframe-axis">Dataframe axis</h1>
 <p><img alt="" src="Pandas/dataframe-axis.png"/></p>
+</section>        
+<section data-background-image="Pandas/nalug.png">
 <ul>
-<li>To sum up each of the columns, the we sum along the index axis (axis=0), or along the row axis:</li>
+<li>To sum up each of the columns, we sum along the index axis (axis=0), or along the row axis:</li>
 </ul>
 <pre class="highlight"><code class="language-python">df.apply(np.sum, axis=0)</code></pre>
 <pre class="highlight"><code class="language-plain">Score1    NaN
@@ -665,13 +667,284 @@ dtype: int64</code></pre>
 
 </section>        
 <section data-background-image="Pandas/nalug.png">
+<section data-background-image="Pandas/nalug.png">
+<h1 id="dataframe-methods">Dataframe methods</h1>
+<ul>
+<li>
+<p><code class="inline">shape</code> : displays the dataframe structure</p>
+<pre class="highlight"><code class="language-python">&gt;&gt;&gt; df.shape
+(3, 3)</code></pre>
+</li>
+<li>
+<p><code class="inline">index</code> : displays the dataframe's index</p>
+<pre class="highlight"><code class="language-python">&gt;&gt;&gt; df.index
+(['a', 'b', 'c'], dtype='object')</code></pre>
+</li>
+<li>
+<p><code class="inline">index.values</code> : displays the dataframe's index values</p>
+<pre class="highlight"><code class="language-python">&gt;&gt;&gt; df.index.values
+(['a', 'b', 'c'], dtype=object)</code></pre>
+</li>
+<li>
+<p><code class="inline">index.size</code> : displays the dataframe's index values in a list</p>
+<pre class="highlight"><code class="language-python">&gt;&gt;&gt; df.index.size
+3</code></pre>
+</li>
+</ul>
+</section>        
+<section data-background-image="Pandas/nalug.png">
+<pre>
+</pre>
+<ul>
+<li>
+<p><code class="inline">index.is_integer()</code> : queries if the index is integer</p>
+<pre class="highlight"><code class="language-python">&gt;&gt;&gt; df.index.is_integer()
+False</code></pre>
+</li>
+<li>
+<p><code class="inline">index.is_object()</code> : queries if the index is object</p>
+<pre class="highlight"><code class="language-python">&gt;&gt;&gt; df.index.is_object()
+True</code></pre>
+</li>
+<li>
+<p><code class="inline">index.is_unique()</code> : queries if the index are all different</p>
+<pre class="highlight"><code class="language-python">&gt;&gt;&gt; df.index.is_unique()
+True</code></pre>
+</li>
+<li>
+<p><code class="inline">index.sort_values(ascending=True)</code> : displays the dataframe's index values sorted</p>
+<pre class="highlight"><code class="language-python">&gt;&gt;&gt; df.index.sort_values(ascending=True)
+Index(['c', 'b', 'a'], dtype='object')</code></pre>
+</li>
+</ul>
+</section>        
+<section data-background-image="Pandas/nalug.png">
+<ul>
+<li>
+<p><code class="inline">reset_index(inplace=True)</code> : indexes become a column (index), and the new indexes are a progressive from 0. <code class="inline">inplace=True</code> saves the changes.</p>
+<pre class="highlight"><code class="language-python">&gt;&gt;&gt; df.reset_index(inplace=True)
+  index  c1  c2  c3
+0     a   1   2   3
+1     b   4   5   6
+2     c   7   8   9</code></pre>
+</li>
+<li>
+<p><code class="inline">set_index("index", inplace=True)</code> : sets a column as dataframe index. <code class="inline">inplace=True</code> saves the changes.</p>
+<pre class="highlight"><code class="language-python">&gt;&gt;&gt; df.reset_index(inplace=True)
+         c1  c2  c3
+index
+  a       1   2   3
+  b       4   5   6
+  c       7   8   9</code></pre>
+</li>
+</ul>
+</section>        
+<section data-background-image="Pandas/nalug.png">
+<pre>
+</pre>
+<ul>
+<li>
+<p><code class="inline">index.rename("indici", inplace=True)</code> : sets index name</p>
+<pre class="highlight"><code class="language-python">&gt;&gt;&gt; df.index.rename("indici", inplace=True)
+         c1  c2  c3
+indici
+  a       1   2   3
+  b       4   5   6
+  c       7   8   9</code></pre>
+</li>
+<li>
+<p><code class="inline">index.reset_index(drop=True, inplace=True)</code> : remove index permanently</p>
+<pre class="highlight"><code class="language-python">&gt;&gt;&gt; df.index.reset_index(drop=True, inplace=True)
+         c1  c2  c3
+
+  0       1   2   3
+  1       4   5   6
+  2       7   8   9</code></pre>
+</li>
+</ul>
+</section>        
+<section data-background-image="Pandas/nalug.png">
+<pre>
+</pre>
+<ul>
+<li>
+<p><code class="inline">set_index(pd.Series(["a", "b", "c"]), inplace=True)</code> : reset index with a Series</p>
+<pre class="highlight"><code class="language-python">&gt;&gt;&gt; df.index.reset_index(drop=True, inplace=True)
+         c1  c2  c3
+  0       1   2   3
+  1       4   5   6
+  2       7   8   9</code></pre>
+</li>
+<li>
+<p><code class="inline">head(n)</code>: prints the first <em>n</em> lines of the dataframe</p>
+<pre class="highlight"><code class="language-python">&gt;&gt;&gt; df.head()  # by default first 5 lines
+   c1  c2  c3
+a   1   2   3
+b   4   5   6
+c   7   8   9
+
+&gt;&gt;&gt; df.head(2)
+   c1  c2  c3
+a   1   2   3
+b   4   5   6</code></pre>
+</li>
+</ul>
+</section>        
+<section data-background-image="Pandas/nalug.png">
+<pre>
+</pre>
+<ul>
+<li>
+<p><code class="inline">tail(n)</code>: prints the first <em>n</em> lines of the dataframe</p>
+<pre class="highlight"><code class="language-python">&gt;&gt;&gt; df.tail()  # by default first 5 lines
+   c1  c2  c3
+a   1   2   3
+b   4   5   6
+c   7   8   9
+
+&gt;&gt;&gt; df.tail(2)
+   c1  c2  c3
+a   1   2   3
+b   4   5   6</code></pre>
+</li>
+<li>
+<p><code class="inline">sample(n)</code>: prints the a casual line from the dataframe. If <code class="inline">n</code> is not specified, only one sample is returned.</p>
+<pre class="highlight"><code class="language-python">&gt;&gt;&gt; df.sample()
+c1  c2  c3
+b   4   5   6</code></pre>
+</li>
+</ul>
+</section>        
+<section data-background-image="Pandas/nalug.png">
+<pre>
+</pre>
+<ul>
+<li>
+<p><code class="inline">max()</code>: returns the max value for each column</p>
+<pre class="highlight"><code class="language-python">&gt;&gt;&gt; df.max()
+c1    7
+c2    8
+c3    9
+dtype: int64
+
+&gt;&gt;&gt; df.max(1)  # max value for each row
+a    3
+b    6
+c    9
+dtype: int64</code></pre>
+</li>
+<li>
+<p><code class="inline">max(1)</code>: returns the max value for each row</p>
+<pre class="highlight"><code class="language-python">&gt;&gt;&gt; df.max(1) 
+a    3
+b    6
+c    9
+dtype: int64</code></pre>
+</li>
+</ul>
+</section>        
+<section data-background-image="Pandas/nalug.png">
+<pre>
+</pre>
+<ul>
+<li>
+<p><code class="inline">min()</code>: returns the min value for each column</p>
+<pre class="highlight"><code class="language-python">&gt;&gt;&gt; df.min()
+c1    1
+c2    2
+c3    3
+dtype: int64</code></pre>
+</li>
+<li>
+<p><code class="inline">min(1)</code>: returns the min value for each row</p>
+<pre class="highlight"><code class="language-python">&gt;&gt;&gt; df.min(1)
+a    1
+b    4
+c    7
+dtype: int64</code></pre>
+</li>
+</ul>
+</section>        
+<section data-background-image="Pandas/nalug.png">
+<pre>
+</pre>
+<ul>
+<li>
+<p><code class="inline">describe()</code>: returns dataframe info</p>
+<pre class="highlight"><code class="language-python">&gt;&gt;&gt; df.describe()
+       c1   c2   c3
+count  3.0  3.0  3.0
+mean   4.0  5.0  6.0
+std    3.0  3.0  3.0
+min    1.0  2.0  3.0
+25%    2.5  3.5  4.5
+50%    4.0  5.0  6.0
+75%    5.5  6.5  7.5
+max    7.0  8.0  9.0</code></pre>
+</li>
+<li>
+<p><code class="inline">count()</code>:</p>
+<pre class="highlight"><code class="language-python">&gt;&gt;&gt; df.sum()
+c1    12
+c2    15
+c3    18
+dtype: int64</code></pre>
+</li>
+</ul>
+</section>        
+<section data-background-image="Pandas/nalug.png">
+<ul>
+<li>
+<p><code class="inline">mean()</code>:</p>
+<pre class="highlight"><code class="language-python">&gt;&gt;&gt; df.mean()
+c1    4.0
+c2    5.0
+c3    6.0
+dtype: float64</code></pre>
+</li>
+<li>
+<p><code class="inline">std()</code>:</p>
+<pre class="highlight"><code class="language-python">&gt;&gt;&gt; df.std()
+c1    3.0
+c2    3.0
+c3    3.0
+dtype: float64</code></pre>
+</li>
+</ul>
+</section>        
+<section data-background-image="Pandas/nalug.png">
+<pre>
+</pre>
+<ul>
+<li>
+<p><code class="inline">sum()</code>:</p>
+<pre class="highlight"><code class="language-python">&gt;&gt;&gt; df.sum()
+c1    12
+c2    15
+c3    18
+dtype: int64</code></pre>
+</li>
+<li>
+<p><code class="inline">df.sum() / df.count() == df.mean()</code> : check if mean is calculated properly (obviously it is)</p>
+<pre class="highlight"><code class="language-python">&gt;&gt;&gt; df.sum() / df.count() == df.mean()
+c1    True
+c2    True
+c3    True
+dtype: bool</code></pre>
+</li>
+</ul>
+</section>        
+
+</section>        
+<section data-background-image="Pandas/nalug.png">
 <hr/>
 <h1 id="todo">TODO</h1>
 <ul>
 <li>Series Methods</li>
 <li>Dataframe</li>
-<li>Axis pag 96</li>
+<li>remove inplace from examples</li>
 <li>Visualize data</li>
+<li>Test Sharing with Giovanni</li>
 </ul>
 </section>        
 

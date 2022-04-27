@@ -804,8 +804,341 @@ dtype: int64
 
 ---#
 
+# Dataframe methods
+
+
+- `shape` : displays the dataframe structure
+    
+    ```python
+    >>> df.shape
+    (3, 3)
+    ```
+    
+- `index` : displays the dataframe's index
+    
+    ```python
+    >>> df.index
+    (['a', 'b', 'c'], dtype='object')
+    ```
+    
+- `index.values` : displays the dataframe's index values
+    
+    ```python
+    >>> df.index.values
+    (['a', 'b', 'c'], dtype=object)
+    ```
+    
+- `index.size` : displays the dataframe's index values in a list
+    
+    ```python
+    >>> df.index.size
+    3
+    ```
+
+---##
+    
+- `index.is_integer()` : queries if the index is integer
+    
+    ```python
+    >>> df.index.is_integer()
+    False
+    ```
+    
+- `index.is_object()` : queries if the index is object
+    
+    ```python
+    >>> df.index.is_object()
+    True
+    ```
+    
+- `index.is_unique()` : queries if the index are all different
+    
+    ```python
+    >>> df.index.is_unique()
+    True
+    ```
+    
+- `index.sort_values(ascending=True)` : displays the dataframe's index values sorted
+    
+    ```python
+    >>> df.index.sort_values(ascending=True)
+    Index(['c', 'b', 'a'], dtype='object')
+    ```
+    
+---##
+
+- `reset_index(inplace=True)` : indexes become a column (index), and the new indexes are a progressive from 0. `inplace=True` saves the changes.
+    
+    ```python
+    >>> df.reset_index(inplace=True)
+      index  c1  c2  c3
+    0     a   1   2   3
+    1     b   4   5   6
+    2     c   7   8   9
+    ```
+
+
+- `set_index("index", inplace=True)` : sets a column as dataframe index. `inplace=True` saves the changes.
+    
+    ```python
+    >>> df.reset_index(inplace=True)
+             c1  c2  c3
+    index
+      a       1   2   3
+      b       4   5   6
+      c       7   8   9
+    ```
+
+---##
+    
+- `index.rename("indici", inplace=True)` : sets index name
+    
+    ```python
+    >>> df.index.rename("indici", inplace=True)
+             c1  c2  c3
+    indici
+      a       1   2   3
+      b       4   5   6
+      c       7   8   9
+    ```
+    
+- `index.reset_index(drop=True, inplace=True)` : remove index permanently
+    
+    ```python
+    >>> df.index.reset_index(drop=True, inplace=True)
+             c1  c2  c3
+    
+      0       1   2   3
+      1       4   5   6
+      2       7   8   9
+    ```
+
+---##
+    
+- `set_index(pd.Series(["a", "b", "c"]), inplace=True)` : reset index with a Series
+    
+    ```python
+    >>> df.index.reset_index(drop=True, inplace=True)
+             c1  c2  c3
+      0       1   2   3
+      1       4   5   6
+      2       7   8   9
+    ```
+    
+- `head(n)`: prints the first *n* lines of the dataframe
+    
+    ```python
+    >>> df.head()  # by default first 5 lines
+       c1  c2  c3
+    a   1   2   3
+    b   4   5   6
+    c   7   8   9
+    
+    >>> df.head(2)
+       c1  c2  c3
+    a   1   2   3
+    b   4   5   6
+    ```
+
+---##
+    
+- `tail(n)`: prints the first *n* lines of the dataframe
+    
+    ```python
+    >>> df.tail()  # by default first 5 lines
+       c1  c2  c3
+    a   1   2   3
+    b   4   5   6
+    c   7   8   9
+    
+    >>> df.tail(2)
+       c1  c2  c3
+    a   1   2   3
+    b   4   5   6
+    ```
+    
+- `sample(n)`: prints the a casual line from the dataframe. If `n` is not specified, only one sample is returned.
+    
+    ```python
+    >>> df.sample()
+    c1  c2  c3
+    b   4   5   6
+    ```
+
+---##
+    
+- `max()`: returns the max value for each column
+    
+    ```python
+    >>> df.max()
+    c1    7
+    c2    8
+    c3    9
+    dtype: int64
+    
+    >>> df.max(1)  # max value for each row
+    a    3
+    b    6
+    c    9
+    dtype: int64
+    ```
+    
+- `max(1)`: returns the max value for each row
+    
+    ```python
+    >>> df.max(1) 
+    a    3
+    b    6
+    c    9
+    dtype: int64
+    ```
+
+---##
+    
+- `min()`: returns the min value for each column
+    
+    ```python
+    >>> df.min()
+    c1    1
+    c2    2
+    c3    3
+    dtype: int64
+    ```
+    
+- `min(1)`: returns the min value for each row
+    
+    ```python
+    >>> df.min(1)
+    a    1
+    b    4
+    c    7
+    dtype: int64
+    ```
+
+---##
+    
+- `describe()`: returns dataframe info
+    
+    ```python
+    >>> df.describe()
+           c1   c2   c3
+    count  3.0  3.0  3.0
+    mean   4.0  5.0  6.0
+    std    3.0  3.0  3.0
+    min    1.0  2.0  3.0
+    25%    2.5  3.5  4.5
+    50%    4.0  5.0  6.0
+    75%    5.5  6.5  7.5
+    max    7.0  8.0  9.0
+    ```
+    
+- `count()`:
+    
+    ```python
+    >>> df.sum()
+    c1    12
+    c2    15
+    c3    18
+    dtype: int64
+    ```
+    
+---##
+
+- `mean()`:
+    
+    ```python
+    >>> df.mean()
+    c1    4.0
+    c2    5.0
+    c3    6.0
+    dtype: float64
+    ```
+    
+- `std()`:
+    
+    ```python
+    >>> df.std()
+    c1    3.0
+    c2    3.0
+    c3    3.0
+    dtype: float64
+    ```
+
+---##
+    
+- `sum()`:
+    
+    ```python
+    >>> df.sum()
+    c1    12
+    c2    15
+    c3    18
+    dtype: int64
+    ```
+
+    
+- `df.sum() / df.count() == df.mean()`
+    
+    ```python
+    >>> df.sum() / df.count() == df.mean()
+    c1    True
+    c2    True
+    c3    True
+    dtype: bool
+    ```
+    
+---#
+
+# Rows/Columnns operations
+
+## Count
+
+```python
+# Count rows
+count_row = df.shape[0]  # returns number of row count
+
+# Count columns
+count_col = df.shape[1]  # returns number of col count
+```
+
+or
+
+```python
+len(df.index)
+df.shape[0]
+df[df.columns[0]].count() (== number of non-NaN values in first column)
+```
+
+## Move column
+
+```python
+# shift column 'Name' to first position
+first_column = df.pop('Name')
+  
+# insert column using insert(position,column_name,
+# first_column) function
+df.insert(0, 'Name', first_column)
+```
+
+## Drop columns by index
+
+```python
+df.drop(df.columns[[2,3,5]], axis=1)
+```
+
+## Drop columns by column name
+
+```python
+df1 = df1.drop(['B', 'C'], axis=1)
+```
+
+---#
+
 -----
 # TODO
 * Series Methods
 * Dataframe
+  * remove inplace from examples
+  * query
 * Visualize data
+* Test Sharing with Giovanni
