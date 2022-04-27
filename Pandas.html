@@ -126,6 +126,9 @@ statistical and analytic support, as well as graphing capability.”
 <section data-background-image="Pandas/nalug.png">
 <h1 id="installation">Installation</h1>
 <pre class="highlight"><code class="language-bash">pip3 install pandas</code></pre>
+<h1 id="import-convetions">Import convetions</h1>
+<pre class="highlight"><code class="language-python">import pandas as pd
+import numpy as np</code></pre>
 </section>        
 <section data-background-image="Pandas/nalug.png">
 <h1 id="ide">IDE</h1>
@@ -195,10 +198,15 @@ statistical and analytic support, as well as graphing capability.”
 <section data-background-image="Pandas/nalug.png">
 <h1 id="series">Series</h1>
 <ul>
-<li>A Series is used to model one dimensional data, similar to a list in Python</li>
+<li>One dimensional data structure.</li>
+<li>It can hold numerical data, time data, strings, or arbitrary Python objects.</li>
+<li>It is used to model one dimensional data, similar to a list in Python</li>
 <li>It's formed of <code class="inline">index</code> and a <code class="inline">name</code></li>
 <li>Many of the operations performed on a Series operate directly on the index or by index lookup</li>
+<li>It is faster, consumes less memory, and comes with built-in methods that are very useful to manipulate the data.</li>
 </ul>
+</section>        
+<section data-background-image="Pandas/nalug.png">
 <table>
 <thead>
 <tr>
@@ -313,9 +321,9 @@ Name: counts, dtype: int64</code></pre>
 </section>        
 <section data-background-image="Pandas/nalug.png">
 <ul>
-<li><code class="inline">Index</code> -&gt; <code class="inline">Axis</code></li>
+<li>Name for <code class="inline">Index</code> -&gt; <code class="inline">Axis</code></li>
 <li>
-<p><code class="inline">Index</code> -&gt; <code class="inline">Axis labels</code></p>
+<p>Name for <code class="inline">Values of the index</code> -&gt; <code class="inline">Axis labels</code></p>
 </li>
 <li>
 <p>Inspect index</p>
@@ -324,7 +332,347 @@ Name: counts, dtype: int64</code></pre>
 </li>
 </ul>
 </section>        
+<section data-background-image="Pandas/nalug.png">
+<h1 id="series-indexing">Series Indexing</h1>
+<h3 id="in-case-index-label-is-a-string-object">In case index label is a string (object)</h3>
+<pre class="highlight"><code class="language-python">george = pd.Series([10, 7], index=['1968', '1969'], name='George Songs')
+print(george)</code></pre>
+<pre class="highlight"><code class="language-plain">1968    10
+1969     7
+Name: George Songs, dtype: int64</code></pre>
+<ul>
+<li>
+<p>Indexing the object by position</p>
+<pre class="highlight"><code class="language-python">print(george[0])</code></pre>
+<pre class="highlight"><code class="language-plain">10</code></pre>
+</li>
+<li>
+<p>Indexing the object by key</p>
+<pre class="highlight"><code class="language-python">print(george['1968'])</code></pre>
+<pre class="highlight"><code class="language-plain">10</code></pre>
+</li>
+</ul>
+</section>        
+<section data-background-image="Pandas/nalug.png">
+<h2 id="in-case-index-label-is-an-integer">In case index label is an integer</h2>
+<ul>
+<li>
+<p>Indexing the object by position</p>
+<pre class="highlight"><code class="language-python">print(george[0])</code></pre>
+<pre class="highlight"><code class="language-plain">10</code></pre>
+</li>
+</ul>
+</section>        
+<section data-background-image="Pandas/nalug.png">
+<h2 id="optimized-data-access-methods">Optimized data access methods</h2>
+<h3 id="position-based-indexing-iloc">Position-based indexing (<code class="inline">.iloc</code>)</h3>
+<pre class="highlight"><code class="language-python">george.iloc[0]</code></pre>
+<pre class="highlight"><code class="language-plain">10</code></pre>
+<pre class="highlight"><code class="language-python">george.iloc[-1]</code></pre>
+<pre class="highlight"><code class="language-plain">7</code></pre>
+<pre class="highlight"><code class="language-python">george.iloc[4]</code></pre>
+<pre class="highlight"><code class="language-plain">Traceback (most recent call last):
+IndexError: single positional indexer is out-of-bounds</code></pre>
+<pre class="highlight"><code class="language-python">george.iloc['1968']</code></pre>
+<pre class="highlight"><code class="language-plain">Traceback (most recent call last):
+TypeError: cannot do positional indexing on &lt;class
+'pandas.indexes.base.Index'&gt; with these indexers [1968]
+of &lt;class 'str'&gt;</code></pre>
+</section>        
+<section data-background-image="Pandas/nalug.png">
+<h4 id="slice">Slice</h4>
+<pre class="highlight"><code class="language-python">george.iloc[0:3] # slice</code></pre>
+<pre class="highlight"><code class="language-plain">1968    10
+1969     7
+Name: George Songs, dtype: int64</code></pre>
+<h4 id="indexing-with-list">Indexing with list</h4>
+<pre class="highlight"><code class="language-python">george.iloc[[0,1]] # list</code></pre>
+<pre class="highlight"><code class="language-plain">1968  10
+1969   7
+Name: George Songs, dtype: int64</code></pre>
+</section>        
+<section data-background-image="Pandas/nalug.png">
+<h3 id="label-based-indexing-loc">label-based indexing (<code class="inline">.loc</code>)</h3>
+<ul>
+<li>Based on the index labels and not the positions (analogous to Python dictionary-based indexing)</li>
+</ul>
+<pre class="highlight"><code class="language-python">george.loc['1968']</code></pre>
+<pre class="highlight"><code class="language-plain">10</code></pre>
+<pre class="highlight"><code class="language-python">george.loc[['1968', '1970']] # list</code></pre>
+<pre class="highlight"><code class="language-plain">1968  10.0
+1970   NaN
+Name: George Songs, dtype: float64</code></pre>
+<pre class="highlight"><code class="language-python">george.loc['1968':] # slice</code></pre>
+<pre class="highlight"><code class="language-plain">1968  10
+1969   7
+Name: George Songs, dtype: int64</code></pre>
+</section>        
+<section data-background-image="Pandas/nalug.png">
+<h2 id="summary">Summary</h2>
+<p><img alt="" src="Pandas/indexing.png"/></p>
+</section>        
+<section data-background-image="Pandas/nalug.png">
+<h2 id="at-vs-loc"><code class="inline">.at()</code> (vs <code class="inline">.loc()</code>)</h2>
+<ul>
+<li>Get/set numpy array results by index label.</li>
+<li>Return a <strong>numpy.ndarray</strong> whereas <code class="inline">.loc()</code> returns a <strong>Series</strong> </li>
+</ul>
+<pre class="highlight"><code class="language-python">george_dupe = pd.Series([10, 7, 1, 22], index=['1968', '1969', '1970', '1970'], name='George Songs')</code></pre>
+<pre class="highlight"><code class="language-python">george_dupe.at['1970']</code></pre>
+<pre class="highlight"><code class="language-plain">array([ 1, 22])</code></pre>
+<pre class="highlight"><code class="language-python">george_dupe.loc['1970']</code></pre>
+<pre class="highlight"><code class="language-plain">1970     1
+1970    22
+Name: George Songs, dtype: int64</code></pre>
+</section>        
+<section data-background-image="Pandas/nalug.png">
+<h2 id="iat"><code class="inline">.iat()</code></h2>
+<ul>
+<li>Getting/setting numpy array results by index position.</li>
+<li>Supports both positional and label based indexing, although is suggested to be avoided</li>
+</ul>
+<pre class="highlight"><code class="language-python">george_dupe.ix[0]</code></pre>
+<pre class="highlight"><code class="language-plain">3310</code></pre>
+<pre class="highlight"><code class="language-python">george_dupe.ix['1970']</code></pre>
+<pre class="highlight"><code class="language-plain">1970   1
+1970  22
+Name: George Songs, dtype: int64</code></pre>
+</section>        
+<section data-background-image="Pandas/nalug.png">
+<h1 id="series-methods">Series methods</h1>
+<h2 id="mean"><code class="inline">mean()</code></h2>
+</section>        
+<section data-background-image="Pandas/nalug.png">
+<h2 id="median"><code class="inline">median()</code></h2>
+<ul>
+<li>Only keeps values greater than average</li>
+</ul>
+<pre class="highlight"><code class="language-python">import pandas as pd
+import numpy as np
 
+# Numpy array
+numpy_ser = np.array([145, 142, 38, 13])
+
+# Series
+songs3 = pd.Series([145, 142, 38, 13], name='counts', index=['Paul', 'John', 'George', 'Ringo'])
+
+print(numpy_ser[1])
+print(songs3[1])</code></pre>
+<pre class="highlight"><code class="language-plain">142
+142</code></pre>
+</section>        
+
+</section>        
+<section data-background-image="Pandas/nalug.png">
+<section data-background-image="Pandas/nalug.png">
+<h1 id="series-crud-createreadupdatedelete">Series CRUD (<code class="inline">C</code>reate,<code class="inline">R</code>ead,<code class="inline">U</code>pdate,<code class="inline">D</code>elete)</h1>
+<h2 id="create">Create</h2>
+<h3 id="list">List</h3>
+<pre class="highlight"><code class="language-python">george_dupe = pd.Series([10, 7, 1, 22], index=['1968', '1969', '1970', '1970'], name='George Songs')
+print(george_dupe)</code></pre>
+<pre class="highlight"><code class="language-plain">1968  10
+1969   7
+1970   1
+1970  22
+Name: George Songs, dtype: int64</code></pre>
+<h3 id="dictionary">Dictionary</h3>
+<pre class="highlight"><code class="language-python">g2 = pd.Series({'1969': 7, '1970': [1, 22]}, index=['1969', '1970', '1970']) 
+print(g2)</code></pre>
+<pre class="highlight"><code class="language-plain">1969        7
+1970  [1, 22]
+1970  [1, 22]
+dtype: object</code></pre>
+</section>        
+<section data-background-image="Pandas/nalug.png">
+<h2 id="reading">Reading</h2>
+<pre class="highlight"><code class="language-python">print(george_dupe['1968'])</code></pre>
+<pre class="highlight"><code class="language-plain">10</code></pre>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>When the index is duplicate, the result is not scalar as the first case</p>
+<pre class="highlight"><code class="language-python">print(george_dupe['1970'])</code></pre>
+<pre class="highlight"><code class="language-plain">1970   1
+1970  22
+Name: George Songs, dtype: int64</code></pre>
+</div>
+</section>        
+<section data-background-image="Pandas/nalug.png">
+<h3 id="iteration">Iteration</h3>
+<pre class="highlight"><code class="language-python">for item in george_dupe:
+    print(item)</code></pre>
+<pre class="highlight"><code class="language-plain">10
+7
+1
+22</code></pre>
+<ul>
+<li>
+<p>Iteration over index and value</p>
+<pre class="highlight"><code class="language-python">for item in george_dupe.iteritems():
+    print(item)</code></pre>
+<pre class="highlight"><code class="language-plain">('1968', 10)
+('1969', 7)
+('1970', 1)
+('1970', 22)</code></pre>
+</li>
+</ul>
+</section>        
+<section data-background-image="Pandas/nalug.png">
+<h3 id="check-if-value-exists">Check if value exists</h3>
+<div class="admonition error">
+<p class="admonition-title">Error</p>
+<p>It doesn't work as python list and dictionary    </p>
+<pre class="highlight"><code class="language-python">22 in george_dupe</code></pre>
+<pre class="highlight"><code class="language-plain">False</code></pre>
+</div>
+<div class="admonition success">
+<p class="admonition-title">Success</p>
+<pre class="highlight"><code class="language-python">22 in set(george_dupe)</code></pre>
+<pre class="highlight"><code class="language-plain">True</code></pre>
+<p>OR</p>
+<pre class="highlight"><code class="language-python">22 in george_dupe.values</code></pre>
+<pre class="highlight"><code class="language-plain">True</code></pre>
+</div>
+</section>        
+<section data-background-image="Pandas/nalug.png">
+<h2 id="updating">Updating</h2>
+<h3 id="update-based-on-index">Update based on index</h3>
+<pre class="highlight"><code class="language-python">george_dupe['1969'] = 6
+print(george_dupe['1969'])</code></pre>
+<pre class="highlight"><code class="language-plain">6</code></pre>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>In case of duplicate index, both will be updated
+</p><pre class="highlight"><code class="language-python">george_dupe['1970'] = 2
+print(george_dupe)</code></pre>
+<pre class="highlight"><code class="language-plain">1968    10
+1969     6
+1970     2
+1970     2
+1973    11
+Name: George Songs, dtype: int64</code></pre>
+</div>
+</section>        
+<section data-background-image="Pandas/nalug.png">
+<h3 id="update-value-based-on-position-iloc">Update value based on position (<code class="inline">iloc()</code>)</h3>
+<pre class="highlight"><code class="language-python">george_dupe.iloc[3] = 22
+print(george_dupe)</code></pre>
+<pre class="highlight"><code class="language-plain">1968  10
+1969   6
+1970   2
+1970  22
+1973  11
+Name: George Songs, dtype: int64</code></pre>
+</section>        
+<section data-background-image="Pandas/nalug.png">
+<h3 id="append">Append</h3>
+<ul>
+<li>Unlike <code class="inline">append()</code> in python list, it requires another series</li>
+</ul>
+<pre class="highlight"><code class="language-python">new_george_dupe = george_dupe.append(pd.Series({'1974':9}))
+print(new_george_dupe)</code></pre>
+<pre class="highlight"><code class="language-plain">1968  10
+1969   6
+1970   2
+1970  22
+1973  11
+1974   9
+dtype: int64</code></pre>
+</section>        
+<section data-background-image="Pandas/nalug.png">
+<h3 id="add-new-item-set_value">Add new item (<code class="inline">.set_value()</code>)</h3>
+<pre class="highlight"><code class="language-python">new_george_dupe = george_dupe.set_value('1974', 9)
+print(new_george_dupe)</code></pre>
+<pre class="highlight"><code class="language-plain">1968    10
+1969     6
+1970     2
+1970    22
+1973    11
+1974     9
+Name: George Songs, dtype: int64</code></pre>
+</section>        
+<section data-background-image="Pandas/nalug.png">
+<h2 id="deletion">Deletion</h2>
+<h3 id="based-on-index-entries">Based on index entries</h3>
+<pre class="highlight"><code class="language-python">s = pd.Series([2, 3, 4], index=[1, 2, 1])
+del s[1]
+print(s)</code></pre>
+<pre class="highlight"><code class="language-plain">1   4
+dtype: int64</code></pre>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>In case of duplicate index values, only the first occurrence is deleted.</p>
+</div>
+<h3 id="filter-creates-a-new-series">Filter (creates a new series)</h3>
+<pre class="highlight"><code class="language-python">new_george_dupe = george_dupe[george_dupe &lt;= 2]
+print(new_george_dupe)</code></pre>
+<pre class="highlight"><code class="language-plain">1970    2
+Name: George Songs, dtype: int64</code></pre>
+</section>        
+
+</section>        
+<section data-background-image="Pandas/nalug.png">
+<section data-background-image="Pandas/nalug.png">
+<h1 id="dataframe">Dataframe</h1>
+<pre class="highlight"><code class="language-python">import pandas as pd
+df = pd.DataFrame({
+    'growth':[.5, .7, 1.2],
+    'Name':['Paul', 'George', 'Ringo'] })
+
+print(df)</code></pre>
+<pre class="highlight"><code class="inline">    Name     growth    
+0   Paul        0.5
+1   George      0.7
+2   Ringo       1.2</code></pre>
+<p><img alt="" src="Pandas/dataframe.png"/></p>
+</section>        
+<section data-background-image="Pandas/nalug.png">
+<ul>
+<li>
+<p>Access row:
+    </p><pre class="highlight"><code class="language-python">df.iloc[2]</code></pre>
+<pre class="highlight"><code class="language-plain">Name    Ringo
+growth    1.2
+Name: 2, dtype: object</code></pre>
+</li>
+<li>
+<p>Access column:
+    </p><pre class="highlight"><code class="language-python">df['Name']</code></pre>
+<pre class="highlight"><code class="language-plain">0      Paul
+1    George
+2     Ringo
+Name: Name, dtype: object</code></pre>
+</li>
+</ul>
+</section>        
+<section data-background-image="Pandas/nalug.png">
+<h1 id="dataframe-axis">Dataframe axis</h1>
+<p><img alt="" src="Pandas/dataframe-axis.png"/></p>
+<ul>
+<li>To sum up each of the columns, the we sum along the index axis (axis=0), or along the row axis:</li>
+</ul>
+<pre class="highlight"><code class="language-python">df.apply(np.sum, axis=0)</code></pre>
+<pre class="highlight"><code class="language-plain">Score1    NaN
+Score2  175.0
+dtype: float64</code></pre>
+<ul>
+<li>To sum along every row, we sum down the columns axis (axis=1):</li>
+</ul>
+<pre class="highlight"><code class="language-python">df.apply(np.sum, axis=1)</code></pre>
+<pre class="highlight"><code class="language-plain">0   85
+1   90
+dtype: int64</code></pre>
+</section>        
+
+</section>        
+<section data-background-image="Pandas/nalug.png">
+<hr/>
+<h1 id="todo">TODO</h1>
+<ul>
+<li>Series Methods</li>
+<li>Dataframe</li>
+<li>Axis pag 96</li>
+<li>Visualize data</li>
+</ul>
 </section>        
 
 
