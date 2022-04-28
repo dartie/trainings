@@ -804,6 +804,340 @@ dtype: int64
 
 ---#
 
+# Dataframe import/export
+
+* Supported formats:
+    * CSV, JSON
+    * HDF, Pickle
+    * Excel
+    * HTML
+    * SQL
+    * Latex
+    * Image
+
+* For the full list and options check the official [pandas documentation](https://pandas.pydata.org/docs/reference/io.html)
+
+---##
+
+### Import
+
+```
+<dataframe_variable>.read_<format>(<path>)
+```
+
+* Most common options
+    * `headers` : allow to specify the first row-cell/column-cell to dump data frame  
+
+---##
+
+#### From Spreadsheet
+    
+```python
+df = pd.read_excel(xls, 'Sheet1') 
+```
+
+```python
+df = pd.read_excel(xls, 'Sheet1', header=1) # if the header is set on the first sheet line
+```
+
+```python
+df = pd.read_excel(xls, 'Sheet1', header=1, converters={'DateColumn': str}) # if dates must be left as string
+```
+
+```python
+xls = pd.ExcelFile('path_to_file.xls')
+```
+
+---##
+
+* Read a specific sheet using the index
+
+    ```python
+    xls = pd.ExcelFile('path_to_file.xls')
+    sheet1 = xls.parse(0)
+    ```
+
+    
+* Read a specific sheet using the name
+    
+    ```python
+    data_file = pd.read_excel('path_to_file.xls', sheet_name="sheet_name")
+    ```
+    
+* Read all the worksheets from excel to pandas dataframe as a type of OrderedDict means nested dataframes, all the worksheets as dataframes collected inside dataframe and its type is OrderedDict.
+    
+    ```python
+    pd.read_excel('filename.xlsx', sheet_name=None)
+    ```
+
+---##
+
+#### Read more sheets and combine them
+
+* Using pandas `.read_excel()`
+
+    ```python
+    sheet_to_df_map = pd.read_excel('path_to_file.xls', sheet_name=None)
+    mdf = pd.concat(sheet_to_df_map, axis=0, ignore_index=True)
+    ```
+
+* Using pandas `.ExcelFile()`
+
+    ```python
+    xls = pd.ExcelFile('path_to_file.xls')
+    sheet1 = xls.parse(0)
+    sheet2 = xls.parse(1)
+    df = pd.concat([sheet1, sheet2])
+    ```
+
+    ```python
+    file_instance = pd.ExcelFile('your_file.xlsx')
+    main_df = pd.concat([pd.read_excel('your_file.xlsx', sheet_name=name) for name in file_instance.sheet_names] , axis=0)
+    ```
+
+---##
+
+### Export
+
+```
+<dataframe_variable>.to_<format>(<path>)
+```
+
+* `index=False` : Row (0-indexed) to use for the column labels
+
+---## 
+
+#### To CSV
+
+```python
+# Create a DataFrame
+import pandas as pd
+import numpy as np
+technologies = {
+    'Courses':["Spark","PySpark","Hadoop","Python"],
+    'Fee' :[22000,25000,np.nan,24000],
+    'Duration':['30day',None,'55days',np.nan],
+    'Discount':[1000,2300,1000,np.nan]
+          }
+df = pd.DataFrame(technologies)
+```
+
+```python
+# Remove header & index while writing
+df.to_csv("c:/tmp/courses.csv", header=False, index=False)
+```
+
+```plain
+Spark,22000.0,30day,1000.0
+PySpark,25000.0,,2300.0
+Hadoop,,55days,1000.0
+Python,24000.0,,
+```
+
+---## 
+
+#### To Spreadsheet
+
+* `startrow/startcol` : allow to specify the first row-cell/column-cell 
+* `header=False` : drop column header (remove column names)  
+
+```python
+import pandas as pd
+
+# DataFrame Creation
+sales_record = pd.DataFrame({'Products_ID': {0: 101, 1: 102, 2: 103,
+                                 3: 104, 4: 105, 5: 106,
+                                 6: 107, 7: 108, 8: 109},
+                          'Product_Names': {0: 'Mosuse', 1: 'Keyboard', 2: 'Headphones', 3: 'CPU',
+                                   4: 'Flash Drives', 5: 'Tablets', 6: 'Android Box', 7: 'LCD', 8: 'OTG Cables' },
+                          'Product_Prices': {0: 700, 1: 800, 2: 200, 3: 2000,
+                                    4: 100, 5: 1500, 6: 1800, 7: 1300,
+                                    8: 90}})
+  
+# Specify the name of the excel file
+file_name = 'ProductSales_sheet.xlsx'
+
+# saving the excelsheet
+sales_record.to_excel(file_name)
+print('Sales record successfully exported into Excel File')
+```
+
+---##
+
+* Styles can be applied using [StyleFrame](https://github.com/DeepSpace2/StyleFrame)
+
+```python
+import pandas as pd
+from styleframe import StyleFrame, Styler, utils   
+   
+df = pd.DataFrame({
+    'Time': [1.496728e+09, 1.496728e+09, 1.496728e+09, 1.496728e+09, 1.496728e+09],
+    'Expect': ['Hey', 'how', 'are', 'you', 'today?'],
+    'Actual': ['Hello', 'how', 'are', 'u', 'today?'],
+    'Pass/Fail': ['Failed', 'Passed', 'Passed', 'Failed', 'Passed']
+    },
+    columns=['Time', 'Expect', 'Actual', 'Pass/Fail'])
+   
+"""Our DataFrame looks like this:
+
+           Time  Expect  Actual Pass/Fail
+0  1.496728e+09     Hey   Hello    Failed
+1  1.496728e+09     how     how    Passed
+2  1.496728e+09     are     are    Passed
+3  1.496728e+09     you       u    Failed
+4  1.496728e+09  today?  today?    Passed
+
+"""
+```
+
+---##
+
+```python
+# Create StyleFrame object that wrap our DataFrame and assign default style.
+default_style = Styler(font=utils.fonts.aharoni, font_size=14)
+sf = StyleFrame(df, styler_obj=default_style)
+   
+# Style the headers of the table
+header_style = Styler(bold=True, font_size=18)
+sf.apply_headers_style(styler_obj=header_style)
+   
+# Set the background color to green where the test marked as 'passed'
+passed_style = Styler(bg_color=utils.colors.green, font_color=utils.colors.white)
+sf.apply_style_by_indexes(indexes_to_style=sf[sf['Pass/Fail'] == 'Passed'],
+                          cols_to_style='Pass/Fail', styler_obj=passed_style,
+                          overwrite_default_style=False)
+   
+# Set the background color to red where the test marked as 'failed'
+failed_style = Styler(bg_color=utils.colors.red, font_color=utils.colors.white)
+sf.apply_style_by_indexes(indexes_to_style=sf[sf['Pass/Fail'] == 'Failed'],
+                          cols_to_style='Pass/Fail',
+                          styler_obj=failed_style,
+                          overwrite_default_style=False)
+   
+# Change the columns width and the rows height
+sf.set_column_width(columns=sf.columns, width=20)
+sf.set_row_height(rows=sf.row_indexes, height=25)
+```
+
+---##
+
+```python
+sf.to_excel('output.xlsx',
+            # Add filters in row 0 to each column.
+            row_to_add_filters=0, 
+            # Freeze the columns before column 'A' (=None) and rows above '2' (=1).
+            columns_and_rows_to_freeze='A2').save()
+```
+
+---##
+
+##### ExcelWriter
+
+```python
+import pandas as pd
+
+students_data = pd.DataFrame({'Student': ['Samreena', 'Ali', 'Sara', 
+                                   'Amna', 'Eva'],
+                          'marks': [800, 830, 740, 910, 1090],
+                          'Grades': ['B+', 'B+', 'B', 
+                                    'A', 'A+']})
+  
+# writing to Excel
+student_result = pd.ExcelWriter('StudentResult.xlsx')
+  
+# write students data to excel
+students_data.to_excel(student_result)
+  
+# save the students result excel
+student_result.save()
+print('Students data is successfully written into Excel File')
+```
+
+
+---##
+
+* Multiple sheets
+
+```python
+import pandas as pd
+
+# Creating records or dataset using dictionary
+Science_subject = {
+    'Name': ['Ali', 'Umar', 'Mirha', 'Asif', 'Samreena'],
+    'Roll no': ['101', '102', '103', '104', '105'],
+    'science': ['88', '60', '66', '94', '40']}
+
+Computer_subject = {
+    'Name': ['Ali', 'Umar', 'Mirha', 'Asif', 'Samreena'],
+    'Roll no': ['101', '102', '103', '104', '105'],
+    'computer_science': ['73', '63', '50', '95', '73']}
+
+Art_subject = {
+    'Name': ['Ali', 'Umar', 'Mirha', 'Asif', 'Samreena'],
+    'Roll no': ['101', '102', '103', '104', '105'],
+    'fine_arts': ['95', '63', '50', '60', '93']}
+
+# Dictionary to Dataframe conversion
+dataframe1 = pd.DataFrame(Science_subject)
+dataframe2 = pd.DataFrame(Computer_subject)
+dataframe3 = pd.DataFrame(Art_subject)
+```
+
+---##
+
+```python
+with pd.ExcelWriter('studentsresult.xlsx', engine='xlsxwriter') as writer:
+    dataframe1.to_excel(writer, sheet_name='Science')
+    dataframe2.to_excel(writer, sheet_name='Computer')
+    dataframe3.to_excel(writer, sheet_name='Arts')
+```
+
+---## 
+
+#### To image
+
+```bash
+pip install dataframe_image
+```
+
+```python
+import pandas as pd
+import numpy as np
+import dataframe_image as dfi
+df = pd.DataFrame(np.random.randn(6, 6), columns=list('ABCDEF'))
+
+# Add a gradient based on values in cell
+df_styled = df.style.background_gradient()
+
+# Save to image
+dfi.export(df_styled,"mytable.png")
+```
+
+---## 
+
+### Examples
+
+#### Convert csv to html
+
+```python
+import pandas as pd
+df = pd.read_csv("file.csv")
+df.to_html("table.html")
+```
+
+#### Convert database table to spreadsheet
+
+```python
+import pandas as pd
+import pyodbc
+
+conn = pyodbc.connect("<connection_string>")
+df = pd.read_sql("SELECT * FROM table", conn)
+df.to_excel("table.xlsx")
+```
+
+---#
+
 # Dataframe methods
 
 
@@ -1131,6 +1465,139 @@ df.drop(df.columns[[2,3,5]], axis=1)
 ```python
 df1 = df1.drop(['B', 'C'], axis=1)
 ```
+
+---#
+
+# Data Visualization
+
+* Matplotlib
+* Plotly
+* Streamlit
+* [Panel](https://panel.holoviz.org/)
+* [Boken](https://bokeh.org/)
+
+---##
+
+# Matplotlib
+
+```python
+from matplotlib import pyplot as plt
+import numpy as np
+
+# Generate 100 random data points along 3 dimensions
+x, y, scale = np.random.randn(3, 100)
+fig, ax = plt.subplots()
+
+# Map each onto a scatterplot we'll create with Matplotlib
+ax.scatter(x=x, y=y, c=scale, s=np.abs(scale)*500)
+ax.set(title="Some random data, created with JupyterLab!")
+plt.show()
+```
+
+---##
+
+# Plotly
+
+```python
+import pandas as pd
+import plotly.graph_objects as go
+
+data = [
+    ['Ravi', 21, 67],
+    ['Kiran', 24, 61],
+    ['Anita', 18, 46],
+    ['Smita', 20, 78],
+    ['Sunil', 17, 90]
+]
+
+df = pd.DataFrame(data, columns=['name', 'age', 'marks'], dtype=float)
+
+print(df)
+
+trace = go.Bar(x=df.name, y=df.marks)
+fig = go.Figure(data = [trace])
+# fig.show()
+fig.show(renderer="svg")
+```
+
+---##
+
+### ?
+
+```python
+import plotly
+import plotly.graph_objs as go
+import pandas as pd
+
+df = pd.read_csv('https://raw.githubusercontent.com/pcm-dpc/COVID-19/master/dati-andamento-nazionale/dpc-covid19-ita-andamento-nazionale.csv')
+
+# Create a trace
+data = [go.Scatter(
+    x=df['data'],
+    y=df['totale_positivi'],
+)]
+layout = go.Layout(
+        xaxis=dict(
+            title='Data',
+        ),
+        yaxis=dict(
+            title='Totale positivi',
+        )
+    )
+fig = go.Figure(data=data, layout=layout)
+
+plotly.offline.plot(fig,filename='positives.html')
+```
+
+---##
+
+### Same example without Dataframe
+
+```python
+import plotly
+import plotly.graph_objs as go
+
+labels = ['home', 'transports', 'food']
+sizes = ['500', '300', '100']
+
+# Data to plot with plotly
+trace = go.Pie(labels=labels, values=sizes)
+
+div_tag = plotly.offline.plot([trace], include_plotlyjs=False,  output_type='div')
+html_content = plotly.offline.plot([trace], include_plotlyjs=True)
+```
+
+
+---##
+
+### Same example without Dataframe
+
+```python
+import pandas as pd
+import plotly
+import plotly.graph_objs as go
+
+df = pd.DataFrame({
+    'labels': ['home', 'transports', 'food'],
+    'sizes': ['500', '300', '100']
+})
+
+
+# Data to plot with plotly
+trace = go.Pie(labels=df["labels"], values=df["sizes"])
+
+# get html div content 
+div = plotly.offline.plot([trace], include_plotlyjs=False,  output_type='div')
+
+# save html file
+plotly.offline.plot([trace], include_plotlyjs=True, filename='output.html', auto_open=False)
+```
+
+---##
+
+# Panel
+
+
 
 ---#
 
