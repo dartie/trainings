@@ -451,30 +451,37 @@ Name: George Songs, dtype: int64
 
 # Series methods
 
-## `mean()`
+### Mean vs Median
+Both are measures of where the center of a data set lies (called “Central Tendency” in stats), but they are usually different numbers. For example, take this list of numbers:
+    ```plain
+    10, 10, 20, 40, 70.
+    ```
+
+* The mean (informally, the "average") is found by adding all the numbers together and dividing by the number of items in the set: 
+    ```plain
+    10 + 10 + 20 + 40 + 70 / 5 = 30.
+    ```
+
+* The median is found by ordering the set from lowest to highest and finding the exact middle. The median is just the middle number: 20.
+
+Sometimes the two will be the same number. For example, the data set 1, 2, 4, 6, 7 has a mean of 1 + 2 + 4 + 6 + 7 / 5 = 4 and a median (a middle) of 4.
 
 ---##
 
-## `median()`
-* Only keeps values greater than average
-
 ```python
 import pandas as pd
-import numpy as np
 
-# Numpy array
-numpy_ser = np.array([145, 142, 38, 13])
+# Creating the Series
+sr = pd.Series([10, 10, 20, 40, 70])
 
-# Series
-songs3 = pd.Series([145, 142, 38, 13], name='counts', index=['Paul', 'John', 'George', 'Ringo'])
-
-print(numpy_ser[1])
-print(songs3[1])
+# Print results
+print(sr.mean())
+print(sr.median())
 ```
 
 ```plain
-142
-142
+30.0
+20.0
 ```
 
 ---#
@@ -991,6 +998,13 @@ df = pd.DataFrame(list(BlogPost.objects.all().values()))
 df = pd.DataFrame(list(BlogPost.objects.all().values('author', 'date', 'slug')))
 ```
 
+---##
+
+# Create json from dataframe
+
+```python
+records = df.values.tolist() 
+```
 
 ---#
 
@@ -1287,7 +1301,7 @@ with pd.ExcelWriter('studentsresult.xlsx', engine='xlsxwriter') as writer:
 #### To image
 
 ```bash
-pip install dataframe_image
+pip3 install dataframe_image
 ```
 
 ```python
@@ -1618,6 +1632,96 @@ df.to_excel("table.xlsx")
 
 # Dataframe manipulation
 
+## Rename columns
+
+### Rename columns names by index
+
+```python
+df.columns.values[0] = "b"
+```
+
+or
+
+```python
+# Changing columns name with index number
+df = df.rename(columns={df.columns[1]: 'new'})
+```
+
+### Rename columns names (bulk)
+
+```python
+# Adjust column names
+df = df.rename(columns={col: col.strip().replace(" ", "_") for col in df.columns})
+```
+
+### Rename columns
+
+```python
+df = df.rename(columns={'oldName1': 'newName1', 'oldName2': 'newName2'})
+```
+
+---##
+
+## Update or Create a new column based on the existing one
+
+- Using a single column as input
+    
+    ```python
+    def get_url(x, var1, var2):
+        ...
+  
+    df['url'] = df['Id'].apply(lambda x: get_url(x, var1, var2))
+    ```
+    
+- Using more columns as input arguments
+    
+    ```python
+    df['C'] = df.apply(lambda row: function(row['A'], row['B']), axis=1)
+    ```
+    
+---##
+
+## Dataframe concatenation (rows)
+
+![](Pandas/concatenation-rows.png)
+
+```python
+df_concatenated = pd.concat([df1, df2])
+```
+
+---##
+
+## Dataframe concatenation placing columns side by side
+
+![](Pandas/concatenation-columns.png)
+
+```python
+df_concatenated = pd.concat([df1, df2], axis=1)
+```
+---##
+
+```python
+import pandas as pd
+
+# initialize data of lists.
+data1 = {'Name': ['Tom', 'Lisa', 'Krish', 'Jack'],
+        'Age': [20, 21, 19, 18],
+        'Gender': ["M", "F", "M", "M"]
+        }
+
+data2 = {'Name': ['Mark', 'Stefania', 'Simon', 'Ed'],
+        'Age': [25, 26, 15, 38],
+        'Gender': ["M", "F", "M", "M"]
+        }
+
+# Create DataFrame
+df1 = pd.DataFrame(data1)
+df2 = pd.DataFrame(data2)
+
+dfc1 = pd.concat([df1, df2])
+dfc2 = pd.concat([df1, df2], axis=1)
+```
+
 
 ---# 
 
@@ -1661,6 +1765,14 @@ newdf = df[~((df.origin == "JFK") & (df.carrier == "B6"))]
 ```python
 df[df['dest'].str[0] == 'M']
 ```
+
+## Search in column
+
+```python
+df_search_result = df[df['column'].str.contains("text_to_search", na=False)]
+```
+
+* `regex=True` allows to search using regex
 
 ---##
 
@@ -1835,10 +1947,3 @@ div_tag = plotly.offline.plot([trace], include_plotlyjs=False,  output_type='div
 html_content = plotly.offline.plot([trace], include_plotlyjs=True)
 ```
 
----#
------
-# TODO
-* Series Methods
-* Dataframe
-  * remove inplace from examples
-  * query
