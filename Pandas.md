@@ -61,7 +61,7 @@ statistical and analytic support, as well as graphing capability.”
 pip3 install pandas
 ```
 
-# Import convetions
+# Import conventions
 
 ```python
 import pandas as pd
@@ -1463,16 +1463,15 @@ df.drop(df.columns[[2,3,5]], axis=1)
 ## Drop columns by column name
 
 ```python
-df1 = df1.drop(['B', 'C'], axis=1)
+df = df.drop(['B', 'C'], axis=1)
 ```
 
 ---#
 
 # Data Visualization
 
-* Matplotlib
-* Plotly
-* Streamlit
+* [Matplotlib](https://matplotlib.org/) - [Cheatsheet](https://matplotlib.org/cheatsheets/_images/cheatsheets-1.png)
+* [Plotly](https://plotly.com/)
 * [Panel](https://panel.holoviz.org/)
 * [Boken](https://bokeh.org/)
 
@@ -1516,13 +1515,13 @@ print(df)
 
 trace = go.Bar(x=df.name, y=df.marks)
 fig = go.Figure(data = [trace])
-# fig.show()
-fig.show(renderer="svg")
+
+fig.show()
 ```
 
 ---##
 
-### ?
+### Scatter
 
 ```python
 import plotly
@@ -1567,39 +1566,6 @@ div_tag = plotly.offline.plot([trace], include_plotlyjs=False,  output_type='div
 html_content = plotly.offline.plot([trace], include_plotlyjs=True)
 ```
 
-
----##
-
-### Same example without Dataframe
-
-```python
-import pandas as pd
-import plotly
-import plotly.graph_objs as go
-
-df = pd.DataFrame({
-    'labels': ['home', 'transports', 'food'],
-    'sizes': ['500', '300', '100']
-})
-
-
-# Data to plot with plotly
-trace = go.Pie(labels=df["labels"], values=df["sizes"])
-
-# get html div content 
-div = plotly.offline.plot([trace], include_plotlyjs=False,  output_type='div')
-
-# save html file
-plotly.offline.plot([trace], include_plotlyjs=True, filename='output.html', auto_open=False)
-```
-
----##
-
-# Panel
-
-
-
----#
 
 -----
 # TODO
