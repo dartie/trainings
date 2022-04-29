@@ -1854,7 +1854,7 @@ df = df.drop(['B', 'C'], axis=1)
 * [Matplotlib](https://matplotlib.org/) - [Cheatsheet](https://matplotlib.org/cheatsheets/_images/cheatsheets-1.png)
 * [Plotly](https://plotly.com/)
 * [Panel](https://panel.holoviz.org/)
-* [Boken](https://bokeh.org/)
+* [Bokeh](https://bokeh.org/)
 
 ---##
 
