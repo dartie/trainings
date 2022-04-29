@@ -973,6 +973,24 @@ c   30   30
 d   40   40
 ```
 
+---##
+
+# Create from Django model
+
+```python
+import pandas as pd
+import datetime
+from myapp.models import BlogPost
+
+df = pd.DataFrame(list(BlogPost.objects.all().values()))
+
+# case with django filter
+# df = pd.DataFrame(list(BlogPost.objects.filter(date__gte=datetime.datetime(2012, 5, 1)).values()))
+
+# limit which fields
+df = pd.DataFrame(list(BlogPost.objects.all().values('author', 'date', 'slug')))
+```
+
 
 ---#
 
