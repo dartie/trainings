@@ -49,9 +49,13 @@ statistical and analytic support, as well as graphing capability.”
 -Matt Harrison
 ```
 
-* it is built on top of Cython, therefore it has less memory overhead and runs quicker.
+* It is built on top of Cython, therefore it has less memory overhead and runs quicker.
 
 * Pandas allow users to avoid using a Python-like dialect and gets close to the C in terms of performance.
+
+!!! help
+
+    Cython is a compiled language that is typically used to generate CPython extension modules.
 
 
 ---#
@@ -65,7 +69,6 @@ pip3 install pandas
 
 ```python
 import pandas as pd
-import numpy as np
 ```
 
 ---##
@@ -75,7 +78,7 @@ import numpy as np
     * [Pycharm CE](https://www.jetbrains.com/pycharm)
     * [Spyder](https://www.spyder-ide.org/)
 
-* Online environments
+* Web-based environments
     * [Jupyter Lab / Jupyter Notebook](https://jupyter.org/install)
     * [Colab](https://colab.research.google.com/)
 
@@ -157,6 +160,7 @@ get(songs, 'John')
 !!! Note
 
     To get the best speed (such as vectorized operations), the values should be of the same type
+
 
 ---##
 ## Types
@@ -481,7 +485,9 @@ print(songs3[1])
 
 ### List
 ```python
-george_dupe = pd.Series([10, 7, 1, 22], index=['1968', '1969', '1970', '1970'], name='George Songs')
+george_dupe = pd.Series([10, 7, 1, 22],
+                        index=['1968', '1969', '1970', '1970'],
+                        name='George Songs')
 print(george_dupe)
 ```
 
@@ -493,10 +499,13 @@ print(george_dupe)
 Name: George Songs, dtype: int64
 ```
 
+---##
+
 ### Dictionary
 
 ```python
-g2 = pd.Series({'1969': 7, '1970': [1, 22]}, index=['1969', '1970', '1970']) 
+g2 = pd.Series({'1969': 7, '1970': [1, 22]}, 
+               index=['1969', '1970', '1970']) 
 print(g2)
 ```
 
@@ -553,15 +562,15 @@ for item in george_dupe:
 * Iteration over index and value
 
     ```python
-    for item in george_dupe.iteritems():
-        print(item)
+    for index, value in george_dupe.iteritems():
+        print(index, value)
     ```
   
     ```plain
-    ('1968', 10)
-    ('1969', 7)
-    ('1970', 1)
-    ('1970', 22)
+    1968  10
+    1969   7
+    1970   1
+    1970  22
     ```
 
 ---##
@@ -657,7 +666,7 @@ Name: George Songs, dtype: int64
 * Unlike `append()` in python list, it requires another series
 
 ```python
-new_george_dupe = george_dupe.append(pd.Series({'1974':9}))
+new_george_dupe = george_dupe.append(pd.Series({'1974': 9}))
 print(new_george_dupe)
 ```
 
@@ -671,24 +680,14 @@ print(new_george_dupe)
 dtype: int64
 ```
 
----##
+!!! warning
 
-### Add new item (`.set_value()`)
+    In January '22, Pandas 1.4.0 marked this as deprecated (see more [here](https://pandas.pydata.org/docs/whatsnew/v1.4.0.html))
+    Use `.concat()` instead:
 
-```python
-new_george_dupe = george_dupe.set_value('1974', 9)
-print(new_george_dupe)
-```
-
-```plain
-1968    10
-1969     6
-1970     2
-1970    22
-1973    11
-1974     9
-Name: George Songs, dtype: int64
-```
+    ```python
+    new_george_dupe = pd.concat([george_dupe, pd.Series({'1974' : 9})])
+    ```
 
 ---##
 
@@ -707,10 +706,6 @@ print(s)
 dtype: int64
 ```
 
-!!! warning
-
-    In case of duplicate index values, only the first occurrence is deleted.
-
 ### Filter (creates a new series)
 
 ```python
@@ -719,7 +714,7 @@ print(new_george_dupe)
 ```
 
 ```plain
-1970    2
+1970    1
 Name: George Songs, dtype: int64
 ```
 
@@ -781,14 +776,23 @@ print(df)
 * To sum up each of the columns, we sum along the index axis (axis=0), or along the row axis:
 
 ```python
+# create a dataframe with random integers
+import pandas as pd
+import numpy as np
+
+df = pd.DataFrame(np.random.randn(10,3), columns=['a', 'b', 'c'])
+
 df.apply(np.sum, axis=0)
 ```
 
 ```plain
-Score1    NaN
-Score2  175.0
+a    2.670586
+b    4.863399
+c    3.876848
 dtype: float64
 ```
+
+---##
 
 * To sum along every row, we sum down the columns axis (axis=1):
 
@@ -797,9 +801,17 @@ df.apply(np.sum, axis=1)
 ```
 
 ```plain
-0   85
-1   90
-dtype: int64
+0    1.923337
+1   -1.990478
+2    1.219685
+3   -0.892176
+4    2.153412
+5    2.205712
+6    4.095937
+7    2.163245
+8   -2.840454
+9    3.372612
+dtype: float64
 ```
 
 ---#
@@ -1566,12 +1578,10 @@ div_tag = plotly.offline.plot([trace], include_plotlyjs=False,  output_type='div
 html_content = plotly.offline.plot([trace], include_plotlyjs=True)
 ```
 
-
+---#
 -----
 # TODO
 * Series Methods
 * Dataframe
   * remove inplace from examples
   * query
-* Visualize data
-* Test Sharing with Giovanni
