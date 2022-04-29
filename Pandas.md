@@ -1330,6 +1330,9 @@ df.to_excel("table.xlsx")
 
 # Dataframe methods
 
+!!! warning
+    `inplace` keyword is deprecated. Assign to a variable instead
+
 
 - `shape` : displays the dataframe structure
     
@@ -1610,7 +1613,81 @@ df.to_excel("table.xlsx")
     c3    True
     dtype: bool
     ```
-    
+
+---#
+
+# Dataframe manipulation
+
+
+---# 
+
+# Query Dataframe
+
+* Load data from csv
+
+    ```python
+    import pandas as pd
+    df = pd.read_csv("https://raw.githubusercontent.com/JackyP/testing/master/datasets/nycflights.csv", usecols=range(1,17))
+    ```
+
+## Dataframe way
+
+```python
+newdf = df[(df.origin == "JFK") & (df.carrier == "B6")]
+```
+
+## `.query()` function
+
+```python
+newdf = df.query('origin == "JFK" & carrier == "B6"')
+```
+
+## `.loc()` function
+
+```python
+newdf = df.loc[(df.origin == "JFK") & (df.carrier == "B6")]
+```
+
+---##
+
+## Negate condition
+
+```python
+newdf = df[~((df.origin == "JFK") & (df.carrier == "B6"))]
+```
+
+## Starts with
+
+```python
+df[df['dest'].str[0] == 'M']
+```
+
+---##
+
+## Group by
+
+```python
+import pandas as pd
+
+# initialize data of lists.
+data = {'Name': ['Tom', 'Lisa', 'Krish', 'Jack'],
+        'Age': [20, 21, 19, 18],
+        'Gender': ["M", "F", "M", "M"]
+        }
+
+# Create DataFrame
+df = pd.DataFrame(data)
+
+# Group by
+by_gender = df.groupby("Gender")
+
+for group_value, group_df in by_gender:
+    print(group_value)
+    print(group_df)
+
+print(df)
+```
+
 ---#
 
 # Rows/Columnns operations
@@ -1630,8 +1707,10 @@ or
 ```python
 len(df.index)
 df.shape[0]
-df[df.columns[0]].count() (== number of non-NaN values in first column)
+df[df.columns[0]].count() # (== number of non-NaN values in first column)
 ```
+
+---##
 
 ## Move column
 
