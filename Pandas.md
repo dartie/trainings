@@ -902,7 +902,7 @@ rank4  juli     90
 
 ---##
 
-## Create from list od dictionaries
+## Create from list of dictionaries
 
 ```python
 import pandas as pd
@@ -1895,10 +1895,12 @@ df = pd.DataFrame(data, columns=['name', 'age', 'marks'], dtype=float)
 print(df)
 
 trace = go.Bar(x=df.name, y=df.marks)
-fig = go.Figure(data = [trace])
+fig = go.Figure(data=[trace])
 
 fig.show()
 ```
+
+* `fig.show()` runs the server and open the chart in the browser
 
 ---##
 
@@ -1926,8 +1928,10 @@ layout = go.Layout(
     )
 fig = go.Figure(data=data, layout=layout)
 
-plotly.offline.plot(fig,filename='positives.html')
+plotly.offline.plot(fig, filename='positives.html')
 ```
+
+* `plotly.offline.plot()` allows to the save the content locally, rather than run a server
 
 ---##
 
@@ -1943,7 +1947,12 @@ sizes = ['500', '300', '100']
 # Data to plot with plotly
 trace = go.Pie(labels=labels, values=sizes)
 
-div_tag = plotly.offline.plot([trace], include_plotlyjs=False,  output_type='div')
-html_content = plotly.offline.plot([trace], include_plotlyjs=True)
+div_tag = plotly.offline.plot([trace], include_plotlyjs=False, output_type='div')
+html_content = plotly.offline.plot([trace], include_plotlyjs=True, auto_open=False)
 ```
+
+* `div_tag` variable contains the content of the html div content (allowed by `output_type='div'`)
+* `include_plotlyjs` allows to choose whether the div contains the plotly.js content
+* `auto_open=False` prevents from the file being opened automatically
+
 
