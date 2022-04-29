@@ -816,6 +816,166 @@ dtype: float64
 
 ---#
 
+# Create Dataframe
+
+## Create from lists
+
+```python
+import pandas as pd
+
+# initialize list of lists
+data = [['tom', 10], ['nick', 15], ['juli', 14]]
+
+# Create the pandas DataFrame
+df = pd.DataFrame(data, columns = ['Name', 'Age'])
+
+print(df)
+```
+
+```plain
+   Name  Age
+0   tom   10
+1  nick   15
+2  juli   14
+```
+
+---##
+
+## Create from dict narray / lists
+
+```python
+import pandas as pd
+
+# initialize data of lists.
+data = {'Name':['Tom', 'nick', 'krish', 'jack'],
+		'Age':[20, 21, 19, 18]}
+
+# Create DataFrame
+df = pd.DataFrame(data)
+
+print(df)
+```
+
+```plain
+    Name  Age
+0    Tom   20
+1   nick   21
+2  krish   19
+3   jack   18
+```
+
+---##
+
+## Create from arrays
+
+```python
+import pandas as pd
+
+# initialize data of lists.
+data = {'Name':['Tom', 'Jack', 'nick', 'juli'],
+		'marks':[99, 98, 95, 90]}
+
+# Creates pandas DataFrame.
+df = pd.DataFrame(data, index =['rank1',
+								'rank2',
+								'rank3',
+								'rank4'])
+
+print(df)
+```
+
+```plain
+       Name  marks
+rank1   Tom     99
+rank2  Jack     98
+rank3  nick     95
+rank4  juli     90
+```
+
+
+---##
+
+## Create from list od dictionaries
+
+```python
+import pandas as pd
+
+# Initialize data to lists.
+data = [{'a': 1, 'b': 2, 'c':3},
+		{'a':10, 'b': 20, 'c': 30}]
+
+# Creates DataFrame.
+df = pd.DataFrame(data, index =['first', 'second'])
+
+print(df)
+```
+
+```plain
+         a   b   c
+first    1   2   3
+second  10  20  30
+```
+
+---##
+
+## Create using zip() function
+
+```python
+import pandas as pd
+
+# List1
+Name = ['tom', 'krish', 'nick', 'juli']
+
+# List2
+Age = [25, 30, 26, 22]
+
+# get the list of tuples from two lists and merge them by using zip().
+list_of_tuples = list(zip(Name, Age))
+
+df = pd.DataFrame(list_of_tuples,
+				columns = ['Name', 'Age'])
+	
+print(df)
+```
+
+```plain
+    Name  Age
+0    tom   25
+1  krish   30
+2   nick   26
+3   juli   22
+```
+
+
+---##
+
+## Create from dictionary of series
+
+```python
+import pandas as pd
+
+# Initialize data to Dicts of series.
+d = {'one' : pd.Series([10, 20, 30, 40],
+					index =['a', 'b', 'c', 'd']),
+	'two' : pd.Series([10, 20, 30, 40],
+						index =['a', 'b', 'c', 'd'])}
+
+df = pd.DataFrame(d)
+
+print(df)
+```
+
+```plain
+   one  two
+a   10   10
+b   20   20
+c   30   30
+d   40   40
+```
+
+
+---#
+
 # Dataframe import/export
 
 * Supported formats:
