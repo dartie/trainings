@@ -1,0 +1,1844 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+
+		<title>Go-Nalug</title>
+
+		<meta name="description" content="A framework for easily creating beautiful presentations using HTML">
+		<meta name="author" content="Dario Necco">
+
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+		<link rel="stylesheet" href="dist/reset.css">
+		<link rel="stylesheet" href="dist/reveal.css">
+		<link rel="stylesheet" href="dist/admonitions.css">		
+		<link rel="stylesheet" href="dist/theme/nalug.css" id="theme">
+
+		<!-- Theme used for syntax highlighting of code -->
+        <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.2/styles/default.min.css">-->
+		<link rel="stylesheet" href="plugin/highlight/monokai.css" id="highlight-theme">
+		
+		<!-- Third Party Plugin for copy code snippet -->
+		<link rel="stylesheet" href="plugin/copycode/copycode.css">
+
+        <style>
+            .copy-code-button {
+                color: #272822;
+                background-color: #FFF;
+                border-color: #272822;
+                border: 2px solid;
+                border-radius: 3px 3px 0px 0px;
+            
+                /* right-align */
+                display: block;
+                margin-left: auto;
+                /* margin-right: -18px; */
+                /* margin-bottom: -60px; */
+                margin-right: 0px;
+                margin-bottom: -45px;
+                padding: 3px 8px;
+                font-size: 0.4em;
+            }
+            
+            .copy-code-button:hover {
+                cursor: pointer;
+                background-color: #F2F2F2;
+            }
+            
+            .copy-code-button:focus {
+                /* Avoid an ugly focus outline on click in Chrome,
+                   but darken the button for accessibility.
+                   See https://stackoverflow.com/a/25298082/1481479 */
+                background-color: #E6E6E6;
+                outline: 0;
+            }
+            
+            .copy-code-button:active {
+                background-color: #D9D9D9;
+            }
+            
+            .highlight pre {
+                /* Avoid pushing up the copy buttons. */
+                margin: 0;
+            }
+        </style>
+
+	</head>
+
+	<body>
+
+		<div class="reveal">
+
+			<!-- Any section element inside of this container is displayed as a slide -->
+			<div class="slides">
+
+                <section>
+<p><img alt="" src="Go-Nalug/golang.png"/></p>
+</section>        
+<section>
+<section>
+<h1 id="introduction">Introduction</h1>
+<ul>
+<li>Open-source</li>
+<li>Compiled</li>
+<li>Binaries can be created for all platforms</li>
+<li>Strongly Typed language</li>
+<li>Fast : <a href="https://benchmarksgame-team.pages.debian.net/benchmarksgame/fastest/go-python3.html">https://benchmarksgame-team.pages.debian.net/benchmarksgame/fastest/go-python3.html</a></li>
+<li>Readability and minimalism
+    provides methods for automatic formatting of your code.</li>
+</ul>
+</section>        
+<section>
+<h2 id="concurrent-programming">Concurrent programming</h2>
+<p>The Go language is built with concurrent programming. It means that goroutines, select statements and channels of Golang are primitives and are specifically build for concurrency. So, this means you can run the language on multiple processes at the same time and on the same core.
+One particular disadvantage with Go's concurrency is that it may lead to race conditions. However, Go provides race condition detection but it works only after race condition actually happened.</p>
+</section>        
+<section>
+<h2 id="garbage-collection">Garbage collection</h2>
+<p>Go is a garbage-collected programming language, so it will automatically free up the program memory that you no longer require. So one can say that, Go garbage collectors will act as the knob that will let you adjust CPU memory as per your need. It will also enable you to protect your projects against memory leakages.</p>
+</section>        
+<section>
+<h2 id="cross-platform">Cross-platform</h2>
+<p>Go is a cross-platform language, which means you can compile it on your machine and run it anywhere, including Windows, Linux, Mac, etc. So, with Golang, you can generate tons of cross-platform binaries. This feature makes the language truly adaptable and portable.</p>
+</section>        
+<section>
+<h2 id="fun-fact">Fun fact</h2>
+<p>The language is just called <strong>Go</strong>, but the term "Golang" became popular with their website golang.org which is taken as "go.org" was unavailable!</p>
+</section>        
+
+</section>        
+<section>
+<h1 id="who-uses-it">Who uses it</h1>
+<ul>
+<li>
+<p><strong>Google</strong> - Being the father of Go, the company itself utilizes the language for its cloud services and infrastructure.</p>
+</li>
+<li>
+<p><strong>Uber</strong> - for scaling up its geofence microservices to enhance map processing speed.</p>
+</li>
+<li>
+<p><strong>Netflix</strong> - for handling big data processing, for the recommendation of TV series and movies, in particular.</p>
+</li>
+<li>
+<p><strong>Salesforce</strong> - also migrated to Go for Einstein Analytics to resolve its readability issue.</p>
+</li>
+<li>
+<p><strong>Novartis</strong> - this Pharma giant uses Go to develop web apps and execute PL/SQL scripts.</p>
+</li>
+<li>
+<p><strong>YouTube</strong> - for handling the ever-increasing load on their website.</p>
+</li>
+</ul>
+</section>        
+<section>
+<h1 id="bibliography">Bibliography</h1>
+<ul>
+<li><a href="https://www.google.it/books/edition/The_Go_Programming_Language/SJHvCgAAQBAJ?hl=it&amp;gbpv=1&amp;printsec=frontcover">The Go Programming Language - Alan A. A. Donovan, Brian W. Kernighan</a> </li>
+<li><a href="http://www.golangbootcamp.com/book">Go Bootcamp - Matt Aimonetti</a> (free)</li>
+<li><a href="http://www.golang-book.com/books/intro">An introduction to programming in Go - Caleb Doxsey</a> (free)</li>
+<li><a href="https://www.openmymind.net/The-Little-Go-Book/">The Little Go Book - Karl Seguin</a></li>
+<li><a href="https://go101.org/article/101.html">Go 101 - Tapir Liu</a>  (<a href="https://github.com/go101/go101/releases">free</a>)</li>
+<li><a href="https://lets-go.alexedwards.net/">Let's Go - Alex Edwards</a></li>
+<li><a href="https://www.google.it/books/edition/The_Way_to_Go/oowq_6bAgloC?hl=it&amp;gbpv=1&amp;printsec=frontcover">The way to Go - Ivo Balbaert</a></li>
+</ul>
+</section>        
+<section>
+<h1 id="installation">Installation</h1>
+<pre class="highlight"><code class="language-bash" data-line-numbers >export version=1.16.4
+
+# Download package
+wget https://golang.org/dl/go${version}.linux-amd64.tar.gz
+
+# extract the package in /usr/local
+sudo rm -rf /usr/local/go &amp;&amp; sudo tar -C /usr/local -xzf go${version}.linux-amd64.tar.gz
+
+# 
+export PATH=$PATH:/usr/local/go/bin
+
+# print version
+go version</code></pre>
+</section>        
+<section>
+<section>
+<h1 id="ide">IDE</h1>
+</section>        
+<section>
+<h2 id="vscode">VSCode</h2>
+<p>The VS Code plugin is developed and maintened by Google developers: <a href="https://marketplace.visualstudio.com/items?itemName=golang.go">Go</a></p>
+<pre class="highlight"><code class="language-bash"># download the vscode package
+wget -O vscode.deb https://az764295.vo.msecnd.net/stable/3c4e3df9e89829dce27b7b5c24508306b151f30d/code_1.55.2-1618307277_amd64.deb
+
+# install the package 
+sudo dpkg -i vscode.deb</code></pre>
+<ol>
+<li>Install the <a href="https://marketplace.visualstudio.com/items?itemName=golang.go">Go</a> extension</li>
+<li><code class="inline">View -&gt; Command Palette...</code></li>
+<li>Type <strong>goinstall</strong> <code class="inline">-&gt; Go Install/Update Tools</code></li>
+<li>Select All <code class="inline">-&gt;</code> wait for installation</li>
+</ol>
+</section>        
+<section>
+<h2 id="liteide">LiteIDE</h2>
+<pre class="highlight"><code class="language-bash">wget -O liteide.tar.gz https://github.com/visualfc/liteide/releases/download/x37.4/liteidex37.4.linux64-qt5.5.1.tar.gz
+
+tar -zxvf liteide.tar.gz
+</code></pre>
+</section>        
+<section>
+<h2 id="goland">Goland</h2>
+<ul>
+<li>
+<p><a href="https://www.jetbrains.com/go/download/download-thanks.html?platform=linux">Goland by Jetbrains</a></p>
+</li>
+<li>
+<p>Proprietary software</p>
+</li>
+<li>On-fly static analysis out of box</li>
+</ul>
+</section>        
+
+</section>        
+<section>
+<h1 id="structure">Structure</h1>
+<ul>
+<li>
+<p><code class="inline">src</code>: contains Go source files.
+The <code class="inline">src</code> directory typically contains many version control repositories containing one or more Go packages. Every Go source file belongs to a package. You generally create a new subdirectory inside your repository for every separate Go package.</p>
+</li>
+<li>
+<p><code class="inline">bin</code>: contains the binary executables.
+The Go tool builds and installs binary executables to this directory. All Go programs that are meant to be executables must contain a source file with a special package called main and define the entry point of the program in a special function called main().</p>
+</li>
+<li>
+<p><code class="inline">pkg</code>: contains Go package archives (.a).
+All the non-executable packages (shared libraries) are stored in this directory. You cannot run these packages directly as they are not binary files. They are typically imported and used inside other executable packages.</p>
+</li>
+</ul>
+</section>        
+<section>
+<section>
+<h1 id="environment-variables">Environment variables</h1>
+</section>        
+<section>
+<h2 id="gopath">GOPATH</h2>
+<p>lists places to look for Go code. On Unix, the value is a colon-separated string. On Windows, the value is a semicolon-separated string. On Plan 9, the value is a list.GOPATH must be set to get, build and install packages outside the standard Go tree.</p>
+</section>        
+<section>
+<h2 id="goroot">GOROOT</h2>
+<p>The Go binary distributions assume they will be installed in /usr/local/go (or c:\Go under Windows), but it is possible to install the Go tools to a different location. In this case you must set the GOROOT environment variable to point to the directory in which it was installed.For example, if you installed Go to your home directory you should add the following commands to $HOME/.profile:export GOROOT=$HOME/go</p>
+</section>        
+
+</section>        
+<section>
+<section>
+<h1 id="go-command-line">Go Command line</h1>
+<pre class="highlight"><code class="inline">Go is a tool for managing Go source code.
+
+Usage:
+
+        go &lt;command&gt; [arguments]
+
+The commands are:
+
+        bug         start a bug report
+        build       compile packages and dependencies
+        clean       remove object files and cached files
+        doc         show documentation for package or symbol
+        env         print Go environment information
+        fix         update packages to use new APIs
+        fmt         gofmt (reformat) package sources
+        generate    generate Go files by processing source
+        get         add dependencies to current module and install them
+        install     compile and install packages and dependencies
+        list        list packages or modules
+        mod         module maintenance
+        run         compile and run Go program
+        test        test packages
+        tool        run specified go tool
+        version     print Go version
+        vet         report likely mistakes in packages</code></pre>
+</section>        
+<section>
+<h2 id="go-fmt">go fmt</h2>
+<pre class="highlight"><code class="language-bash">gofmt -w file.go
+
+go fmt path/to/your/package</code></pre>
+<ul>
+<li>
+<p>easier to write: never worry about minor formatting concerns while hacking away.</p>
+</li>
+<li>
+<p>easier to read: when all code looks the same you need not mentally convert others' formatting style into something you can understand.</p>
+</li>
+<li>
+<p>easier to maintain: mechanical changes to the source don't cause unrelated changes to the file's formatting; diffs show only the real changes.</p>
+</li>
+<li>
+<p>uncontroversial: never have a debate about spacing or brace position ever again!</p>
+</li>
+</ul>
+</section>        
+
+</section>        
+<section>
+<h1 id="file-structure">File structure</h1>
+<ul>
+<li><code class="inline">go.mod</code>: contains dependencies (which can be get with <code class="inline">go get</code> command or just writing the .go file and running <code class="inline">go mod tidy</code>)</li>
+</ul>
+<pre class="highlight"><code class="language-go">module github.com/steevehook/go-modules
+
+go 1.14
+
+require (
+    github.com/julienschmidt/httprouter v1.3.0 // indirect
+    go.uber.org/zap v1.14.1 // indirect
+)</code></pre>
+<p><code class="inline">indirect</code> comment means the package is downloaded but not used in the project</p>
+<ul>
+<li><code class="inline">go.sum</code>: it is containing the expected cryptographic hashes of the content of specific module versions.</li>
+</ul>
+</section>        
+<section>
+<section>
+<h1 id="getting-started">Getting started</h1>
+<pre class="highlight"><code class="language-bash">mkdir hello
+cd hello
+go mod init example.com/hello
+
+nano hello.go
+</code></pre>
+<pre class="highlight"><code class="language-go">package main
+
+import "fmt"
+
+func main() {
+    fmt.Println("Hello, World!")
+}</code></pre>
+<pre class="highlight"><code class="inline">go run .</code></pre>
+</section>        
+<section>
+<h2 id="add-package">Add package</h2>
+<p><strong><code class="inline">"rsc.io/quote"</code></strong></p>
+<pre class="highlight"><code class="language-go">package main
+
+import "fmt"
+
+import "rsc.io/quote"
+
+func main() {
+    fmt.Println(quote.Go())
+}</code></pre>
+</section>        
+
+</section>        
+<section>
+<section>
+<h1 id="conventions">Conventions</h1>
+</section>        
+<section>
+<h2 id="folder-package-and-package-name-should-have-the-same-name">Folder package and package name should have the same name</h2>
+<ul>
+<li>Good practice : Folder <code class="inline">app/network</code> -&gt; package <code class="inline">network</code>
+<pre class="highlight"><code class="inline">.
+├─ app/
+│  └─ network/
+│         └─ main.go/</code></pre></li>
+</ul>
+<pre class="highlight"><code class="inline">package network
+
+// ...</code></pre>
+<ul>
+<li>Bad practice : Folder <code class="inline">app/network</code> -&gt; <code class="inline">package network</code>
+<pre class="highlight"><code class="inline">.
+├─ app/
+│  └─ net/
+│         └─ main.go/</code></pre></li>
+</ul>
+<pre class="highlight"><code class="inline">package network
+
+// ...</code></pre>
+</section>        
+<section>
+<h2 id="directory-or-package-name-should-be-one-word">Directory or package name should be one word</h2>
+<ul>
+<li>
+<p>Good practice
+</p><pre class="highlight"><code class="inline">.
+├─ app/
+│  └─ network/
+│         └─ main.go/</code></pre>
+</li>
+<li>
+<p>Bad practice
+</p><pre class="highlight"><code class="inline">.
+├─ app/
+│  └─ net_err/
+│         └─ main.go/</code></pre>
+</li>
+</ul>
+<pre class="highlight"><code class="inline">.
+├─ app/
+│  └─ netErr/
+│         └─ main.go/</code></pre>
+</section>        
+<section>
+<h2 id="directory-or-package-name-should-be-specific">Directory or package name should be specific</h2>
+<ul>
+<li>Bad practice 
+<pre class="highlight"><code class="inline">.
+├─ app/
+│  └─ utils/
+│         └─ main.go/</code></pre></li>
+</ul>
+</section>        
+<section>
+<h2 id="avoid-nested-packages-keep-the-structure-flat">Avoid nested packages - keep the structure flat</h2>
+<ul>
+<li>Bad practice
+<pre class="highlight"><code class="inline">.
+├─ app/
+│  └─ pkg/
+│      └─ sub_pkg/
+│             └─ sub_pkg/        
+│                     └─ sub_pkg/                </code></pre></li>
+</ul>
+</section>        
+<section>
+<ol>
+<li>Tabs are recommended over spaces</li>
+<li>Go follows a convention where source files are all lower case with underscore separating multiple words.</li>
+<li>Compound file names are separated with <code class="inline">_</code></li>
+<li>File names that begin with <code class="inline">.</code> or <code class="inline">_</code> are ignored by the go tool</li>
+<li>Files with the suffix <code class="inline">_test.go</code> are only compiled and run by the <code class="inline">go test</code> tool.</li>
+</ol>
+<blockquote>
+<p><code class="inline">go fmt</code> or <code class="inline">gofmt -w .</code> take care of the formatting</p>
+</blockquote>
+</section>        
+
+</section>        
+<section>
+<h1 id="comments">Comments</h1>
+<ul>
+<li>Single line comment</li>
+</ul>
+<pre class="highlight"><code class="language-go">// Single-line Comment</code></pre>
+<ul>
+<li>Block comment</li>
+</ul>
+<pre class="highlight"><code class="language-go">/* 
+    Block comment
+*/</code></pre>
+</section>        
+<section>
+<section>
+<h1 id="import">Import</h1>
+<p>Allows to include external modules in the project.
+Many are built-in 
+<br/>
+(e.g.: <code class="inline">fmt</code>)</p>
+</section>        
+<section>
+<h2 id="one-statement">One statement</h2>
+<pre class="highlight"><code class="language-go">import ("fmt"; "math")
+
+// OR
+
+import ("fmt"
+        "math")</code></pre>
+</section>        
+<section>
+<h2 id="multiple-statements">Multiple statements</h2>
+<pre class="highlight"><code class="language-go">import "fmt"
+import "math"</code></pre>
+</section>        
+<section>
+<pre>
+</pre>
+<h2 id="import-with-alias">Import with alias</h2>
+<p><code class="inline">go
+import (
+    quoteV3 "rsc.io/quote/v3"
+)</code></p>
+</section>        
+<section>
+<h2 id="fail">Fail</h2>
+<p>Go doesn't allow recursive import (cross reference):
+    main -&gt; p1 -&gt; p2 -&gt; p1</p>
+</section>        
+<section>
+<h3 id="import-structure">Import structure</h3>
+<pre class="highlight"><code class="language-go">package pkg
+import "github.com/gophertuts/go-basics/net"</code></pre>
+<ul>
+<li><code class="inline">github.com</code> : Host</li>
+<li><code class="inline">gophertuts</code> : User/Organization </li>
+<li><code class="inline">go-basics</code> : Project/Repo</li>
+<li><code class="inline">net</code> : package</li>
+</ul>
+</section>        
+
+</section>        
+<section>
+<section>
+<h1 id="variables">Variables</h1>
+<p>Variables are names used to hold values.</p>
+</section>        
+<section>
+<h2 id="full-declaration">Full declaration</h2>
+<pre class="highlight"><code class="language-go">var &lt;variable-name/s&gt; &lt;type&gt;
+
+var x int
+
+var x,y int
+
+var x,y int = 2  // declaring and initializing more variable in one statement.</code></pre>
+</section>        
+<section>
+<h2 id="implicit-type">Implicit type</h2>
+<ul>
+<li>type is not specified (requires initialization)</li>
+</ul>
+<pre class="highlight"><code class="language-go">var &lt;variable&gt; = &lt;value&gt;
+
+var x = 100</code></pre>
+</section>        
+<section>
+<h2 id="short-variable-declaration">Short variable declaration</h2>
+<blockquote>
+<p>allowed only inside a fuction</p>
+</blockquote>
+<pre class="highlight"><code class="language-go">&lt;variable-name&gt;:=&lt;value&gt;
+x := 100</code></pre>
+</section>        
+<section>
+<h2 id="single-statement-multiple-declaration">Single statement multiple declaration</h2>
+<pre class="highlight"><code class="language-go">var (  
+      name1 = initialvalue1
+      name2 = initialvalue2
+)</code></pre>
+<pre class="highlight"><code class="language-go">var (
+    name   = "naveen"
+    age    = 29
+    height int
+)</code></pre>
+</section>        
+<section>
+<blockquote>
+<p>Uninitialized variables have a zero value</p>
+</blockquote>
+<pre class="highlight"><code class="language-go">var x int     // x = 0
+var x string  // x = ""</code></pre>
+</section>        
+
+</section>        
+<section>
+<section>
+<h1 id="pointers">Pointers</h1>
+<p>Variables contain the <strong>memory address</strong> of a variable.</p>
+<p>Usually used for modifying a value of a variable within a function.</p>
+<ul>
+<li><code class="inline">*</code> (deference operator) before a variable name means get the value of the value of the variable (from the address, which is what the variable is storing) </li>
+<li><code class="inline">&amp;</code> before a variable name gets the address of the item</li>
+</ul>
+</section>        
+<section>
+<pre class="highlight"><code class="language-go">package main
+
+import (
+    "fmt"
+)
+
+func main() {
+    toChange := "hello"
+    var pointer *string = &amp;toChange
+    fmt.Println(pointer, *pointer, &amp;pointer)
+}
+
+/*
+0xc000010240 hello 0xc00000e028
+*/</code></pre>
+<ul>
+<li><code class="inline">pointer</code> :  address where the content of <code class="inline">toChange</code> (<code class="inline">"hello"</code>) is stored</li>
+<li><code class="inline">*pointer</code> : access the content of the address (<code class="inline">"hello"</code>)</li>
+<li><code class="inline">&amp;pointer</code> : gets the pointer that points to <code class="inline">toChange</code> (pointer to the pointer)</li>
+</ul>
+</section>        
+<section>
+<h2 id="case-1">Case 1</h2>
+<pre class="highlight"><code class="language-go" data-line-numbers="all|7-9,5-6,18" >package main
+
+import (
+    "fmt"
+)
+
+func changeValue(str *string) {
+    *str = "changed!"
+}
+
+func changeValue2(str string) {
+    str = "changed!"
+}
+
+func main() {
+    toChange := "hello"
+    fmt.Println(toChange)  // Print before
+    changeValue(toChange)
+    fmt.Println(toChange)  // Print after
+}</code></pre>
+<pre class="highlight"><code class="inline">hello
+changed!</code></pre>
+</section>        
+<section>
+<h2 id="case-2">Case 2</h2>
+<pre class="highlight"><code class="language-go" data-line-numbers="all|11-13,5-6,18" >package main
+
+import (
+    "fmt"
+)
+
+func changeValue(str *string) {
+    *str = "changed!"
+}
+
+func changeValue2(str string) {
+    str = "changed!"
+}
+
+func main() {
+    toChange := "hello"
+    fmt.Println(toChange)  // Print before
+    changeValue2(toChange)
+    fmt.Println(toChange)  // Print after
+}</code></pre>
+<pre class="highlight"><code class="inline">hello
+hello</code></pre>
+<p>The value only changed locally in the function because I didn't pass the pointer and I passed the value "hello" to the function.</p>
+</section>        
+<section>
+<p>For struct there is no need to use <code class="inline">*</code> for pointing to the value.</p>
+<pre class="highlight"><code class="language-go" data-line-numbers="10-12,15-16|11" >package main
+
+import "fmt"
+
+type Point struct {
+    x int32
+    y int32
+}
+
+func changeX(pt *Point) {
+    pt.x = 100
+}
+
+func main() {
+    pt := Point{y: 3, x: 4}
+    changeX(&amp;pt)      // the x of "pt" becomes 100
+
+    fmt.Println(pt)   // {100 3} 
+}</code></pre>
+<pre class="highlight"><code class="language-go">func main() {
+    x := 7
+
+    y := &amp;x  // access the address of "x" variable
+    fmt.Println(x, y)  // 7 0xc0000140b8
+
+    *y = 8   // Dereference: access where it's pointing to
+    fmt.Println(x, y)  // 8 0xc0000140b8
+
+}</code></pre>
+</section>        
+
+</section>        
+<section>
+<section>
+<h1 id="types">Types</h1>
+<p>Determines the values that the variable can have and the operations that can be performed on it.</p>
+</section>        
+<section>
+<h2 id="const">Const</h2>
+<pre class="highlight"><code class="language-go">const pi = 3.14</code></pre>
+</section>        
+<section>
+<h2 id="integers">Integers</h2>
+<ul>
+<li><code class="inline">int</code></li>
+<li><code class="inline">int8</code> : has size 1 byte. Covers range -128 to 127;</li>
+<li><code class="inline">int16</code> : has size 2 bytes : -32.768 to 32.767;</li>
+<li><code class="inline">int32</code> : has size 4 bytes: -2.147.483.648 to 2.147.483.647;</li>
+<li><code class="inline">int64</code> : has size 8 bytes : -9 X 10 to 9 X 1018.</li>
+<li><code class="inline">uint8</code> : unsigned integer of 1 byte : 0 to 255;</li>
+<li><code class="inline">uint16</code> : unsigned integer of 2 bytes : 0 to 65.535;</li>
+<li><code class="inline">uint32</code> : unsigned integer of 4 bytes :  4.294.967.295;</li>
+<li><code class="inline">uint64</code> : unsigned integer of 8 bytes : 18 X 1018;</li>
+</ul>
+</section>        
+<section>
+<h2 id="floats">Floats</h2>
+<ul>
+<li><code class="inline">float32</code> ~ 6 digits precision</li>
+</ul>
+<pre class="highlight"><code class="language-go">var d float32 = 1.222</code></pre>
+<ul>
+<li><code class="inline">float64</code> ~ 15 digits precision</li>
+</ul>
+<pre class="highlight"><code class="language-go">123.45
+1.2345e2</code></pre>
+</section>        
+<section>
+<h2 id="complex">Complex</h2>
+<ul>
+<li><code class="inline">complex64</code></li>
+<li><code class="inline">complex128</code></li>
+</ul>
+<pre class="highlight"><code class="language-go">var z complex128 = complex(2,3)  // real and imaginary
+
+var x complex128 = cmplx.Sqrt(-5 + 12i)</code></pre>
+</section>        
+<section>
+<h2 id="bytes-and-rune">Bytes and rune</h2>
+<p>In Go, the byte (uint8) and rune (int32) data types are used to distinguish characters from integer values.</p>
+<p>Golang doesn’t have a char data type. It uses byte and rune to represent character values. The byte data type represents ASCII characters and the rune data type represents a more broader set of Unicode characters that are encoded in UTF-8 format.</p>
+<pre class="highlight"><code class="language-go">var firstLetter = 'A' // Type inferred as `rune` (Default type for character values)</code></pre>
+<p>You can create a byte variable by explicitly specifying the type -</p>
+<pre class="highlight"><code class="language-go">var lastLetter byte = 'Z'</code></pre>
+</section>        
+<section>
+<p>Both byte and rune data types are essentially integers. For example, a byte variable with value 'a' is converted to the integer 97.</p>
+<p>Similarly, a rune variable with a unicode value '♥' is converted to the corresponding unicode codepoint U+2665, where U+ means unicode and the numbers are hexadecimal, which is essentially an integer.</p>
+<pre class="highlight"><code class="language-go">package main
+import "fmt"
+
+func main() {
+    var myByte byte = 'a'
+    var myRune rune = '♥'
+
+    fmt.Printf("%c = %d and %c = %U\n", myByte, myByte, myRune, myRune)
+}</code></pre>
+<p></p><pre class="highlight"><code class="language-go">a = 97 and ♥ = U+2665</code></pre>
+(myByte <code class="inline">-&gt;</code> character, decimal; myRune <code class="inline">-&gt;</code> character, unicode)
+</section>        
+<section>
+<h2 id="string">String</h2>
+<p>A "string" is a sequence of bytes (not of a rune). </p>
+<ul>
+<li>Double quotes</li>
+<li>Backtick</li>
+</ul>
+<pre class="highlight"><code class="language-go">var d string = "hello world"
+
+var e string = `This is a 
+Multiline
+string
+`</code></pre>
+</section>        
+<section>
+<h2 id="array">Array</h2>
+<p>Elements of the same type with a fixed length definined at the declaration stage. It cannot be expanded.</p>
+<pre class="highlight"><code class="language-go">var a [5]int                 // fixed 
+var multiD [2][3]int         // multidimensional array       </code></pre>
+</section>        
+<section>
+<h2 id="slice">Slice</h2>
+<p>As arrays, but the length can be expanded.</p>
+<pre class="highlight"><code class="language-go">var b []int
+
+numbers := make([]int,5,10)  // initial length of 5 and capacity of 10</code></pre>
+<p>Sub-slice can be created starting from another slice.</p>
+<pre class="highlight"><code class="language-go">// initialize a slice with 4 len and values
+number2 = []int{1,2,3,4}
+fmt.Println(numbers)     // -&gt; [1 2 3 4]
+
+// create sub slices
+slice1 := number2[2:]
+fmt.Println(slice1)      // -&gt; [3 4]
+
+slice2 := number2[:3]
+fmt.Println(slice2)      // -&gt; [1 2 3]
+
+slice3 := number2[1:4]
+fmt.Println(slice3)      // -&gt; [2 3 4]</code></pre>
+</section>        
+<section>
+<h2 id="map">Map</h2>
+<p>Structure key-value</p>
+<pre class="highlight"><code class="language-go">var m map[string]int      // key is string - value is integer</code></pre>
+<pre class="highlight"><code class="language-go">// adding key/value
+m['clearity'] = 2
+m['simplicity'] = 3
+
+// printing the values
+fmt.Println(m['clearity'])   // -&gt; 2
+fmt.Println(m['simplicity']) // -&gt; 3</code></pre>
+<pre class="highlight"><code class="language-go">countryCapitalMap := map[string]string{
+    "France": "Paris",
+    "Italy":  "Rome",
+    "Japan":  "Tokyo",
+}</code></pre>
+<blockquote>
+<p>Last element needs to have the comma <code class="inline">,</code></p>
+</blockquote>
+</section>        
+<section>
+<h2 id="struct">Struct</h2>
+<pre class="highlight"><code class="language-go">package main
+
+type Point struct {
+    x int32
+    y int32
+}
+
+func main() {
+    var p1 Point = Point{1,2}
+    var p2 Point = Point{-5,7}
+}</code></pre>
+</section>        
+<section>
+<h2 id="struct-methods">Struct methods</h2>
+<p>If used for modifying a struct value, the Struct argument needs to be passed as pointer.</p>
+<pre class="highlight"><code class="language-go" data-line-numbers="all|11-13,23-24|15-17,26-27" >package main
+
+import "fmt"
+
+type Student struct {
+    name   string
+    grades []int
+    age    int
+}
+
+func (s Student) getAge() int {
+    return s.age
+}
+
+func (s *Student) setAge(age int) {
+    s.age = age
+}
+
+func main() {
+    // create student
+    s1 := Student{"Tim", []int{70, 90, 80, 85}, 19}
+
+    // use method ".getAge()"
+    fmt.Println(s1.getAge()) // 19
+
+    // use method ".setAge()"
+    s1.setAge(7)
+    fmt.Println(s1) // {Tim [70 90 80 85] 7}
+
+}</code></pre>
+</section>        
+<section>
+<h2 id="embedded-struct">Embedded Struct</h2>
+<ul>
+<li>Struct inside another struct</li>
+</ul>
+<pre class="highlight"><code class="language-go" data-line-numbers="all|5-13,16|12" >package main
+
+import "fmt"
+
+type Point struct {
+    x int32
+    y int32
+}
+
+type Circle struct {
+    radius float64
+    center *Point           // Struct inside another struct
+}
+
+func main() {
+    c1 := Circle{4.56, &amp;Point{4,5}}
+
+    fmt.Println(c1.center)  // &amp;{4,5}
+}</code></pre>
+</section>        
+<section>
+<pre class="highlight"><code class="language-go" data-line-numbers="all|5-13,16|12" >package main
+
+import "fmt"
+
+type Point struct {
+    x int32
+    y int32
+}
+
+type Circle struct {
+    radius float64
+    *Point              // Struct inside another struct
+}
+
+func main() {
+    c1 := Circle{4.56, &amp;Point{4,5}}
+
+    fmt.Println(c1.x)  // 4
+}</code></pre>
+</section>        
+<section>
+<h2 id="tags">Tags</h2>
+<p>A tag for a field allows you to attach meta-information to the field which can be acquired using reflection.</p>
+<p>Usually it is used to provide transformation info on how a struct field is encoded to or decoded from another format (or stored/retrieved from a database), but you can use it to store whatever meta-info you want to, either intended for another package or for your own use.</p>
+<pre class="highlight"><code class="language-go">type User struct {
+    Name string `json:"name" xml:"name"`
+}</code></pre>
+</section>        
+<section>
+<h4 id="interface">Interface</h4>
+<p>Allows to implement a slice containing values of different types (as lists in python)</p>
+<pre class="highlight"><code class="language-go" data-line-numbers="all|2" >func main() {
+    arr := []interface{}{1, 2, "apple", true}
+    fmt.Println(arr)
+
+    i := arr[0].(int)
+    fmt.Printf("i: %d, i type: %T\n", i, i)
+
+    s := arr[2].(string)
+    fmt.Printf("b: %s, i type: %T\n", s, s)
+
+    fmt.Printf("b: %s, i type: %T\n", arr[2], arr[2])
+}</code></pre>
+<pre class="highlight"><code class="inline">[1 2 apple true]
+i: 1, i type: int
+b: apple, i type: string
+b: apple, i type: string</code></pre>
+</section>        
+<section>
+<h3 id="empty-interface">Empty Interface</h3>
+<p>The interface type that specifies zero methods is known as the <em>empty interface</em>:</p>
+<pre class="highlight"><code class="language-go">interface{}</code></pre>
+<p>An empty interface may hold values of any type. (Every type implements at least zero methods).</p>
+<p>They are used by code that handles values of unknown type. </p>
+</section>        
+<section>
+<pre class="highlight"><code class="language-go" data-line-numbers="all|6,9,12" >package main
+
+import "fmt"
+
+func main() {
+    var i interface{}
+    describe(i)
+
+    i = 42
+    describe(i)
+
+    i = "hello"
+    describe(i)
+}
+
+func describe(i interface{}) {
+    fmt.Printf("(%v, %T)\n", i, i)
+}</code></pre>
+<pre class="highlight"><code class="inline">(&lt;nil&gt;, &lt;nil&gt;)
+(42, int)
+(hello, string)</code></pre>
+</section>        
+<section>
+<h2 id="type-declaration">Type Declaration</h2>
+<p>Craetes a type alias which can make more sense in the application</p>
+<pre class="highlight"><code class="language-go">// Create types
+type Celsius float64
+type IDnum int
+
+// Use new types
+var temp Celsius
+var pid IDnum</code></pre>
+</section>        
+<section>
+<h2 id="type-conversions">Type Conversions</h2>
+<pre class="highlight"><code class="language-go">T()  // where T is the final type </code></pre>
+<pre class="highlight"><code class="language-go">var x int32 = 1
+var y int16 = 2
+x = y // not possible as the types are different: cannot use y (type int16) as type int32 in assignment
+
+x = int32(y)</code></pre>
+</section>        
+
+</section>        
+<section>
+<section>
+<h1 id="printing-string-formatting">Printing / String formatting</h1>
+<ul>
+<li><code class="inline">Print</code> : formats using the default formats for its operands and writes to standard output. Spaces are added between operands when neither is a string. It returns the number of bytes written and any write error encountered.</li>
+</ul>
+<pre class="highlight"><code class="language-go">package main
+
+import "fmt"
+
+func main() {
+    const name, age = "Kim", 22
+
+    /* Print */
+    fmt.Print(name, " is ", age, " years old.\n")
+}</code></pre>
+<pre class="highlight"><>Kim is 22 years old
+</pre>
+<blockquote>
+<p>Note carriage return at end</p>
+</blockquote>
+</section>        
+<section>
+<ul>
+<li><code class="inline">Printf</code> : formats according to a format specifier and writes to standard output. It returns the number of bytes written and any write error encountered.</li>
+</ul>
+<pre class="highlight"><code class="language-go">package main
+
+import "fmt"
+
+func main() {
+    const name, age = "Kim", 22
+
+    /* Printf */
+    fmt.Printf("%s is %d years old.\n", name, age)
+
+}</code></pre>
+<pre class="highlight"><>Kim is 22 years old
+</pre>
+<blockquote>
+<p>Note carriage return at end</p>
+</blockquote>
+</section>        
+<section>
+<ul>
+<li><code class="inline">Println</code> : formats using the default formats for its operands and writes to standard output. Spaces are always added between operands and a newline is appended. It returns the number of bytes written and any write error encountered.</li>
+</ul>
+<pre class="highlight"><code class="language-go">package main
+
+import "fmt"
+
+func main() {
+    const name, age = "Kim", 22
+
+    /* Println */
+    fmt.Println(name, "is", age, "years old.")
+
+}</code></pre>
+<pre class="highlight"><>Kim is 22 years old
+</pre>
+<blockquote>
+<p>Note carriage return at end added by the function.</p>
+</blockquote>
+</section>        
+<section>
+<ul>
+<li><code class="inline">Sprint</code> : formats using the default formats for its operands and returns the resulting string. Spaces are added between operands when neither is a string.</li>
+</ul>
+<pre class="highlight"><code class="language-go">package main
+
+import "fmt"
+
+func main() {
+    const name, age = "Kim", 22
+
+    /* Sprint */
+    s := fmt.Sprint(name, " is ", age, " years old.\n")
+    io.WriteString(os.Stdout, s) // Ignoring error for simplicity.
+
+}</code></pre>
+<pre class="highlight"><>Kim is 22 years old
+</pre>
+<blockquote>
+<p>Note carriage return at end.</p>
+</blockquote>
+</section>        
+<section>
+<ul>
+<li><code class="inline">Sprintf</code> : formats according to a format specifier and returns the resulting string.</li>
+</ul>
+<pre class="highlight"><code class="language-go">package main
+
+import "fmt"
+
+func main() {
+    const name, age = "Kim", 22
+
+    /* Sprintf */
+    s := fmt.Sprintf("%s is %d years old.\n", name, age)
+    io.WriteString(os.Stdout, s) // Ignoring error for simplicity.
+}</code></pre>
+<pre class="highlight"><>Kim is 22 years old
+</pre>
+<blockquote>
+<p>Note carriage return at end added by the function.</p>
+</blockquote>
+</section>        
+<section>
+<ul>
+<li><code class="inline">Sprintln</code> : formats using the default formats for its operands and returns the resulting string. Spaces are always added between operands and a newline is appended.</li>
+</ul>
+<pre class="highlight"><code class="language-go">package main
+
+import "fmt"
+
+func main() {
+    const name, age = "Kim", 22
+
+    /* Sprintln */
+    s := fmt.Sprintln(name, "is", age, "years old.")
+    io.WriteString(os.Stdout, s) // Ignoring error for simplicity.
+}</code></pre>
+<pre class="highlight"><>Kim is 22 years old
+</pre>
+<blockquote>
+<p>Note carriage return at end added by the function.</p>
+</blockquote>
+</section>        
+<section>
+<h1 id="iowritestringw-s"><code class="inline">io.WriteString(w, s)</code></h1>
+<ul>
+<li>
+<p>Write the contents of the stated string “s” to the writer “w”, which takes a slice of bytes.</p>
+</li>
+<li>
+<p>Returns the total number of bytes of the content of type int and also returns an error if any.</p>
+</li>
+<li>
+<p>Comment <code class="inline">// Ignoring error for simplicity.</code> in the previous slides is related to the return values which have been ignored.</p>
+</li>
+</ul>
+<pre class="highlight"><code class="language-go">/* Sprint */
+s := fmt.Sprint(name, " is ", age, " years old.\n")
+l, err := io.WriteString(os.Stdout, s)
+
+if err != nil {
+    panic(err)
+}</code></pre>
+</section>        
+<section>
+<h1 id="format-variables">Format variables</h1>
+<ul>
+<li><a href="https://golang.org/pkg/fmt/">https://golang.org/pkg/fmt/</a></li>
+</ul>
+<pre class="highlight"><code class="language-go">var(
+    a = 654
+    b = false
+    c = 2.651
+    d = 4 + 1i
+    e = "Australia"
+    f = 15.2 * 4525.321
+)
+
+func main(){    
+    fmt.Printf("d for Integer: %d\n", a)
+    fmt.Printf("6d for Integer: %6d\n", a)
+
+    fmt.Printf("t for Boolean: %t\n", b)
+    fmt.Printf("g for Float: %g\n", c)
+    fmt.Printf("e for Scientific Notation: %e\n", d)
+    fmt.Printf("E for Scientific Notation: %E\n", d)
+    fmt.Printf("s for String: %s\n", e)
+    fmt.Printf("G for Complex: %G\n", f)
+
+    fmt.Printf("15s String: %15s\n", e)
+    fmt.Printf("-10s String: %-10s\n",e)
+
+    t:= fmt.Sprintf("Print from right: %[3]d %[2]d %[1]d\n", 11, 22, 33)
+    fmt.Println(t)  
+}</code></pre>
+<pre class="highlight"><code class="inline">d for Integer: 654
+6d for Integer:    654
+t for Boolean: false
+g for Float: 2.651
+e for Scientific Notation: (4.000000e+00+1.000000e+00i)
+E for Scientific Notation: (4.000000E+00+1.000000E+00i)
+s for String: Australia
+G for Complex: 68784.8792
+15s String:     Australia
+-10s String: Australia
+Print from right: 33 22 11</code></pre>
+</section>        
+<section>
+<h3 id="pretty-print">Pretty print</h3>
+<pre class="highlight"><code class="language-go">package main
+
+import (
+    "fmt"
+
+    "github.com/kr/pretty"
+)
+
+func main() {
+    type myType struct {
+        a, b int
+    }
+    var x = []myType{{1, 2}, {3, 4}, {5, 6}}
+    fmt.Printf("%# v", pretty.Formatter(x))
+}</code></pre>
+<p>Output:
+</p><pre class="highlight"><code class="inline">[]pretty_test.myType{
+    {a:1, b:2},
+    {a:3, b:4},
+    {a:5, b:6},
+}</code></pre>
+</section>        
+<section>
+<h3 id="print-with-colors">Print with colors</h3>
+<ul>
+<li><a href="https://github.com/gookit/color">https://github.com/gookit/color</a></li>
+<li><a href="https://github.com/fatih/color">https://github.com/fatih/color</a></li>
+<li><a href="https://github.com/logrusorgru/aurora">https://github.com/logrusorgru/aurora</a></li>
+</ul>
+<pre class="highlight"><code class="language-go">package main
+
+import (
+    "fmt"
+
+    "github.com/gookit/color"
+)
+
+func main() {
+    // quick use package func
+    color.Redp("Simple to use color")
+    color.Redln("Simple to use color")
+
+    // quick use like fmt.Print*
+    color.Red.Println("Simple to use color")
+    color.Green.Print("Simple to use color\n")
+    color.Cyan.Printf("Simple to use %s\n", "color")
+
+    // use like func
+    red := color.FgRed.Render
+    green := color.FgGreen.Render
+    fmt.Printf("%s line %s library\n", red("Command"), green("color"))
+
+    // custom color
+    color.New(color.FgWhite, color.BgBlack).Println("custom color style")
+
+    // can also:
+    color.Style{color.FgCyan, color.OpBold}.Println("custom color style")
+
+    // internal theme/style:
+    color.Info.Tips("message")
+    color.Info.Prompt("message")
+    color.Info.Println("message")
+    color.Warn.Println("message")
+    color.Error.Println("message")
+
+    // prompt message
+    color.Info.Prompt("prompt style message")
+    color.Warn.Prompt("prompt style message")
+
+    // tips message
+    color.Info.Tips("tips style message")
+    color.Warn.Tips("tips style message")
+}</code></pre>
+</section>        
+<section>
+<p><img alt="" src="Go-Nalug/print-color.png"/></p>
+</section>        
+
+</section>        
+<section>
+<section>
+<h1 id="excute-a-command">Excute a command</h1>
+<h2 id="capture-output">Capture output</h2>
+<pre class="highlight"><code class="language-go" data-line-numbers="all|12" >package main
+
+import (
+    "fmt"
+    "log"
+    "os"
+    "os/exec"
+)
+
+func main() {
+    os.Chdir("..")
+    out, err := exec.Command("ls", "-l").Output()
+
+    if err != nil {
+        log.Fatal(err)
+    }
+    fmt.Println(string(out))
+}</code></pre>
+</section>        
+<section>
+<h2 id="stdin-and-stdout">Stdin and Stdout</h2>
+<pre class="highlight"><code class="language-go" data-line-numbers="all|11|11,14-15|11,14-15,18|11,14-15,18,21-22|11,14-15,18,21-22,25|11,14-15,18,21-22,25,28" >package main
+
+import (
+    "fmt"
+    "io/ioutil"
+    "os/exec"
+)
+
+func main() {
+    // create command object
+    grepCmd := exec.Command("ls")
+
+    // create stdin and stdout pipes
+    grepIn, _ := grepCmd.StdinPipe()
+    grepOut, _ := grepCmd.StdoutPipe()
+
+    /* start the command */
+    grepCmd.Start()
+
+    /* write to stdin pipe */
+    grepIn.Write([]byte("hello grep\ngoodbye grep"))
+    grepIn.Close()
+
+    /* read the output from the stdout pipe */
+    grepBytes, _ := ioutil.ReadAll(grepOut)
+
+    /* The ".Wait()" waits for the command to exit and waits for any copying to stdin or copying from stdout or stderr to complete. It closes the pipe after seeing the command exit. */
+    grepCmd.Wait()
+
+    fmt.Println("&gt; grep hello")
+    fmt.Println(string(grepBytes))
+}</code></pre>
+</section>        
+
+</section>        
+<section>
+<section>
+<h1 id="applications-arguments">Application's arguments</h1>
+<ul>
+<li><code class="inline">os.Args</code> holds the arguments passed to the application call</li>
+</ul>
+</section>        
+<section>
+<h2 id="flags">Flags</h2>
+<ul>
+<li><a href="https://gobyexample.com/command-line-flags">https://gobyexample.com/command-line-flags</a></li>
+</ul>
+<pre class="highlight"><code class="language-go">package main
+
+import (
+    "flag"
+    "fmt"
+)
+
+func main() {
+
+    wordPtr := flag.String("word", "foo", "a string")
+
+    numbPtr := flag.Int("numb", 42, "an int")
+    boolPtr := flag.Bool("fork", false, "a bool")
+
+    var svar string
+    flag.StringVar(&amp;svar, "svar", "bar", "a string var")
+
+    flag.Parse()
+
+    fmt.Println("word:", *wordPtr)
+    fmt.Println("numb:", *numbPtr)
+    fmt.Println("fork:", *boolPtr)
+    fmt.Println("svar:", svar)
+    fmt.Println("tail:", flag.Args())
+}</code></pre>
+<pre class="highlight"><code class="language-bash">$ go build command-line-flags.go
+
+$ ./command-line-flags -word=opt -numb=7 -fork -svar=flag
+word: opt
+numb: 7
+fork: true
+svar: flag
+tail: []
+
+$ ./command-line-flags -word=opt
+word: opt
+numb: 42
+fork: false
+svar: bar
+tail: []
+
+$ ./command-line-flags -word=opt a1 a2 a3
+word: opt
+...
+tail: [a1 a2 a3]
+
+$ ./command-line-flags -word=opt a1 a2 a3 -numb=7
+word: opt
+numb: 42
+fork: false
+svar: bar
+tail: [a1 a2 a3 -numb=7]
+
+$ ./command-line-flags -h
+Usage of ./command-line-flags:
+  -fork=false: a bool
+  -numb=42: an int
+  -svar="bar": a string var
+  -word="foo": a string
+
+$ ./command-line-flags -wat
+flag provided but not defined: -wat
+Usage of ./command-line-flags:
+...</code></pre>
+</section>        
+<section>
+<h2 id="argparse">Argparse</h2>
+<ul>
+<li><a href="https://github.com/akamensky/argparse">https://github.com/akamensky/argparse</a></li>
+</ul>
+<pre class="highlight"><code class="language-go">package main
+
+import (
+    "fmt"
+    "github.com/akamensky/argparse"
+    "os"
+)
+
+func main() {
+    // Create new parser object
+    parser := argparse.NewParser("print", "Prints provided string to stdout")
+    // Create string flag
+    s := parser.String("s", "string", &amp;argparse.Options{Required: true, Help: "String to print"})
+    // Parse input
+    err := parser.Parse(os.Args)
+    if err != nil {
+        // In case of error print error and print usage
+        // This can also be done by passing -h or --help flags
+        fmt.Print(parser.Usage(err))
+    }
+    // Finally print the collected string
+    fmt.Println(*s)
+}</code></pre>
+</section>        
+
+</section>        
+<section>
+<section>
+<h1 id="functions">Functions</h1>
+<ul>
+<li>Functions having a name starting with lower case, will only be available within the package. If you need to import the package in others and use that function, it needs to start with uppercase.</li>
+</ul>
+<pre class="highlight"><code class="language-go">func function_name(variable1_name, variable2_name variable1-2_type, variable3_name variable3_type) &lt;function_return_type&gt; {
+
+    &lt;function_body&gt;
+
+}</code></pre>
+<pre class="highlight"><code class="language-go">package mymath
+
+
+func Add(a, b int) int {
+    return a + b
+}
+
+func subtract(a, b int) int {
+    return a - b
+}</code></pre>
+<ul>
+<li><code class="inline">subtract</code> is going to be available only in the current package, whereas <code class="inline">Add</code> in both <code class="inline">mymath</code> and in any packages which imports <code class="inline">mymath</code></li>
+</ul>
+</section>        
+<section>
+<ul>
+<li>If return values are declared in the function definition, <code class="inline">return</code> statement is enough for returning the function values</li>
+</ul>
+<pre class="highlight"><code class="language-go" data-line-numbers="all|1,6|1,6-7" >func rectangle(l int, b int) (area int) {
+    var parameter int
+    parameter = 2 * (l + b)
+    fmt.Println("Parameter: ", parameter)
+
+    area = l * b
+    return // Return statement without specify variable name
+}
+
+func main() {
+    fmt.Println("Area: ", rectangle(20, 30))
+}</code></pre>
+<pre class="highlight"><code class="language-go">func main() {
+
+    // calling the function, here function returns two values
+    m, d := calculator(105, 7)
+
+    fmt.Println("105 x 7 = ", m)
+    fmt.Println("105 / 7 = ", d)
+}
+
+// function having named arguments
+func calculator(a, b int) (mul int, div int) {
+    mul = a * b
+    div = a / b
+
+    // here you have return keyword without any resultant parameters
+    return
+}</code></pre>
+</section>        
+
+</section>        
+<section>
+<section>
+<h1 id="control-flow">Control Flow</h1>
+<h2 id="if">IF</h2>
+<pre class="highlight"><code class="language-go" data-line-numbers="all|3-4|5" >if num := 9; num &lt; 0 {
+    fmt.Println(num, "is negative")
+} else if num &lt; 10 {
+    fmt.Println(num, "has 1 digit")
+} else {
+    fmt.Println(num, "has multiple digits")
+}</code></pre>
+<ul>
+<li><code class="inline">} else {</code> cannot be split in more lines like</li>
+</ul>
+<p></p><pre class="highlight"><code class="language-go">} 
+else
+{</code></pre>
+as it will result in syntax error.
+</section>        
+<section>
+<h2 id="switch-case">Switch case</h2>
+<p>Allows to handle multiple conditions</p>
+<pre class="highlight"><code class="language-go" data-line-numbers="all|5,6" >i := 2
+switch i {
+case 1:
+    fmt.Println("one")
+case 2:
+    fmt.Println("two")
+default:
+    fmt.Println("none")
+}</code></pre>
+</section>        
+<section>
+<h2 id="for-loop">FOR Loop</h2>
+<ul>
+<li>
+<p>Standard iteration (C-like)
+</p><pre class="highlight"><code class="language-go">for i:=0; i&lt;10; i++ {
+    fmt.Printf("Hi")
+}</code></pre>
+</li>
+<li>
+<p>Short version
+</p><pre class="highlight"><code class="language-go">i=0
+for i&lt;10 {
+    fmt.Printf("Hi")
+    i++
+}</code></pre>
+</li>
+<li>
+<p>Infinite loop. You can exit with <code class="inline">break</code> keyword
+</p><pre class="highlight"><code class="language-go">for {
+    fmt.Printf("Hi")
+}</code></pre>
+</li>
+</ul>
+</section>        
+<section>
+<h2 id="range">Range</h2>
+<p>The <code class="inline">range</code> form of the for loop iterates over an array, slice, channel or map.</p>
+<pre class="highlight"><code class="language-go" data-line-numbers="all|9|14" >/* create a map*/
+countryCapitalMap := map[string] string {
+    "France": "Paris", 
+    "Italy": "Rome", 
+    "Japan": "Tokyo"
+}
+
+/* print map using keys*/
+for country := range countryCapitalMap {
+    fmt.Println("Capital of", country, "is", countryCapitalMap[country])
+}
+
+/* print map using key-value*/
+for country, capital := range countryCapitalMap {
+    fmt.Println("Capital of", country, "is", capital)
+}</code></pre>
+</section>        
+<section>
+<pre class="highlight"><code class="language-go">/* channel */
+ch := make(chan int)
+
+go func() {
+    ch &lt;- 1
+    ch &lt;- 2
+    ch &lt;- 3
+    close(ch)
+}()
+
+for n := range ch {
+    fmt.Println(n)
+}</code></pre>
+<pre class="highlight"><code class="inline">1
+2
+3</code></pre>
+</section>        
+
+</section>        
+<section>
+<section>
+<h1 id="path-handling">Path handling</h1>
+<pre class="highlight"><code class="language-go">import "path/filepath"</code></pre>
+<h2 id="join">Join</h2>
+<ul>
+<li>Concatenates paths</li>
+</ul>
+<pre class="highlight"><code class="language-go">p := filepath.Join("dir1", "dir2", "filename")
+fmt.Println("p:", p)</code></pre>
+<pre class="highlight"><code class="inline">dir1/dir2/filename</code></pre>
+<h2 id="dir">Dir</h2>
+<ul>
+<li>Returns parent directory</li>
+</ul>
+<pre class="highlight"><code class="language-go">fmt.Println("Dir(p):", filepath.Dir(p))</code></pre>
+<pre class="highlight"><code class="inline">Dir(p): dir1/dir2</code></pre>
+</section>        
+<section>
+<h2 id="base">Base</h2>
+<ul>
+<li>Returns filename</li>
+</ul>
+<pre class="highlight"><code class="language-go">fmt.Println("Base(p):", filepath.Base(p))</code></pre>
+<pre class="highlight"><code class="inline">Base(p): filename</code></pre>
+</section>        
+<section>
+<h2 id="isabs">IsAbs</h2>
+<ul>
+<li>Returns whether is absolute path or not</li>
+</ul>
+<pre class="highlight"><code class="language-go">fmt.Println(filepath.IsAbs("dir/file"))
+fmt.Println(filepath.IsAbs("/dir/file"))</code></pre>
+<pre class="highlight"><code class="inline">false
+true</code></pre>
+</section>        
+<section>
+<h2 id="ext">Ext</h2>
+<ul>
+<li>Splits the extension out from the filename</li>
+</ul>
+<pre class="highlight"><code class="language-go">package main
+
+import "fmt"
+import "path"
+
+func main() {
+    filename := "config.json"
+
+    extension := path.Ext(filename)
+    file := filename[0 : len(filename)-len(extension)]
+    fmt.Println(file, extension)
+}</code></pre>
+<pre class="highlight"><code class="inline">config .json</code></pre>
+<p>To get the filename only:</p>
+<pre class="highlight"><code class="language-go">/* Solution 1 */
+filename[0:len(filename)-len(extension)]
+
+/* Solution 2 */
+fmt.Println(strings.TrimSuffix(filename, ext))  // requires "strings" package </code></pre>
+</section>        
+<section>
+<h2 id="rel">Rel</h2>
+<ul>
+<li>Finds a relative path between a base and a target. It returns an error if the target cannot be made relative to base.</li>
+</ul>
+<pre class="highlight"><code class="language-go">package main
+
+import "fmt"
+import "path/filepath"
+
+func main() {
+    rel, err := filepath.Rel("a/b", "a/b/t/file")
+    if err != nil {
+        panic(err)
+    }
+    fmt.Println(rel)
+
+    rel, err = filepath.Rel("a/b", "a/c/t/file")
+    if err != nil {
+        panic(err)
+    }
+    fmt.Println(rel)
+}</code></pre>
+<pre class="highlight"><code class="inline">t/file
+../c/t/file</code></pre>
+</section>        
+<section>
+<h2 id="split">Split</h2>
+<ul>
+<li>Splits path and filename</li>
+</ul>
+<pre class="highlight"><code class="language-go">import "path"</code></pre>
+<ul>
+<li>https://golang.org/pkg/path/</li>
+</ul>
+<pre class="highlight"><code class="inline">dir, file := path.Split("test/static/myfile.css")</code></pre>
+<pre class="highlight"><code class="inline">dir: "test/static/", file: "myfile.css"</code></pre>
+</section>        
+<section>
+<h2 id="clean">Clean</h2>
+<ol>
+<li>Replace multiple slashes with a single slash.</li>
+<li>Eliminate each . path name element (the current directory).</li>
+<li>Eliminate each inner .. path name element (the parent directory) along with the non-.. element that precedes it.</li>
+<li>Eliminate .. elements that begin a rooted path: that is, replace "/.." by "/" at the beginning of a path.</li>
+</ol>
+<pre class="highlight"><code class="language-go">import "path"
+
+//...
+
+path.Clean("a/c")                 // "a/c"
+path.Clean("a//c")                // "a/c"
+path.Clean("a/c/.")               // "a/c"
+path.Clean("a/c/b/..")            // "a/c"
+path.Clean("/../a/c")             // "/a/c"
+path.Clean("/../a/b/../././/c")   // "/a/c"
+path.Clean("")                    // "."</code></pre>
+</section>        
+<section>
+<h2 id="real-path">Real Path</h2>
+<ul>
+<li>
+<p>Go doesn't have a native implementation of it.</p>
+</li>
+<li>
+<p>It can be achieved with Clean and <code class="inline">filepath.EvalSymlinks</code></p>
+</li>
+<li>
+<p><a href="https://github.com/yookoala/realpath">realpath</a> has been written for coping this case.</p>
+</li>
+</ul>
+</section>        
+
+</section>        
+
+
+			</div>
+
+		</div>
+
+		<script src="dist/reveal.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js"></script>
+        <script src="plugin/copycode/copycode.js"></script>
+		<script src="plugin/zoom/zoom.js"></script>
+		<script src="plugin/notes/notes.js"></script>
+		<script src="plugin/search/search.js"></script>
+		<script src="plugin/markdown/markdown.js"></script>
+		<script src="plugin/highlight/highlight.js"></script>
+        		
+        <!-- Font awesome is required for the chalkboard plugin -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+        <!-- Custom controls plugin is used to for opening and closing annotation modes. -->
+        <script src="https://cdn.jsdelivr.net/npm/reveal.js-plugins@latest/customcontrols/plugin.js"></script>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js-plugins@latest/customcontrols/style.css">
+        <!-- Chalkboard plugin -->
+        <script src="https://cdn.jsdelivr.net/npm/reveal.js-plugins@latest/chalkboard/plugin.js"></script>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js-plugins@latest/chalkboard/style.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js-plugins/menu/font-awesome/css/fontawesome.css">
+
+		<!-- Third-Party Plugin for menu -->
+        <script src="plugin/menu/menu.js"></script>
+
+		<script>
+
+			// Also available as an ES module, see:
+			// https://revealjs.com/initialization/
+			Reveal.initialize({
+                customcontrols: {
+                    controls: [
+                      { icon: '<i class="fa fa-pen-square" style="color:#2a76dd"></i>',
+                        title: 'Toggle chalkboard (B)',
+                        action: 'RevealChalkboard.toggleChalkboard();'
+                      },
+                      { icon: '<i class="fa fa-pen" style="color:#2a76dd"></i>',
+                        title: 'Toggle notes canvas (C)',
+                        action: 'RevealChalkboard.toggleNotesCanvas();'
+                      }
+                    ]
+                },
+                chalkboard: {
+                    boardmarkerWidth: 3,
+                    chalkWidth: 7,
+                    chalkEffect: 1.0,
+                    storage: null,
+                    src: null,
+                    readOnly: undefined,
+                    transition: 800,
+                    theme: "chalkboard",
+                    background: [ 'rgba(127,127,127,.1)' , path + 'img/blackboard.png' ],
+                    grid: { color: 'rgb(50,50,10,0.5)', distance: 80, width: 2},
+                    eraser: { src: path + 'img/sponge.png', radius: 20},
+                    boardmarkers : [
+                            { color: 'rgba(100,100,100,1)', cursor: 'url(' + path + 'img/boardmarker-black.png), auto'},
+                            { color: 'rgba(30,144,255, 1)', cursor: 'url(' + path + 'img/boardmarker-blue.png), auto'},
+                            { color: 'rgba(220,20,60,1)', cursor: 'url(' + path + 'img/boardmarker-red.png), auto'},
+                            { color: 'rgba(50,205,50,1)', cursor: 'url(' + path + 'img/boardmarker-green.png), auto'},
+                            { color: 'rgba(255,140,0,1)', cursor: 'url(' + path + 'img/boardmarker-orange.png), auto'},
+                            { color: 'rgba(150,0,20150,1)', cursor: 'url(' + path + 'img/boardmarker-purple.png), auto'},
+                            { color: 'rgba(255,220,0,1)', cursor: 'url(' + path + 'img/boardmarker-yellow.png), auto'}
+                    ],
+                    chalks: [
+                            { color: 'rgba(255,255,255,0.5)', cursor: 'url(' + path + 'img/chalk-white.png), auto'},
+                            { color: 'rgba(96, 154, 244, 0.5)', cursor: 'url(' + path + 'img/chalk-blue.png), auto'},
+                            { color: 'rgba(237, 20, 28, 0.5)', cursor: 'url(' + path + 'img/chalk-red.png), auto'},
+                            { color: 'rgba(20, 237, 28, 0.5)', cursor: 'url(' + path + 'img/chalk-green.png), auto'},
+                            { color: 'rgba(220, 133, 41, 0.5)', cursor: 'url(' + path + 'img/chalk-orange.png), auto'},
+                            { color: 'rgba(220,0,220,0.5)', cursor: 'url(' + path + 'img/chalk-purple.png), auto'},
+                            { color: 'rgba(255,220,0,0.5)', cursor: 'url(' + path + 'img/chalk-yellow.png), auto'}
+                    ]
+                },
+				controls: true,
+				progress: true,
+				center: true,
+				hash: true,
+				slideNumber: true,
+
+                copycode: {
+                    copy: "Copy",
+                    copied: "Copied!",
+                    timeout: 1000,
+                    copybg: "orange",
+                    copiedbg: "green",
+                    copycolor: "black",
+                    copiedcolor: "white"
+                },
+
+				// Learn about plugins: https://revealjs.com/plugins/
+				plugins: [ RevealZoom, RevealNotes, RevealSearch, RevealMarkdown, RevealHighlight, RevealMenu, CopyCode, RevealChalkboard, RevealCustomControls ]
+			});
+
+		</script>
+		
+		<script>
+		function addCopyButtons(clipboard) {
+            document.querySelectorAll('pre > code').forEach(function (codeBlock) {
+                var button = document.createElement('button');
+                button.className = 'copy-code-button';
+                button.type = 'button';
+                button.innerText = 'Copy';
+        
+                button.addEventListener('click', function () {
+                    clipboard.writeText(codeBlock.innerText).then(function () {
+                        /* Chrome doesn't seem to blur automatically,
+                           leaving the button in a focused state. */
+                        button.blur();
+        
+                        button.innerText = 'Copied!';
+        
+                        setTimeout(function () {
+                            button.innerText = 'Copy';
+                        }, 2000);
+                    }, function (error) {
+                        button.innerText = 'Error';
+                    });
+                });
+        
+                var pre = codeBlock.parentNode;
+                if (pre.parentNode.classList.contains('highlight')) {
+                    var highlight = pre.parentNode;
+                    highlight.parentNode.insertBefore(button, highlight);
+                } else {
+                    pre.parentNode.insertBefore(button, pre);
+                }
+            });
+        }
+        /*
+        if (navigator && navigator.clipboard) {
+            addCopyButtons(navigator.clipboard);
+        } else {
+            var script = document.createElement('script');
+            script.src = 'https://cdnjs.cloudflare.com/ajax/libs/clipboard-polyfill/2.7.0/clipboard-polyfill.promise.js';
+            script.integrity = 'sha256-waClS2re9NUbXRsryKoof+F9qc1gjjIhc2eT7ZbIv94=';
+            script.crossOrigin = 'anonymous';
+            script.onload = function() {
+                addCopyButtons(clipboard);
+            };
+        
+            document.body.appendChild(script);
+        }
+        */
+		</script>
+
+	</body>
+</html>

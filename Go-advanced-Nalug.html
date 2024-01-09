@@ -1,0 +1,1566 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+
+		<title>Go-advanced-Nalug</title>
+
+		<meta name="description" content="A framework for easily creating beautiful presentations using HTML">
+		<meta name="author" content="Dario Necco">
+
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+		<link rel="stylesheet" href="dist/reset.css">
+		<link rel="stylesheet" href="dist/reveal.css">
+		<link rel="stylesheet" href="dist/admonitions.css">		
+		<link rel="stylesheet" href="dist/theme/nalug.css" id="theme">
+
+		<!-- Theme used for syntax highlighting of code -->
+        <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.2/styles/default.min.css">-->
+		<link rel="stylesheet" href="plugin/highlight/monokai.css" id="highlight-theme">
+		
+		<!-- Third Party Plugin for copy code snippet -->
+		<link rel="stylesheet" href="plugin/copycode/copycode.css">
+
+        <style>
+            .copy-code-button {
+                color: #272822;
+                background-color: #FFF;
+                border-color: #272822;
+                border: 2px solid;
+                border-radius: 3px 3px 0px 0px;
+            
+                /* right-align */
+                display: block;
+                margin-left: auto;
+                /* margin-right: -18px; */
+                /* margin-bottom: -60px; */
+                margin-right: 0px;
+                margin-bottom: -45px;
+                padding: 3px 8px;
+                font-size: 0.4em;
+            }
+            
+            .copy-code-button:hover {
+                cursor: pointer;
+                background-color: #F2F2F2;
+            }
+            
+            .copy-code-button:focus {
+                /* Avoid an ugly focus outline on click in Chrome,
+                   but darken the button for accessibility.
+                   See https://stackoverflow.com/a/25298082/1481479 */
+                background-color: #E6E6E6;
+                outline: 0;
+            }
+            
+            .copy-code-button:active {
+                background-color: #D9D9D9;
+            }
+            
+            .highlight pre {
+                /* Avoid pushing up the copy buttons. */
+                margin: 0;
+            }
+        </style>
+
+	</head>
+
+	<body>
+
+		<div class="reveal">
+
+			<!-- Any section element inside of this container is displayed as a slide -->
+			<div class="slides">
+
+                <section>
+<p><img alt="" src="Go-advanced-Nalug/golang-teacher.png"/></p>
+</section>        
+<section>
+<section>
+<h1 id="reveal-deck-changes">reveal-deck changes</h1>
+<p><a href="https://revealjs.com/">revealjs Project</a>
+<br/>
+<a href="https://gitlab.com/dartie/reveal-deck">reveal-deck Repo</a></p>
+<p><br/>
+<br/></p>
+<h2 id="support-for-code-line-numbers">Support for code line numbers</h2>
+<pre class="highlight"><code class="inline" data-line-numbers="all|11|all" >{data-line-numbers="all|11|all"}</code></pre>
+<pre class="highlight"><code class="inline" data-line-numbers="1,4|all" >{data-line-numbers="1,4|all"}</code></pre>
+<pre class="highlight"><code class="inline" data-line-numbers="1-2|all" >{data-line-numbers="1-2|all"}</code></pre>
+<p><br/>
+<br/></p>
+<pre class="highlight"><code class="language-c++" data-line-numbers="all|2|all" >int main() {
+  return 0;
+}</code></pre>
+</section>        
+<section>
+<h2 id="support-for-markdown-tables">Support for markdown tables</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Syntax</th>
+<th style="text-align: center;">Description</th>
+<th style="text-align: right;">Test Text</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">Header</td>
+<td style="text-align: center;">Title</td>
+<td style="text-align: right;">Here's this</td>
+</tr>
+<tr>
+<td style="text-align: left;">Paragraph</td>
+<td style="text-align: center;">Text</td>
+<td style="text-align: right;">And more</td>
+</tr>
+</tbody>
+</table>
+</section>        
+<section>
+<h2 id="support-for-emoji">Support for emoji</h2>
+<ul>
+<li>List here: <a href="https://www.iemoji.com/emoji-cheat-sheet/all">iemoji.com</a></li>
+</ul>
+<p><img alt="❤️" class="emojione" src="https://cdnjs.cloudflare.com/ajax/libs/emojione/2.2.7/assets/png/2764.png" title=":heart:"/>
+<img alt="🏜️" class="emojione" src="https://cdnjs.cloudflare.com/ajax/libs/emojione/2.2.7/assets/png/1f3dc.png" title=":desert:"/></p>
+</section>        
+<section>
+<h2 id="toolbar-for-overview">Toolbar for overview</h2>
+<h2 id="table-of-content">(Table Of Content)</h2>
+</section>        
+<section>
+<h2 id="slide-overview">Slide overview</h2>
+<p><code class="inline">ESC</code> button</p>
+</section>        
+<section>
+<h2 id="copy-button-for-snippet">Copy button for snippet</h2>
+<pre class="highlight"><code class="language-python">import os
+
+print('Click on "Copy" for copying the this snippet to the clipboard')</code></pre>
+</section>        
+<section>
+<h2 id="support-for-admonitions">Support for admonitions</h2>
+<ul>
+<li>Supported syntax : <a href="https://squidfunk.github.io/mkdocs-material/reference/admonitions/">Mkdocs Admonitions</a></li>
+</ul>
+<pre class="highlight"><code class="inline">!!! note
+
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit.</code></pre>
+<pre class="highlight"><code class="inline">!!! danger
+
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit.</code></pre>
+</section>        
+<section>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+</div>
+<div class="admonition summary">
+<p class="admonition-title">Summary</p>
+<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+</div>
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+</div>
+</section>        
+<section>
+<div class="admonition success">
+<p class="admonition-title">Success</p>
+<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+</div>
+<div class="admonition help">
+<p class="admonition-title">Help</p>
+<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+</div>
+</section>        
+<section>
+<div class="admonition failure">
+<p class="admonition-title">Failure</p>
+<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+</div>
+<div class="admonition danger">
+<p class="admonition-title">Danger</p>
+<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+</div>
+<div class="admonition error">
+<p class="admonition-title">Error</p>
+<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+</div>
+<div class="admonition bug">
+<p class="admonition-title">Bug</p>
+<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+</div>
+</section>        
+<section>
+<div class="admonition example">
+<p class="admonition-title">Example</p>
+<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+</div>
+<div class="admonition quote">
+<p class="admonition-title">Quote</p>
+<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+</div>
+<hr/>
+</section>        
+
+</section>        
+<section>
+<section>
+<h1 id="go-recap">Go Recap</h1>
+</section>        
+<section>
+<h1 id="project-structure">Project structure</h1>
+<pre class="highlight"><code class="language-bash">bin/
+    myapp                    # Executable binary
+    hello                    # Executable binary
+pkg/
+   github.com/gorilla/
+       mux.a                 # Package archive
+   go.uber.org/
+       zap.a                 # Package archive
+src/
+    hello/                   # Local package (not published)
+       hello.go
+       foo/
+          foo.go</code></pre>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><code class="inline">foo</code> sub-package can be imported from <code class="inline">hello.go</code> using <code class="inline">import "hello/foo"</code></p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Only functions/variables declared in the sub-package with Title case can be used in <code class="inline">hello.go</code></p>
+</div>
+</section>        
+<section>
+<h1 id="project-initialization">Project initialization</h1>
+<pre class="highlight"><code class="language-bash"># from src folder
+mkdir app
+cd app
+go mod init  # creates go.mod which contains dependencies
+
+nano app.go</code></pre>
+</section>        
+<section>
+<h1 id="write-your-go-code">Write your .go code</h1>
+<pre class="highlight"><code class="language-go" data-line-numbers="1|3|4|6|11|14|16|18|all" >package main // package name
+
+import "fmt"              // built-in package import
+import "rsc.io/quote"     // 3-party package import ("go get rsc.io/quote")
+
+var slice = []string{ // variable declared with "var"
+    "stringElement1",
+    "stringElement2",
+}
+
+func main() { // main function: package entry-point
+  fmt.Println(quote.Go())
+
+    years := 4 // variable initialized with := (type is automatically detected)
+
+    fmt.Printf("John is %d years old\n", years)
+
+    for _, f := range slice {  // for loop
+        fmt.Println("&gt;", f)
+    }
+}
+
+/* Things to remember
+1. Unused variables are not allowed
+2. Unused imported packages are not allowed
+*/</code></pre>
+</section>        
+<section>
+<pre class="highlight"><code class="language-go">/* Things to remember
+1. Unused variables are not allowed
+2. Unused imported packages are not allowed
+*/</code></pre>
+</section>        
+<section>
+<h1 id="compilation">Compilation</h1>
+<pre class="highlight"><code class="language-bash">go tidy  # downloads dependencies (rsc.io/quote)
+go build</code></pre>
+<ul>
+<li>Target platform and architecture are determined respectively by <code class="inline">$GOOS</code> and <code class="inline">$GOARCH</code> environment variables</li>
+</ul>
+<pre class="highlight"><code class="language-bash">GOOS=linux GOARCH=amd64 go build -o bin/app-amd64-linux app.go</code></pre>
+<ul>
+<li>The valid combinations of <code class="inline">$GOOS</code> and <code class="inline">$GOARCH</code> are <a href="https://go.dev/doc/install/source#environment">here</a></li>
+</ul>
+</section>        
+<section>
+<h1 id="run-the-app">Run the app</h1>
+<pre class="highlight"><code class="language-bash">./app</code></pre>
+<hr/>
+</section>        
+
+</section>        
+<section>
+<section>
+<h1 id="init-function">init() function</h1>
+<ul>
+<li>Runs before any other function (even before <code class="inline">main()</code>)</li>
+<li>Used for: <ul>
+<li>Creating connections to databases</li>
+<li>Loading in configuration from local configuration files</li>
+</ul>
+</li>
+</ul>
+<pre class="highlight"><code class="language-go">package main
+
+func init() {
+  fmt.Println("This will get called on main initialization")
+}
+
+func main() {
+  fmt.Println("My Wonderful Go Program")
+}</code></pre>
+<pre class="highlight"><code class="inline">$ go run test.go
+This will get called on main initialization
+My Wonderful Go Program</code></pre>
+</section>        
+<section>
+<h2 id="order-of-functions-execution">Order of functions execution</h2>
+<pre class="highlight"><code class="language-go">package main
+
+import "fmt"
+
+var Variable = foo()
+
+func init() {
+    fmt.Println("init() has run")
+}
+
+func foo() int {
+    fmt.Println("foo() has run")
+    return 43
+}
+
+func main() {
+    fmt.Println("main() has run")
+
+    fmt.Println(Variable)
+}</code></pre>
+</section>        
+<section>
+<pre class="highlight"><code class="inline">foo() has run
+init() has run
+main() has run.
+43</code></pre>
+</section>        
+<section>
+<h3 id="multiple-init-functions-in-the-same-file">Multiple Init Functions in the Same File</h3>
+<ul>
+<li>Multiple init() functions are allowed</li>
+<li>These are called in their respective order of declaration within the file</li>
+</ul>
+<pre class="highlight"><code class="language-go">package main
+
+import "fmt"
+
+func init() {
+    fmt.Println("init() 1")
+}
+
+func init() {
+    fmt.Println("init() 2")
+}
+
+func main() {
+    fmt.Println("main()")
+}</code></pre>
+</section>        
+<section>
+<pre class="highlight"><code class="inline">init() 1
+init() 2
+main()</code></pre>
+</section>        
+<section>
+<h2 id="to-wrap-up">To wrap up</h2>
+<ul>
+<li>
+<p><code class="inline">foo()</code> is guaranteed to run before <code class="inline">init()</code> is called, and <code class="inline">init()</code> is guaranteed to run before <code class="inline">main()</code> is called.</p>
+</li>
+<li>
+<p>Keep in mind that <code class="inline">init()</code> is always called, regardless whether there is main or not, so if you import a package that has an init function, it will be executed.</p>
+</li>
+<li>
+<p>Additionally, you can have multiple <code class="inline">init()</code> functions per package; they will be executed in the order they show up in the file (after all variables are initialized of course). </p>
+</li>
+<li>
+<p>If they span multiple files, they will be executed in lexical file name order</p>
+</li>
+</ul>
+</section>        
+<section>
+<p><img alt="" src="Go-advanced-Nalug/init.png"/></p>
+<ul>
+<li>
+<p>If a package imports other packages, the latter are initialized first.</p>
+</li>
+<li>
+<p>Current package's constant initialized then.</p>
+</li>
+<li>
+<p>Current package's variables are initialized then.</p>
+</li>
+<li>
+<p>Finally, <code class="inline">init()</code> function of current package is called.</p>
+</li>
+</ul>
+<hr/>
+</section>        
+
+</section>        
+<section>
+<h1 id="flags">Flags</h1>
+<ul>
+<li>Pass value to variables at linker time</li>
+</ul>
+<pre class="highlight"><code class="language-bash">go build -ldflags "-X main.version=3.0"</code></pre>
+<pre class="highlight"><code class="language-go">package main
+
+import "fmt"
+
+var version string
+
+func main() {
+    fmt.Println(version)  // "" is printed if ldflags is not used
+}</code></pre>
+<hr/>
+</section>        
+<section>
+<section>
+<h1 id="build-tags">Build Tags</h1>
+<ul>
+<li>Identifier added to a piece of code that determines when the file should be included in a package during the build process. </li>
+<li>This allows you to build different versions of your Go application from the same source code and to toggle between them in a fast and organized manner.</li>
+</ul>
+</section>        
+<section>
+<p>Example: handle Free, Pro and Enterprise level of your application:</p>
+<h4 id="maingo"><code class="inline">main.go</code></h4>
+<pre class="highlight"><code class="language-go">package main
+
+import "fmt"
+
+var features = []string{
+  "Free Feature #1",
+  "Free Feature #2",
+}
+
+func main() {
+  for _, f := range features {
+    fmt.Println("&gt;", f)
+  }
+}</code></pre>
+</section>        
+<section>
+<p>Build and run the program:
+</p><pre class="highlight"><code class="language-bash">go build
+./app</code></pre>
+<p>Output:
+</p><pre class="highlight"><code class="inline">&gt; Free Feature #1
+&gt; Free Feature #2</code></pre>
+</section>        
+<section>
+<h4 id="progo"><code class="inline">pro.go</code></h4>
+<pre class="highlight"><code class="language-go">package main
+
+func init() {
+  features = append(features,
+    "Pro Feature #1",
+    "Pro Feature #2",
+  )
+}</code></pre>
+<h4 id="maingo"><code class="inline">main.go</code></h4>
+<pre class="highlight"><code class="language-go">package main
+
+import "fmt"
+
+var features = []string{
+  "Free Feature #1",
+  "Free Feature #2",
+}
+
+func main() {
+  for _, f := range features {
+    fmt.Println("&gt;", f)
+  }
+}</code></pre>
+</section>        
+<section>
+<p>Build and run the program:
+</p><pre class="highlight"><code class="language-bash">go build *.go
+./app</code></pre>
+<pre class="highlight"><code class="inline">&gt; Free Feature #1
+&gt; Free Feature #2
+&gt; Pro Feature #1
+&gt; Pro Feature #2</code></pre>
+<ul>
+<li>Undesired behaviour! </li>
+</ul>
+</section>        
+<section>
+<h4 id="progo"><code class="inline">pro.go</code></h4>
+<pre class="highlight"><code class="language-go" data-line-numbers="1|all" >//go:build pro
+
+package main
+
+func init() {
+  features = append(features,
+    "Pro Feature #1",
+    "Pro Feature #2",
+  )
+}</code></pre>
+<p>Build and run the program:
+</p><pre class="highlight"><code class="language-bash">go build -tags pro
+./app</code></pre>
+<pre class="highlight"><code class="inline">&gt; Free Feature #1
+&gt; Free Feature #2
+&gt; Pro Feature #1
+&gt; Pro Feature #2</code></pre>
+<ul>
+<li>pro has been included since <code class="inline">-tags pro</code> has been used.</li>
+</ul>
+</section>        
+<section>
+<h4 id="enterprisego"><code class="inline">enterprise.go</code></h4>
+<pre class="highlight"><code class="language-go">//go:build enterprise
+
+package main
+
+func init() {
+    features = append(features,
+        "Enterprise Feature #1",
+        "Enterprise Feature #2",
+    )
+}</code></pre>
+<p>Build and run the program:
+</p><pre class="highlight"><code class="language-bash">go build -tags enterprise
+./app</code></pre>
+<pre class="highlight"><code class="inline">&gt; Free Feature #1
+&gt; Free Feature #2
+&gt; Enterprise Feature #1
+&gt; Enterprise Feature #2
+&gt; Pro Feature #1
+&gt; Pro Feature #2</code></pre>
+</section>        
+<section>
+<h4 id="enterprisego"><code class="inline">enterprise.go</code></h4>
+<pre class="highlight"><code class="language-go" data-line-numbers="1|all" >//go:build pro &amp;&amp; enterprise
+
+package main
+
+func init() {
+    features = append(features,
+        "Enterprise Feature #1",
+        "Enterprise Feature #2",
+    )
+}</code></pre>
+</section>        
+<section>
+<p>Build and run the program:
+</p><pre class="highlight"><code class="language-bash">go build -tags pro
+./app</code></pre>
+<pre class="highlight"><code class="inline">&gt; Free Feature #1
+&gt; Free Feature #2
+&gt; Pro Feature #1
+&gt; Pro Feature #2</code></pre>
+</section>        
+<section>
+<p>Build and run the program:
+</p><pre class="highlight"><code class="language-bash">go build -tags pro,enterprise
+./app</code></pre>
+<pre class="highlight"><code class="inline">&gt; Free Feature #1
+&gt; Free Feature #2
+&gt; Enterprise Feature #1
+&gt; Enterprise Feature #2
+&gt; Pro Feature #1
+&gt; Pro Feature #2</code></pre>
+</section>        
+<section>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">Build Tag Syntax</th>
+<th>Build Tag Sample</th>
+<th>Build Tag Sample (old syntax)</th>
+<th>Boolean Statement</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">Space-separated elements</td>
+<td><code class="inline">//go:build pro || enterprise</code></td>
+<td><code class="inline">// +build pro enterprise</code></td>
+<td><code class="inline">pro</code> OR <code class="inline">enterprise</code></td>
+</tr>
+<tr>
+<td style="text-align: center;">Comma-separated elements</td>
+<td><code class="inline">//go:build pro &amp;&amp; enterprise</code></td>
+<td><code class="inline">// +build pro,enterprise</code></td>
+<td><code class="inline">pro</code> AND <code class="inline">enterprise</code></td>
+</tr>
+<tr>
+<td style="text-align: center;">Exclamation point elements</td>
+<td><code class="inline">//go:build !pro</code></td>
+<td><code class="inline">// +build !pro</code></td>
+<td>NOT <code class="inline">pro</code></td>
+</tr>
+</tbody>
+</table>
+</section>        
+<section>
+<h1 id="gobuild-vs-build"><code class="inline">//go:build</code> vs <code class="inline">// +build</code></h1>
+<p><code class="inline">//go:build</code> is the new conditional compilation directive introduced in Go 1.17.
+It is meant to replace <code class="inline">// +build</code> directives, as the new syntax brings a few key improvements:</p>
+<ul>
+<li>Consistency with other existing Go directives and pragmas, e.g. <code class="inline">//go:generate</code></li>
+<li>Support for standard boolean expression, e.g. <code class="inline">//go:build foo &amp;&amp; bar</code>, whereas the old <code class="inline">// +build</code> comment has less intuitive syntax. For example <code class="inline">AND</code> was expressed with commas <code class="inline">// +build foo,bar</code> and <code class="inline">OR</code> with spaces <code class="inline">// +build foo bar</code></li>
+<li>It's supported by <code class="inline">go fmt</code>, which will automatically fix incorrect placement of the directive in source files, thus avoiding common mistakes as not leaving a blank line between the directive and the package statement.</li>
+</ul>
+<hr/>
+</section>        
+
+</section>        
+<section>
+<section>
+<h1 id="variadic-functions">Variadic functions</h1>
+<p>Variadic functions can be called with any number of trailing arguments. </p>
+<div class="admonition example">
+<p class="admonition-title">Example</p>
+<p><code class="inline">fmt.Println</code> is a common variadic function.</p>
+</div>
+<ul>
+<li>If you already have multiple args in a slice, apply them to a variadic function using func(slice...) like this.</li>
+</ul>
+</section>        
+<section>
+<pre class="highlight"><code class="language-go" data-line-numbers="5|16|17|20|all" >package main
+
+import "fmt"
+
+func sum(nums ...int) {
+    fmt.Print(nums, " ")
+    total := 0
+    for _, num := range nums {
+        total += num
+    }
+    fmt.Println(total)
+}
+
+func main() {
+
+    sum(1, 2)
+    sum(1, 2, 3)
+
+    nums := []int{1, 2, 3, 4}
+    sum(nums...)
+}</code></pre>
+<hr/>
+</section>        
+
+</section>        
+<section>
+<section>
+<h1 id="tests">Tests</h1>
+<ul>
+<li>
+<p>Allows to test files and functions in Go projects</p>
+</li>
+<li>
+<p><code class="inline">person.go</code></p>
+</li>
+</ul>
+<pre class="highlight"><code class="language-go">package person
+
+import "errors"
+
+type Person struct {
+    age int
+}
+
+func NewPerson(age int) (*Person, error) {
+    if age &lt; 1 {
+        return nil, errors.New("A person is at least 1 years old")
+    }
+
+    return &amp;Person{
+        age: age,
+    }, nil
+}
+
+func (p *Person) older(other *Person) bool {
+    return p.age &gt; other.age
+}</code></pre>
+</section>        
+<section>
+<ul>
+<li><code class="inline">person_tests.go</code></li>
+</ul>
+<pre class="highlight"><code class="language-go">package person
+
+import (
+    "testing"
+)
+
+func TestNewPersonPositiveAge(t *testing.T) {
+    _, err := NewPerson(1)
+    if err != nil {
+        t.Errorf("Expected person, received %v", err)
+    }
+}
+
+func TestNewPersonNegativeAge(t *testing.T) {
+    p, err := NewPerson(-1)
+    if err == nil {
+        t.Errorf("Expected error, received %v", p)
+    }
+}
+
+func TestOlderFirstOlderThanSecond(t *testing.T) {
+    p1, _ := NewPerson(1)
+    p2, _ := NewPerson(2)
+
+    if p1.older(p2) {
+        t.Errorf("Expected p1 with age %d to be younger than p2 with age %d", p1.age, p2.age)
+    }
+}
+
+func TestOlderSecondOlderThanFirst(t *testing.T) {
+    p1, _ := NewPerson(2)
+    p2, _ := NewPerson(1)
+
+    if !p1.older(p2) {
+        t.Errorf("Expected p1 with age %d to be older than p2 with age %d", p1.age, p2.age)
+    }
+}</code></pre>
+</section>        
+<section>
+<pre class="highlight"><code class="language-bash">$ go test person.go person_test.go
+ok      command-line-arguments  0.005s</code></pre>
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p>Brief output since there are no errors</p>
+</div>
+</section>        
+<section>
+<h2 id="options-to-run">Options to run</h2>
+<p><br/></p>
+<h3 id="test-a-specific-test-file">Test a specific test file</h3>
+<pre class="highlight"><code class="language-bash">$ go test person.go person_test.go
+ok      command-line-arguments  0.005s</code></pre>
+</section>        
+<section>
+<h3 id="test-a-go-package">Test a go package</h3>
+<pre class="highlight"><code class="language-bash">$ go test person
+ok      person  0.004s</code></pre>
+</section>        
+<section>
+<h3 id="test-a-specific-function">Test a specific function</h3>
+<pre class="highlight"><code class="language-bash">$ go test -run TestNewPerson -v
+=== RUN   TestNewPersonPositiveAge
+--- PASS: TestNewPersonPositiveAge (0.00s)
+=== RUN   TestNewPersonNegativeAge
+--- PASS: TestNewPersonNegativeAge (0.00s)
+PASS
+ok      person  0.004s</code></pre>
+</section>        
+<section>
+<pre>
+</pre>
+<h2 id="verbose-flag-v">Verbose flag <code class="inline">-v</code></h2>
+<pre class="highlight"><code class="language-bash">$ go test person.go person_test.go -v
+=== RUN   TestNewPersonPositiveAge
+--- PASS: TestNewPersonPositiveAge (0.00s)
+=== RUN   TestNewPersonNegativeAge
+--- PASS: TestNewPersonNegativeAge (0.00s)
+=== RUN   TestOlderFirstOlderThanSecond
+--- PASS: TestOlderFirstOlderThanSecond (0.00s)
+=== RUN   TestOlderSecondOlderThanFirst
+--- PASS: TestOlderSecondOlderThanFirst (0.00s)
+PASS
+ok      command-line-arguments  0.005s</code></pre>
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p>Verbose output with <code class="inline">-v</code> flag</p>
+</div>
+</section>        
+<section>
+<h2 id="failing-test-failfast">Failing test <code class="inline">-failfast</code></h2>
+<p>Cause a fail replacing <code class="inline">TestOlderFirstOlderThanSecond</code> function with </p>
+<pre class="highlight"><code class="language-go" data-line-numbers="all|5-7|all" >func TestOlderFirstOlderThanSecond(t *testing.T) {
+    p1, _ := NewPerson(100)
+    p2, _ := NewPerson(2)
+
+    if p1.older(p2) {
+        t.Errorf("Expected p1 with age %d to be younger than p2 with age %d", p1.age, p2.age)
+    }
+}</code></pre>
+</section>        
+<section>
+<ul>
+<li><code class="inline">person_test.go</code></li>
+</ul>
+<pre class="highlight"><code class="language-go">package person
+
+import (
+    "testing"
+)
+
+func TestNewPersonPositiveAge(t *testing.T) {
+    _, err := NewPerson(1)
+    if err != nil {
+        t.Errorf("Expected person, received %v", err)
+    }
+}
+
+func TestNewPersonNegativeAge(t *testing.T) {
+    p, err := NewPerson(-1)
+    if err == nil {
+        t.Errorf("Expected error, received %v", p)
+    }
+}
+
+func TestOlderFirstOlderThanSecond(t *testing.T) {
+    p1, _ := NewPerson(100)
+    p2, _ := NewPerson(2)
+
+    if p1.older(p2) {
+        t.Errorf("Expected p1 with age %d to be younger than p2 with age %d", p1.age, p2.age)
+    }
+}
+
+func TestOlderSecondOlderThanFirst(t *testing.T) {
+    p1, _ := NewPerson(2)
+    p2, _ := NewPerson(1)
+
+    if !p1.older(p2) {
+        t.Errorf("Expected p1 with age %d to be older than p2 with age %d", p1.age, p2.age)
+    }
+}</code></pre>
+</section>        
+<section>
+<pre class="highlight"><code class="language-bash" data-line-numbers="all|6-7,11-13|all" >$ go test -v
+=== RUN   TestNewPersonPositiveAge
+--- PASS: TestNewPersonPositiveAge (0.00s)
+=== RUN   TestNewPersonNegativeAge
+--- PASS: TestNewPersonNegativeAge (0.00s)
+=== RUN   TestOlderFirstOlderThanSecond
+--- FAIL: TestOlderFirstOlderThanSecond (0.00s)
+    person_test.go:26: Expected p1 with age 100 to be younger than p2 with age 2
+=== RUN   TestOlderSecondOlderThanFirst
+--- PASS: TestOlderSecondOlderThanFirst (0.00s)
+FAIL
+exit status 1
+FAIL    person  0.004s</code></pre>
+<p><code class="inline">TestOlderFirstOlderThanSecond</code> is failed while others have passed.</p>
+</section>        
+<section>
+<h2 id="fast-failing">Fast Failing</h2>
+<p>It allows to stop at the first fail</p>
+<pre class="highlight"><code class="language-bash" data-line-numbers="all|1,7-11|all" >$ go test -v -failfast
+=== RUN   TestNewPersonPositiveAge
+--- PASS: TestNewPersonPositiveAge (0.00s)
+=== RUN   TestNewPersonNegativeAge
+--- PASS: TestNewPersonNegativeAge (0.00s)
+=== RUN   TestOlderFirstOlderThanSecond
+--- FAIL: TestOlderFirstOlderThanSecond (0.00s)
+    person_test.go:26: Expected p1 with age 100 to be younger than p2 with age 2
+FAIL
+exit status 1
+FAIL    person  0.004s</code></pre>
+<hr/>
+</section>        
+
+</section>        
+<section>
+<section>
+<h1 id="coverage">Coverage</h1>
+<p><br/></p>
+<p>Run the test and provide the coverage percentage
+</p><pre class="highlight"><code class="language-bash">go test -cover</code></pre>
+<p>Sample output:</p>
+<pre class="highlight"><code class="inline">--- FAIL: TestOlderFirstOlderThanSecond (0.00s)
+    person_test.go:26: Expected p1 with age 100 to be younger than p2 with age 2
+FAIL
+coverage: 100.0% of statements
+exit status 1
+FAIL    Go-Nalug/test-project   0.014s</code></pre>
+</section>        
+<section>
+<pre class="highlight"><code class="language-bash">go test -v -coverprofile cover.out ./YOUR_CODE_FOLDER/...  # creates "cover.out"
+go tool cover -html=cover.out -o cover.html
+open cover.html</code></pre>
+<p>Creates a coverage html file which shows with colors what has been covered.</p>
+<hr/>
+</section>        
+
+</section>        
+<section>
+<section>
+<h1 id="go-doc">Go doc</h1>
+<pre class="highlight"><code class="language-go">//Package math provide mathematical functions
+package math
+
+
+//Sum two integers and returns a result
+func Sum(x int, y int) int {
+    return x + y
+}</code></pre>
+<ul>
+<li>Print plain text documentation to standard output</li>
+</ul>
+<pre class="highlight"><code class="language-bash">go doc</code></pre>
+<pre class="highlight"><code class="inline">package math // import "Go-Nalug/doctest"
+
+Package math provide mathematical functions
+
+func Sum(x int, y int) int</code></pre>
+</section>        
+<section>
+<ul>
+<li>Print full plain text documentation</li>
+</ul>
+<pre class="highlight"><code class="language-bash">go doc -all</code></pre>
+<pre class="highlight"><code class="inline">package math // import "Go-Nalug/doctest"
+
+Package math provide mathematical functions
+
+FUNCTIONS
+
+func Sum(x int, y int) int
+    Sum two integers and returns a result</code></pre>
+<ul>
+<li>Run a web server and presents the documentation as a web page</li>
+</ul>
+<pre class="highlight"><code class="language-bash"># install "godoc"
+go get golang.org/x/tools/cmd/godoc</code></pre>
+<pre class="highlight"><code class="language-bash">godoc -http=:6060  # or "godoc -http=127.0.0.1:6060"</code></pre>
+<hr/>
+</section>        
+
+</section>        
+<section>
+<section>
+<h1 id="panic-defer-recover">panic - defer - recover</h1>
+<ul>
+<li>Allow to handle abnormal conditions in Go.</li>
+</ul>
+<h2 id="panic">panic</h2>
+<p>Terminates the program prematurely.</p>
+<p>When a function encounters a panic:</p>
+<ol>
+<li>Its execution is stopped</li>
+<li>Any deferred functions are executed</li>
+<li>The argument passed to the panic function will be printed when the program terminates.</li>
+</ol>
+</section>        
+<section>
+<pre class="highlight"><code class="language-go" data-line-numbers="all|7,10|all|18|10|all" >package main
+
+import "fmt"
+
+func fullName(firstName *string, lastName *string) {  
+    if firstName == nil {
+        panic("runtime error: first name cannot be nil")
+    }
+    if lastName == nil {
+        panic("runtime error: last name cannot be nil")
+    }
+    fmt.Printf("%s %s\n", *firstName, *lastName)
+    fmt.Println("returned normally from fullName")
+}
+
+func main() {  
+    firstName := "Elon"
+    fullName(&amp;firstName, nil)
+    fmt.Println("returned normally from main")
+}</code></pre>
+</section>        
+<section>
+<pre class="highlight"><code class="inline">panic: runtime error: last name cannot be nil
+
+goroutine 1 [running]:  
+main.fullName(0xc00006af58, 0x0)  
+    /tmp/sandbox210590465/prog.go:12 +0x193
+main.main()  
+    /tmp/sandbox210590465/prog.go:20 +0x4d</code></pre>
+</section>        
+<section>
+<h2 id="defer">defer</h2>
+<p>Functions to be executed before panic leads to the program termination</p>
+<pre class="highlight"><code class="language-go" data-line-numbers="all|18|20|6|11|6|18|all" >package main
+
+import "fmt"
+
+func fullName(firstName *string, lastName *string) {  
+    defer fmt.Println("deferred call in fullName")
+    if firstName == nil {
+        panic("runtime error: first name cannot be nil")
+    }
+    if lastName == nil {
+        panic("runtime error: last name cannot be nil")
+    }
+    fmt.Printf("%s %s\n", *firstName, *lastName)
+    fmt.Println("returned normally from fullName")
+}
+
+func main() {  
+    defer fmt.Println("deferred call in main")
+    firstName := "Elon"
+    fullName(&amp;firstName, nil)
+    fmt.Println("returned normally from main")
+}</code></pre>
+</section>        
+<section>
+<pre class="highlight"><code class="language-go">deferred call in fullName  
+deferred call in main  
+panic: runtime error: last name cannot be nil
+
+goroutine 1 [running]:  
+main.fullName(0xc00006af28, 0x0)  
+    /tmp/sandbox451943841/prog.go:13 +0x23f
+main.main()  
+    /tmp/sandbox451943841/prog.go:22 +0xc6</code></pre>
+</section>        
+<section>
+<h2 id="recover">recover</h2>
+<p>Allows to recover from a panic, raising the error, but avoiding the program to terminate</p>
+<pre class="highlight"><code class="language-go" data-line-numbers="all|5-9|24|26|12|17|6|7|27|24|all" >package main
+
+import "fmt"
+
+func recoverFullName() {  
+    if r := recover(); r!= nil {
+        fmt.Println("recovered from ", r)
+    }
+}
+
+func fullName(firstName *string, lastName *string) {  
+    defer recoverFullName()
+    if firstName == nil {
+        panic("runtime error: first name cannot be nil")
+    }
+    if lastName == nil {
+        panic("runtime error: last name cannot be nil")
+    }
+    fmt.Printf("%s %s\n", *firstName, *lastName)
+    fmt.Println("returned normally from fullName")
+}
+
+func main() {  
+    defer fmt.Println("deferred call in main")
+    firstName := "Elon"
+    fullName(&amp;firstName, nil)
+    fmt.Println("returned normally from main")
+}</code></pre>
+</section>        
+<section>
+<pre class="highlight"><code class="inline">recovered from  runtime error: last name cannot be nil  
+returned normally from main  
+deferred call in main</code></pre>
+<hr/>
+</section>        
+
+</section>        
+<section>
+<section>
+<h1 id="web-development">Web-development</h1>
+<ul>
+<li>Many web-framework are available</li>
+<li>However, Go can accomplish this easily using built-in packages.</li>
+</ul>
+</section>        
+<section>
+<h2 id="run-a-server">Run a server</h2>
+<pre class="highlight"><code class="language-go" data-line-numbers="5|9|all" >package main
+
+import (
+    "fmt"
+    "net/http"
+)
+
+func main() {
+    http.ListenAndServe(":8080", nil)
+}</code></pre>
+</section>        
+<section>
+<h2 id="handle-a-request">Handle a request</h2>
+<pre class="highlight"><code class="language-go" data-line-numbers="all|9|13-15|all" >package main
+
+import (
+    "fmt"
+    "net/http"
+)
+
+func main() {
+    http.HandleFunc("/index", Index)
+    http.ListenAndServe(":8080", nil)
+}
+
+func Index(w http.ResponseWriter, r *http.Request) {
+    fmt.Fprint(w, "Hello, World!")
+}</code></pre>
+</section>        
+<section>
+<h2 id="render-a-template">Render a template</h2>
+<h3 id="maingo"><code class="inline">main.go</code></h3>
+<pre class="highlight"><code class="language-go" data-line-numbers="all|8|11|17-19|all" >package main
+
+import (
+    "html/template"
+    "net/http"
+)
+
+var tpl *template.Template
+
+func main() {
+    tpl, _ = tpl.ParseFiles("index1.html")
+
+    http.HandleFunc("/", index)
+    http.ListenAndServe(":8080", nil)
+}
+
+func index(w http.ResponseWriter, r *http.Request) {
+    tpl.Execute(w, nil)
+}</code></pre>
+</section>        
+<section>
+<h3 id="index1html"><code class="inline">index1.html</code></h3>
+<pre class="highlight"><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+  &lt;head&gt;
+    &lt;title&gt;index1.html Temp&lt;/title&gt;
+    &lt;meta charset="UTF-8"&gt;
+  &lt;/head&gt;
+
+  &lt;body&gt;
+      &lt;h1&gt;Hello from index1.html&lt;/h1&gt;    
+  &lt;/body&gt;
+&lt;/html&gt;</code></pre>
+</section>        
+<section>
+<h2 id="render-a-template-from-folder">Render a template from folder</h2>
+<h3 id="maingo"><code class="inline">main.go</code></h3>
+<pre class="highlight"><code class="language-go" data-line-numbers="all|11|all" >package main
+
+import (
+    "html/template"
+    "net/http"
+)
+
+var tpl *template.Template
+
+func main() {
+    tpl, _ = tpl.ParseGlob("templates/*.html")
+
+    http.HandleFunc("/", indexHandler)
+    http.HandleFunc("/about", aboutHandler)
+    http.HandleFunc("/contact", contactHandler)
+    http.HandleFunc("/login", loginHandler)
+    http.ListenAndServe(":8080", nil)
+}</code></pre>
+</section>        
+<section>
+<pre class="highlight"><code class="language-go">func indexHandler(w http.ResponseWriter, r *http.Request) {
+    tpl.ExecuteTemplate(w, "index.html", nil)
+}
+
+func aboutHandler(w http.ResponseWriter, r *http.Request) {
+    tpl.ExecuteTemplate(w, "about.html", nil)
+}
+
+func contactHandler(w http.ResponseWriter, r *http.Request) {
+    tpl.ExecuteTemplate(w, "contact.html", nil)
+}
+
+func loginHandler(w http.ResponseWriter, r *http.Request) {
+    tpl.ExecuteTemplate(w, "login.html", nil)
+}</code></pre>
+</section>        
+<section>
+<h2 id="nested-template">Nested template</h2>
+<h2 id="include-a-template-in-another">(include a template in another)</h2>
+<pre class="highlight"><code class="language-go">package main
+
+import (
+    "html/template"
+    "net/http"
+)
+
+var tpl *template.Template
+
+func main() {
+    tpl, _ = tpl.ParseGlob("templates/*.html")
+    http.HandleFunc("/", indexHandler)
+    http.ListenAndServe(":8080", nil)
+}
+
+func indexHandler(w http.ResponseWriter, r *http.Request) {
+    tpl.ExecuteTemplate(w, "index.html", nil)
+}</code></pre>
+</section>        
+<section>
+<ul>
+<li><code class="inline">index.html</code></li>
+</ul>
+<pre class="highlight"><code class="language-html">{{template "Header"}}
+&lt;h1&gt;Body&lt;/h1&gt;
+{{template "Footer"}}</code></pre>
+<ul>
+<li><code class="inline">header.html</code></li>
+</ul>
+<pre class="highlight"><code class="language-html">{{define "Header"}}
+    &lt;h1&gt;Header&lt;/h1&gt;
+{{end}}</code></pre>
+<ul>
+<li><code class="inline">footer.html</code></li>
+</ul>
+<pre class="highlight"><code class="language-html">{{define "Footer"}}
+    &lt;h1&gt;Footer&lt;/h1&gt;
+{{end}}</code></pre>
+</section>        
+<section>
+<h2 id="render-a-template-with-variables">Render a template with variables</h2>
+<pre class="highlight"><code class="language-go">package main
+
+import (
+    "fmt"
+    "html/template"
+    "net/http"
+)
+
+var tpl *template.Template
+var name = "John"
+
+func main() {
+    tpl, _ = tpl.ParseGlob("templates/*.html")
+    http.HandleFunc("/welcome", welcomeHandler)
+    http.ListenAndServe(":8080", nil)
+}
+
+func welcomeHandler(w http.ResponseWriter, r *http.Request) {
+    fmt.Println("indexHandler running")
+    tpl.ExecuteTemplate(w, "welcome.html", name)
+}</code></pre>
+</section>        
+<section>
+<h2 id="template-syntax">Template syntax</h2>
+<ul>
+<li><code class="inline">{{/* a comment */}}</code> Defines a comment</li>
+<li><code class="inline">{{.}}</code> Renders the root element</li>
+<li><code class="inline">{{.Name}}</code> Renders the “Name”-field in a nested element</li>
+<li><code class="inline">{{if .Done}} {{else}} {{end}}</code> Defines an if/else-Statement</li>
+<li><code class="inline">{{range .List}} {{.}} {{end}}</code>  Loops over all “List” field and renders each using <code class="inline">{{.}}</code></li>
+</ul>
+<pre class="highlight"><code class="language-html">        {{if .Member}}   
+            &lt;h1&gt;Thank you for joining&lt;/h1&gt;
+        {{else}}
+            &lt;h1&gt;Please signup to enjoy memborship benefits&lt;/h1&gt;
+        {{end}}</code></pre>
+</section>        
+<section>
+<h3 id="check-a-specific-value">Check a specific value</h3>
+<p>Binary comparison operators defined as functions</p>
+<ul>
+<li><code class="inline">eq</code> Returns the boolean truth of <code class="inline">arg1 == arg2</code></li>
+<li><code class="inline">ne</code> Returns the boolean truth of <code class="inline">arg1 != arg2</code></li>
+<li><code class="inline">lt</code> Returns the boolean truth of <code class="inline">arg1 &lt; arg2</code></li>
+<li><code class="inline">le</code> Returns the boolean truth of <code class="inline">arg1 &lt;= arg2</code></li>
+<li><code class="inline">gt</code> Returns the boolean truth of <code class="inline">arg1 &gt; arg2</code></li>
+<li><code class="inline">ge</code> Returns the boolean truth of <code class="inline">arg1 &gt;= arg2</code></li>
+</ul>
+</section>        
+<section>
+<pre class="highlight"><code class="language-html" data-line-numbers="all|3-5|7,9,11,13,21|all" >        passed in value: {{.}}&lt;br&gt;&lt;br&gt;
+
+        eq .Language "English": {{eq .Language "English"}}&lt;br&gt;
+        eq .Language "Mandarin": {{eq .Language "Mandarin"}}&lt;br&gt;
+        eq .Language "Spanish": {{eq .Language "Spanish"}}&lt;br&gt;&lt;br&gt;
+
+        {{if eq .Language "English"}}
+            &lt;h1&gt;Hello&lt;/h1&gt;
+        {{else if eq .Language "Mandarin"}}
+            &lt;h1&gt;你好&lt;/h1&gt;
+        {{else if eq .Language "Spanish"}}
+            &lt;h1&gt;Hola&lt;/h1&gt;
+        {{else}}
+        &lt;hi&gt;
+            &lt;ul&gt;
+                &lt;li&gt;Hello&lt;/li&gt;
+                &lt;li&gt;你好&lt;/li&gt;
+                &lt;li&gt;Hola&lt;/li&gt;
+            &lt;/ul&gt;
+        &lt;/hi&gt;
+        {{end}}</code></pre>
+</section>        
+<section>
+<pre class="highlight"><code class="language-html">&lt;!-- This is a HTML comment--&gt;
+{{/* This is a Go template comment */}}
+&lt;h1&gt;Welcome {{.}}!&lt;/h1&gt;</code></pre>
+</section>        
+<section>
+<h3 id="range-iteration">Range (Iteration)</h3>
+<pre class="highlight"><code class="language-go" data-line-numbers="all|14,21|all" >package main
+
+import (
+    "html/template"
+    "net/http"
+)
+
+type GroceryList []string
+
+var tpl *template.Template
+var g GroceryList
+
+func main() {
+    g = GroceryList{"milk", "eggs", "green beans", "cheese", "flour", "sugar", "broccoli"}
+    tpl, _ = tpl.ParseGlob("templates/*.html")
+    http.HandleFunc("/list", listHandler)
+    http.ListenAndServe(":8080", nil)
+}
+
+func listHandler(w http.ResponseWriter, r *http.Request) {
+    tpl.ExecuteTemplate(w, "groceries.html", g)
+}</code></pre>
+</section>        
+<section>
+<ul>
+<li>Template</li>
+</ul>
+<pre class="highlight"><code class="language-html" data-line-numbers="all|10-12|all" >&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+    &lt;head&gt;
+        &lt;title&gt;Grocery List&lt;/title&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;/head&gt;
+    &lt;body&gt;
+        &lt;h3&gt;Grocery List&lt;/h3&gt;
+        &lt;ul&gt;
+            {{range .}}
+                &lt;li&gt;{{.}}&lt;/li&gt;
+            {{end}}
+        &lt;/ul&gt;
+    &lt;/body&gt;
+&lt;/html&gt;</code></pre>
+</section>        
+<section>
+<ul>
+<li>Alternatively</li>
+</ul>
+<pre class="highlight"><code class="language-html" data-line-numbers="all|10-12|all" >&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+    &lt;head&gt;
+        &lt;title&gt;Grocery List&lt;/title&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;/head&gt;
+    &lt;body&gt;
+        &lt;h3&gt;Grocery List&lt;/h3&gt;
+        &lt;ol&gt;
+            {{range $element := .}}
+                &lt;li&gt;Element: {{$element}} Value:{{.}}&lt;/li&gt;
+            {{end}}
+        &lt;/ol&gt;
+    &lt;/body&gt;
+&lt;/html&gt;</code></pre>
+</section>        
+<section>
+<ul>
+<li>With index</li>
+</ul>
+<pre class="highlight"><code class="language-html" data-line-numbers="all|10-12|all" >&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+    &lt;head&gt;
+        &lt;title&gt;Grocery List&lt;/title&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;/head&gt;
+    &lt;body&gt;
+        &lt;h3&gt;Grocery List&lt;/h3&gt;
+        &lt;ol&gt;
+            {{range $index, $element := .}}
+                &lt;li&gt;Index: {{$index}} Element: {{$element}} Value:{{.}}&lt;/li&gt;
+            {{end}}
+        &lt;/ol&gt;
+    &lt;/body&gt;
+&lt;/html&gt;</code></pre>
+<hr/>
+</section>        
+
+</section>        
+<section>
+<h1 id="additional-resources">Additional resources</h1>
+<ul>
+<li><a href="https://tutorialedge.net/course/golang/">tutorialedge.net</a></li>
+<li><a href="https://www.bogotobogo.com/GoLang/GoLang_HelloWorld.php">bogotobogo.com</a></li>
+<li><a href="https://dev.to/t/go">dev.to</a></li>
+<li><a href="https://golangbot.com/panic-and-recover/">golangbot.com</a></li>
+</ul>
+</section>        
+
+
+			</div>
+
+		</div>
+
+		<script src="dist/reveal.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js"></script>
+        <script src="plugin/copycode/copycode.js"></script>
+		<script src="plugin/zoom/zoom.js"></script>
+		<script src="plugin/notes/notes.js"></script>
+		<script src="plugin/search/search.js"></script>
+		<script src="plugin/markdown/markdown.js"></script>
+		<script src="plugin/highlight/highlight.js"></script>
+        		
+        <!-- Font awesome is required for the chalkboard plugin -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+        <!-- Custom controls plugin is used to for opening and closing annotation modes. -->
+        <script src="https://cdn.jsdelivr.net/npm/reveal.js-plugins@latest/customcontrols/plugin.js"></script>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js-plugins@latest/customcontrols/style.css">
+        <!-- Chalkboard plugin -->
+        <script src="https://cdn.jsdelivr.net/npm/reveal.js-plugins@latest/chalkboard/plugin.js"></script>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js-plugins@latest/chalkboard/style.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js-plugins/menu/font-awesome/css/fontawesome.css">
+
+		<!-- Third-Party Plugin for menu -->
+        <script src="plugin/menu/menu.js"></script>
+
+		<script>
+
+			// Also available as an ES module, see:
+			// https://revealjs.com/initialization/
+			Reveal.initialize({
+                customcontrols: {
+                    controls: [
+                      { icon: '<i class="fa fa-pen-square" style="color:#2a76dd"></i>',
+                        title: 'Toggle chalkboard (B)',
+                        action: 'RevealChalkboard.toggleChalkboard();'
+                      },
+                      { icon: '<i class="fa fa-pen" style="color:#2a76dd"></i>',
+                        title: 'Toggle notes canvas (C)',
+                        action: 'RevealChalkboard.toggleNotesCanvas();'
+                      }
+                    ]
+                },
+                chalkboard: {
+                    boardmarkerWidth: 3,
+                    chalkWidth: 7,
+                    chalkEffect: 1.0,
+                    storage: null,
+                    src: null,
+                    readOnly: undefined,
+                    transition: 800,
+                    theme: "chalkboard",
+                    background: [ 'rgba(127,127,127,.1)' , path + 'img/blackboard.png' ],
+                    grid: { color: 'rgb(50,50,10,0.5)', distance: 80, width: 2},
+                    eraser: { src: path + 'img/sponge.png', radius: 20},
+                    boardmarkers : [
+                            { color: 'rgba(100,100,100,1)', cursor: 'url(' + path + 'img/boardmarker-black.png), auto'},
+                            { color: 'rgba(30,144,255, 1)', cursor: 'url(' + path + 'img/boardmarker-blue.png), auto'},
+                            { color: 'rgba(220,20,60,1)', cursor: 'url(' + path + 'img/boardmarker-red.png), auto'},
+                            { color: 'rgba(50,205,50,1)', cursor: 'url(' + path + 'img/boardmarker-green.png), auto'},
+                            { color: 'rgba(255,140,0,1)', cursor: 'url(' + path + 'img/boardmarker-orange.png), auto'},
+                            { color: 'rgba(150,0,20150,1)', cursor: 'url(' + path + 'img/boardmarker-purple.png), auto'},
+                            { color: 'rgba(255,220,0,1)', cursor: 'url(' + path + 'img/boardmarker-yellow.png), auto'}
+                    ],
+                    chalks: [
+                            { color: 'rgba(255,255,255,0.5)', cursor: 'url(' + path + 'img/chalk-white.png), auto'},
+                            { color: 'rgba(96, 154, 244, 0.5)', cursor: 'url(' + path + 'img/chalk-blue.png), auto'},
+                            { color: 'rgba(237, 20, 28, 0.5)', cursor: 'url(' + path + 'img/chalk-red.png), auto'},
+                            { color: 'rgba(20, 237, 28, 0.5)', cursor: 'url(' + path + 'img/chalk-green.png), auto'},
+                            { color: 'rgba(220, 133, 41, 0.5)', cursor: 'url(' + path + 'img/chalk-orange.png), auto'},
+                            { color: 'rgba(220,0,220,0.5)', cursor: 'url(' + path + 'img/chalk-purple.png), auto'},
+                            { color: 'rgba(255,220,0,0.5)', cursor: 'url(' + path + 'img/chalk-yellow.png), auto'}
+                    ]
+                },
+				controls: true,
+				progress: true,
+				center: true,
+				hash: true,
+				slideNumber: true,
+
+                copycode: {
+                    copy: "Copy",
+                    copied: "Copied!",
+                    timeout: 1000,
+                    copybg: "orange",
+                    copiedbg: "green",
+                    copycolor: "black",
+                    copiedcolor: "white"
+                },
+
+				// Learn about plugins: https://revealjs.com/plugins/
+				plugins: [ RevealZoom, RevealNotes, RevealSearch, RevealMarkdown, RevealHighlight, RevealMenu, CopyCode, RevealChalkboard, RevealCustomControls ]
+			});
+
+		</script>
+		
+		<script>
+		function addCopyButtons(clipboard) {
+            document.querySelectorAll('pre > code').forEach(function (codeBlock) {
+                var button = document.createElement('button');
+                button.className = 'copy-code-button';
+                button.type = 'button';
+                button.innerText = 'Copy';
+        
+                button.addEventListener('click', function () {
+                    clipboard.writeText(codeBlock.innerText).then(function () {
+                        /* Chrome doesn't seem to blur automatically,
+                           leaving the button in a focused state. */
+                        button.blur();
+        
+                        button.innerText = 'Copied!';
+        
+                        setTimeout(function () {
+                            button.innerText = 'Copy';
+                        }, 2000);
+                    }, function (error) {
+                        button.innerText = 'Error';
+                    });
+                });
+        
+                var pre = codeBlock.parentNode;
+                if (pre.parentNode.classList.contains('highlight')) {
+                    var highlight = pre.parentNode;
+                    highlight.parentNode.insertBefore(button, highlight);
+                } else {
+                    pre.parentNode.insertBefore(button, pre);
+                }
+            });
+        }
+        /*
+        if (navigator && navigator.clipboard) {
+            addCopyButtons(navigator.clipboard);
+        } else {
+            var script = document.createElement('script');
+            script.src = 'https://cdnjs.cloudflare.com/ajax/libs/clipboard-polyfill/2.7.0/clipboard-polyfill.promise.js';
+            script.integrity = 'sha256-waClS2re9NUbXRsryKoof+F9qc1gjjIhc2eT7ZbIv94=';
+            script.crossOrigin = 'anonymous';
+            script.onload = function() {
+                addCopyButtons(clipboard);
+            };
+        
+            document.body.appendChild(script);
+        }
+        */
+		</script>
+
+	</body>
+</html>
