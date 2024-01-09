@@ -3,6 +3,13 @@
 ## Setup 
 
 ```bash
+# Create dedicated virtual environment 
+# (it avoids to encounter issues with markdown conversion)
+virtualenv venv-trainings
+
+# Enable virtual environment
+source venv-trainings/bin/activate
+
 # Install requirements
 pip install -r requirements.txt
 ```
