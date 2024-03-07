@@ -258,7 +258,7 @@ def main(args=None):
             slide_content_markdown = remove_prefix(remove_prefix(s, '#'), '\n')
             slides_dict[slide_index].append(slide_content_markdown)
 
-            slide_content_html = markdown.markdown(slide_content_markdown, indentation=4, output_format='html', extensions=['pymdownx.superfences', 'pymdownx.emoji', 'markdown.extensions.tables', 'markdown.extensions.admonition', 'toc'])  # , 'codehilite' enables pygments for syntax highlighting
+            slide_content_html = markdown.markdown(slide_content_markdown, indentation=4, output_format='html', extensions=['pymdownx.superfences', 'pymdownx.emoji', 'markdown.extensions.tables', 'markdown.extensions.admonition', 'toc', 'pymdownx.mark'])  # , 'codehilite' enables pygments for syntax highlighting
 
             # adjust html slide content
             slide_content_html = adjust_slide_html(slide_content_html)
