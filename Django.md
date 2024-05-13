@@ -1318,9 +1318,12 @@ def get_all_users(key="username"):
 
     ```python
     INSTALLED_APPS = [
-        # other apps
-        "rest_framework",       # <-- rest_framework
-        'example.api',          # <-- project app
+        # Third-Party Apps
+        'rest_framework',            # <-- rest_framework
+        'rest_framework.authtoken',  # <-- rest_framework Auth
+
+        # Local Apps (Your project's apps)
+        'api.apps.ApiConfig',        # <-- project app
     ]
     ```    
 
@@ -1394,6 +1397,7 @@ def get_all_users(key="username"):
         'DEFAULT_AUTHENTICATION_CLASSES': [
             'rest_framework.authentication.TokenAuthentication',  # <-- Auth
         ],
+    }
     ```
 
 ---##
