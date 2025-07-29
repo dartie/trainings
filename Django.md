@@ -146,7 +146,7 @@ pip3 install django
 
 ```bash
 # create django project
-django-admin startproject ${project-name} . 
+django-admin startproject ${project-name} 
 ```
 
 ---##
@@ -170,6 +170,12 @@ django-admin startproject ${project-name} .
 ---##
 
 * If the dot is omitted, the additional top-level project folder is avoided
+
+```bash
+# create django project
+django-admin startproject ${project-name} 
+```
+
 ```
 <current-folder>/
 │
